@@ -1,0 +1,24 @@
+{
+    "name": "velooApp",
+    "version": "0.0.1",
+    "description": "Veloo Angular Frontend",
+    "authors": [
+    "Daniel Elsner, Constantin Mense, Lukas Mohs, Jens Karrenbauer"
+  ],
+    "license": "MIT",
+    "dependencies": {
+        "angular-material": "master",
+        "angular-resource": "*",
+        "angular-route": "*",
+        "angular-filter": "master",
+        "angular-translate": "*",
+        "angular-sanitize": "*",
+        "ng-file-upload": "master",
+        "ng-img-crop": "master",
+        "angular-scroll-glue": "master"
+    },
+    "resolutions": {
+        "angular": "^1.4.8",
+        "angular-material": "master"
+    }
+}

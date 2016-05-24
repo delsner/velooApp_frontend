@@ -1,0 +1,22 @@
+/* Styles go here */
+* {
+  margin: 0;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+#nav {
+  z-index: 2;
+}
+
+#content {
+  -webkit-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+/* OWN COLOR CLASSES */
+
