@@ -8,8 +8,8 @@
     function router($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                'templateUrl': '',
-                'controller': '',
+                'templateUrl': 'components/home/templates/home.tpl.html',
+                'controller': 'homeCtrl as ctrl',
                 'auth': false
             })
     }
