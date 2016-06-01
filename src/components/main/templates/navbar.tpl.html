@@ -8,7 +8,7 @@
         </h2>
 
         <div hide-xs hide-sm>
-            <md-button class="md-padding md-raised md-primary" ng-click="mainCtrl.setPathTo('/bicycle/create')"> Offer Bicylce
+            <md-button class="md-padding md-raised md-accent" ng-click="mainCtrl.setPathTo('/bicycle/create')"> Offer Bicylce
             </md-button>
             <md-button class="md-padding" ng-click="mainCtrl.showSignup($event)"> <!--ng-show="!mainCtrl.isAuthed()"-->
                 Signup
@@ -17,6 +17,13 @@
                 Login
             </md-button>
         </div>
+
+        <md-button class="md-icon-button"
+                   ng-click="mainCtrl.toggleSidenav('right')"
+                   hide-gt-sm
+                   aria-label="Menu">
+            <md-icon md-font-set="material-icons">menu</md-icon>
+        </md-button>
 
     </div>
 

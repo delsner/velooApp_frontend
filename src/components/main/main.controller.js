@@ -11,6 +11,7 @@
         vm.isFrontPage = isFrontPage;
 
         vm.setPathTo = $rootScope.setPathTo;
+        vm.toggleSidenav = $rootScope.toggleSidenav;
 
         function isFrontPage() {
             return $location.path() == "/"

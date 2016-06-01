@@ -9,15 +9,15 @@ filename: sidenav.directive.js in main
         .module('velooAngular')
         .directive('sidenav', sidenav);
 
-    function sidenav() {
+    function sidenav($rootScope) {
         return {
-            scope: "=",
+            scope: {},
             controller: function ($scope, $mdSidenav) {
-                function toggle() {
-                    $mdSidenav.close();
-                }
+                var vm = this;
+
+                vm.toggle = $rootScope.toggleSidenav;
             },
-            type: 'e',
+            restrict: 'E',
             templateUrl: '../main/templates/sidenav.tpl.html',
             link: function (scope, attributes, element) {
             }

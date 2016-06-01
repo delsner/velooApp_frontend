@@ -23,6 +23,12 @@
 
 <div id='nav' ng-include src="'components/main/templates/navbar.tpl.html'">
 </div>
+<md-sidenav layout="column" class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
+            is-locked-open="$media('sm')"
+            hide-gt-sm flex
+            ng-include src="'components/main/templates/sidenav.tpl.html'">
+</md-sidenav>
+<!--<div id="sidenav" ng-include src="'components/main/templates/sidenav.tpl.html'"></div>-->
 
 <md-content scroll flex layout='column' ng-class="{scrollable:mainCtrl.scrollable()}" ng-class="{{mainCtrl.isFrontPage() ? '' : 'not-front-page'}}">
 
@@ -83,6 +89,9 @@
 
 <script src="components/home/home.controller.js"></script>
 <script src="components/home/home.directives.js"></script>
+
+<script src="components/bicycle/bicycle.controller.js"></script>
+
 
 </body>
 
