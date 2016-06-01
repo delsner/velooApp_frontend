@@ -1,4 +1,4 @@
-(function (angular) {
+(function () {
     'use strict';
 
     angular
@@ -11,10 +11,12 @@
         vm.isFrontPage = isFrontPage;
 
         vm.setPathTo = $rootScope.setPathTo;
+        vm.showLogin = $rootScope.showLogin;
+        vm.showSignup = $rootScope.showSignup;
 
         function isFrontPage() {
             return $location.path() == "/"
         }
 
     }
-})(angular);
+})();

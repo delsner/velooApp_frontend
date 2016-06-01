@@ -1,0 +1,30 @@
+<md-dialog aria-label="Login" class="dialog-container" ng-cloak flex-gt-sm="40">
+    <form name="signupForm" ng-submit="ctrl.signup()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Sign up</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <md-icon class="md-icon">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content class="md-padding">
+            <md-dialog-content layout-padding>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Username</label>
+                    <md-icon class="md-icon">person</md-icon>
+                    <input type="text" name="username" class="form-control" ng-model="ctrl.username" required/>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Password</label>
+                    <md-icon class="md-icon">security</md-icon>
+                    <input type="password" name="password" class="form-control" ng-model="ctrl.password" required/>
+                </md-input-container>
+            </md-dialog-content>
+            <md-content layout="column" layout-align="center center">
+                <md-button type="submit" class="md-raised md-primary">Sign up</md-button>
+            </md-content>
+        </md-content>
+    </form>
+</md-dialog>
