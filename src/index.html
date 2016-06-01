@@ -21,41 +21,21 @@
 
 <body layout='column' ng-controller="mainCtrl as mainCtrl" ng-cloak>
 
-<div id='nav'>
-
-    <md-toolbar id="navbarTop" class="navbar-default" ng-class="{isTransparent:isTransparent}">
-
-        <div class="md-toolbar-tools">
-            <h2 class="logo-container" flex>
-                <a ng-click="mainCtrl.setPathTo('')">
-                    <img class="swf-logo-pointer" src="images/veloo-logo-white.png" height="50"/>
-                </a>
-            </h2>
-            <div hide-xs hide-sm>
-                <md-button class="md-padding md-raised md-accent" ng-click="mainCtrl.setPathTo('/bicycle/create')">
-                    Offer Bicylce
-                </md-button>
-                <md-button class="md-padding" ng-click="mainCtrl.showSignup()">
-                    <!--ng-show="!mainCtrl.isAuthed()"-->
-                    Signup
-                </md-button>
-                <md-button class="md-padding" ng-click="mainCtrl.showLogin()">
-                    Login
-                </md-button>
-            </div>
-        </div>
-
-
-    </md-toolbar>
+<div id='nav' ng-include src="'components/main/templates/navbar.tpl.html'">
 </div>
+<md-sidenav layout="column" class="md-sidenav-right md-whiteframe-z2" md-component-id="right"
+            is-locked-open="$media('sm')"
+            hide-gt-sm flex
+            ng-include src="'components/main/templates/sidenav.tpl.html'">
+</md-sidenav>
+<!--<div id="sidenav" ng-include src="'components/main/templates/sidenav.tpl.html'"></div>-->
 
-<md-content scroll flex layout='column' ng-class="{scrollable:mainCtrl.scrollable()}">
+<md-content scroll flex layout='column' ng-class="{scrollable:mainCtrl.scrollable()}" ng-class="{{mainCtrl.isFrontPage() ? '' : 'not-front-page'}}">
 
     <header md-page-header ng-if="mainCtrl.isFrontPage()">
-        <div>
             <div class="header-content">
                 <div id="citationContainer" class="header-content-inner">
-                    <h1>Wälder, Wiesen, Wildnis</h1>
+                    <h1>Find your Veloo</h1>
                     <hr>
                     <md-autocomplete flex="50" flex-offset="25"
                                      md-selected-item="mainCtrl.selectedItem"
@@ -80,12 +60,8 @@
                             Keine Ergebnisse zu {{mainCtrl.searchText}}.
                         </md-not-found>
                     </md-autocomplete>
-                    <div flex class="swf-how-to-button" layout="row" layout-align="center end">
-                        <md-button class="md-raised" ng-click="mainCtrl.setShowHowTo()">Wie funktioniert's?</md-button>
-                    </div>
                 </div>
             </div>
-        </div>
     </header>
 
     <div id='content' ng-view autoscroll="true" flex>
@@ -113,6 +89,8 @@
 
 <script src="components/home/home.controller.js"></script>
 <script src="components/home/home.directives.js"></script>
+
+<script src="components/bicycle/bicycle.controller.js"></script>
 
 <script src="components/auth/auth.controller.js"></script>
 <script src="components/auth/auth.services.js"></script>

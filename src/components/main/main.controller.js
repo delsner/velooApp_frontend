@@ -13,6 +13,7 @@
         vm.setPathTo = $rootScope.setPathTo;
         vm.showLogin = $rootScope.showLogin;
         vm.showSignup = $rootScope.showSignup;
+        vm.toggleSidenav = $rootScope.toggleSidenav;
 
         function isFrontPage() {
             return $location.path() == "/"
