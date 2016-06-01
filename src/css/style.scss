@@ -1,3 +1,8 @@
+/* Color Variables */
+$color_mainBlue: rgb(11, 101, 193);
+$color_mainGreen: rgb(70, 173, 90);
+
+
 /* Styles go here */
 * {
   margin: 0;
@@ -18,5 +23,91 @@ body {
   flex: 1 0 auto;
 }
 
-/* OWN COLOR CLASSES */
+/************** NAVBAR **************/
+md-toolbar.navbar-default {
+  background-color: $color_mainBlue;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  z-index: 79;
+}
 
+md-toolbar.navbar-default.isTransparent {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-style: none;
+}
+
+/************** END NAVBAR **************/
+
+
+/************** HEADER FOR BACKGROUND PICTURE **************/
+header {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  background-image: url(../images/front.jpg);
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  flex: 1 0 75vh;
+}
+
+header hr {
+  max-width: 50px;
+  border-color: white;
+}
+
+header .header-content {
+  position: relative;
+  width: 100%;
+  padding: 80px 0;
+  text-align: center;
+}
+
+header .header-content .header-content-inner h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+header .header-content .header-content-inner hr {
+  margin: 30px auto;
+}
+
+header .header-content .header-content-inner p {
+  margin-bottom: 50px;
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, .7);
+}
+
+@media(min-width: 768px) {
+  header {
+    flex: 1 0 100vh;
+  }
+
+  header .header-content {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  header .header-content .header-content-inner {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1000px;
+  }
+
+  header .header-content .header-content-inner p {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 80%;
+    font-size: 18px;
+  }
+}

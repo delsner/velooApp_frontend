@@ -21,7 +21,70 @@
 
 <body layout='column' ng-controller="mainCtrl as mainCtrl" ng-cloak>
 
-<h1> Veloo is gonna be great! </h1>
+<div id='nav'>
+
+    <md-toolbar id="navbarTop" class="navbar-default" ng-class="{isTransparent:isTransparent}">
+
+        <div class="md-toolbar-tools">
+            <h2 class="logo-container" flex><a ng-click="mainCtrl.setPathTo('')"><img class="swf-logo-pointer"
+                                                                                       src="images/veloo-logo-white.png"
+                                                                                       height="50"/></a></h2>
+
+        </div>
+    </md-toolbar>
+</div>
+
+<md-content scroll flex layout='column' ng-class="{scrollable:mainCtrl.scrollable()}">
+
+    <header md-page-header ng-if="mainCtrl.isFrontPage()">
+        <div>
+            <div class="header-content">
+                <div id="citationContainer" class="header-content-inner">
+                    <h1>Wälder, Wiesen, Wildnis</h1>
+                    <hr>
+                    <md-autocomplete flex="50" flex-offset="25"
+                                     md-selected-item="mainCtrl.selectedItem"
+                                     md-search-text-change="mainCtrl.searchTextChange(mainCtrl.searchText)"
+                                     md-search-text="mainCtrl.searchText"
+                                     md-selected-item-change="mainCtrl.selectedItemChange(item)"
+                                     md-items="item in mainCtrl.getSearchHints(mainCtrl.searchText)"
+                                     md-item-text="item.name"
+                                     md-min-length="2"
+                                     placeholder="Suchen nach ..."
+                                     ng-keypress="mainCtrl.showSearchResults($event, mainCtrl.searchText)"
+                                     md-menu-class="autocomplete-custom-template">
+                        <md-item-template>
+                            <div flex ng-click="mainCtrl.setPathTo('transactionObject/'+item.id)">
+                            <span class="item-title">
+                                <md-icon>place</md-icon>
+                                <span> {{item.name}} </span>
+                            </span>
+                            </div>
+                        </md-item-template>
+                        <md-not-found>
+                            Keine Ergebnisse zu {{mainCtrl.searchText}}.
+                        </md-not-found>
+                    </md-autocomplete>
+                    <div flex class="swf-how-to-button" layout="row" layout-align="center end">
+                        <md-button class="md-raised" ng-click="mainCtrl.setShowHowTo()">Wie funktioniert's?</md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id='content' ng-view autoscroll="true" flex>
+    </div>
+
+    <div id='footer'>
+        <footer ng-include src="'components/home/templates/footer.tpl.html'"></footer>
+    </div>
+
+</md-content>
+
+
+
+<!-- JS-DEPENDENCIES -->
 
 <!-- lib:js -->
 <!-- bower installed scripts will go here... -->
@@ -30,8 +93,12 @@
 <!-- Angular JS Components -->
 <script src="components/app.js"></script>
 <script src="components/share/router.js"></script>
-<script src="components/main/main.controller.js"></script>
 <script src="components/share/services.js"></script>
+
+<script src="components/main/main.controller.js"></script>
+
+<script src="components/home/home.controller.js"></script>
+<script src="components/home/home.directives.js"></script>
 
 </body>
 
