@@ -1,4 +1,4 @@
-(function (angular) {
+(function () {
     'use strict';
 
     angular
@@ -11,6 +11,8 @@
         vm.isFrontPage = isFrontPage;
 
         vm.setPathTo = $rootScope.setPathTo;
+        vm.showLogin = $rootScope.showLogin;
+        vm.showSignup = $rootScope.showSignup;
         vm.toggleSidenav = $rootScope.toggleSidenav;
 
         function isFrontPage() {
@@ -18,4 +20,4 @@
         }
 
     }
-})(angular);
+})();
