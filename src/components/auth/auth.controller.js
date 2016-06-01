@@ -31,8 +31,8 @@
                         $mdDialog.alert()
                             .parent(angular.element(document.body))
                             .clickOutsideToClose(true)
-                            .title('Herzlich Willkommen!')
-                            .textContent('Wir haben Sie erfolgreich für Sharewood-Forest registriert und Ihnen eine Email geschickt. Bitte folgen Sie den weiteren Anweisungen in der Email.')
+                            .title('Welcome!')
+                            .textContent('Welcome at Veloo!')
                             .ok('OK'));
                 }, function (error) {
                     console.log(error);

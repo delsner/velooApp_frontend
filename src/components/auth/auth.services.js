@@ -29,7 +29,6 @@
                 password: password
             });
         }
-        
 
         function isAuthenticated() {
             return velooToken.isAuthenticated();
