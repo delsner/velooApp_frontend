@@ -1,6 +1,8 @@
 /* Color Variables */
 $color_mainBlue: rgb(11, 101, 193);
 $color_mainGreen: rgb(70, 173, 90);
+$color_font: rgba(0,0,0,0.87);
+$color_border: rgba(0, 0, 0, 0.12);
 
 
 /* Styles go here */
@@ -23,13 +25,42 @@ body {
   flex: 1 0 auto;
 }
 
+.v-font-color {
+  color: $color_font !important;
+  font-size: 16px;
+  font-weight: normal !important;
+}
+
+.v-border-box {
+  border-bottom: 1px solid $color_border;
+}
+
+.v-subheader {
+  background-color: rgba(0, 0, 0, 0.02) !important;
+  height: 60px;
+  padding:16px;
+}
+
+.v-card-style {
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  margin:3px;
+}
+
+.v-lr-padding {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+md-subheader._md-subheader-inner {
+  padding: 8px !important;
+}
+
 /************** NAVBAR **************/
 md-toolbar.navbar-default {
   background-color: $color_mainBlue;
   color: #fff;
   position: fixed;
   top: 0;
-  z-index: 79;
+  z-index: 999;
 }
 
 md-toolbar.navbar-default.isTransparent {
@@ -42,8 +73,12 @@ md-toolbar.navbar-default.isTransparent {
 
 /************** HEADER FOR BACKGROUND PICTURE **************/
 
-.v-margin-top {
+.top {
   margin-top: 64px;
+  background-color: transparent !important;
+  color: $color_font !important;
+  border-bottom: $color_mainBlue 1px solid;
+  z-index: 0;
 }
 
 header {
@@ -116,3 +151,23 @@ header .header-content .header-content-inner p {
     font-size: 18px;
   }
 }
+
+/***************************** Bicycle View ********************/
+.v-create-bicycle-address {
+  margin-right: 7px;
+}
+
+.v-create-bicycle-map .angular-google-map-container {
+  height: 400px;
+  width: inherit;
+  margin: auto;
+}
+
+.v-create-bicycle-features {
+}
+
+
+
+/***************************** Bicycle View ********************/
+
+/***************************** Google Maps Container ********************/
