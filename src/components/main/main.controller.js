@@ -18,17 +18,13 @@
         vm.logout = $rootScope.logout;
 
         //internal functions
-        vm.isFrontPage = isFrontPage;
         vm.getSearchHints = getSearchHints;
         vm.showSearchResults = showSearchResults;
         vm.searchTextChange = searchTextChange;
         vm.selectedItemChange = selectedItemChange;
+        vm.currentLocation = currentLocation;
 
         //functions
-        function isFrontPage() {
-            return $location.path() == "/"
-        }
-        
         function getSearchHints(searchText) {
             var deferred = $q.defer();
 
@@ -63,6 +59,10 @@
 
         function selectedItemChange(item) {
             $log.info('Item changed to ' + JSON.stringify(item));
+        }
+        
+        function currentLocation() {
+            return $location.path();
         }
     }
 })();

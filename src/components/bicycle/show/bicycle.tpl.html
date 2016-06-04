@@ -143,6 +143,15 @@
                 </md-list>
             </div>
 
+            <div layout="row" ng-if="ctrl.bicycle.carrier">
+                <md-list ng-cloak ng-if="ctrl.bicycle.features[$index+2] != null">
+                    <md-list-item flex>
+                        <md-icon class="md-primary">check_box</md-icon>
+                        <p>Carrier</p>
+                    </md-list-item>
+                </md-list>
+            </div>
+
         </div>
     </div>
 </div>
