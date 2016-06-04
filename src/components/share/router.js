@@ -13,17 +13,17 @@
                 'auth': false
             })
             .when('/bicycle/create', {
-                'templateUrl': 'components/bicycle/templates/createBicycle.tpl.html',
+                'templateUrl': 'components/bicycle/create/createBicycle.tpl.html',
                 'controller': 'bicycleCtrl as ctrl',
                 'auth': false
             })
             .when('/bicycle/edit', {
-                'templateUrl': 'components/bicycle/templates/editBicycle.tpl.html',
+                'templateUrl': 'components/bicycle/edit/editBicycle.tpl.html',
                 'controller': 'bicycleCtrl as ctrl',
                 'auth': false
             })
-            .when('/bicycle/:id', {
-                'templateUrl': 'components/bicycle/templates/bicycle.tpl.html',
+            .when('/bicycle/', {
+                'templateUrl': 'components/bicycle/show/bicycle.tpl.html',
                 'controller': 'bicycleCtrl as ctrl',
                 'auth': false
             })
