@@ -10,10 +10,31 @@
 
         vm.saveBicycle = saveBicycle;
         vm.getGeolocation = getGeolocation;
+        vm.addFeature = addFeature;
 
         vm.bicycleTypes = ["Mountainbike", "Racing Bicycle", "Road Bicycle", "Touring Bicycle"];
         vm.bicycleCategories = ["Female", "Male", "Children"];
         vm.bicycleSizes = ["XS", "S", "M", "L", "XL"];
+        vm.bicycleFeatures = [
+            {
+                feature: "Lock",
+                isSelected: false,
+            },
+            {
+                feature: "Helmet",
+                isSelected: false,
+            },
+            {
+                feature: "Airpump",
+                isSelected: false,
+            },
+            {
+                feature: "Repairkit",
+                isSelected: false,
+            }
+        ];
+        vm.newFeature = "";
+        vm.newFeatures = [];
 
         vm.map = {
             center: {
@@ -46,7 +67,8 @@
             description: "",
             category: "",
             latitude: vm.marker.coords.latitude,
-            longitude: vm.marker.coords.longitude
+            longitude: vm.marker.coords.longitude,
+            featureArray: vm.bicycleFeatures.concat(vm.newFeatures)
         };
 
         function saveBicycle() {
@@ -61,6 +83,11 @@
                         .textContent('Bitte überprüfen Sie Ihre Eingaben.')
                         .ok('OK'));
             });
+        }
+        
+        function addFeature() {
+            vm.newFeatures.push({feature: vm.newFeature, isSelected: true});
+            vm.newFeature = "";
         }
 
         function getGeolocation() {

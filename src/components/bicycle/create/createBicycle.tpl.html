@@ -21,7 +21,7 @@
             </div>
             <div layout="column" class="v-lr-padding">
                 <md-input-container class="md-icon-float">
-                    <label>Street</label>
+                    <label>Street and number</label>
                     <md-icon class="md-icon">location_on</md-icon>
                     <input type="text" class="form-control" ng-model="ctrl.bicycle.street" ng-blur="ctrl.getGeolocation()" required/>
                 </md-input-container>
@@ -129,27 +129,33 @@
             <div class="v-lr-padding" layout="column">
                 <div id="features">
                     <div layout-gt-sm="row">
-                        <md-input-container flex-gt-sm="30" layout-align-gt-sm="start center" class="v-border-box">
-                            <md-checkbox md-no-ink ng-model="ctrl.bicycle.carrier" class="md-primary">
-                                Carrier
+                        <md-input-container flex="20">
+                            <md-checkbox  md-no-ink ng-model="ctrl.bicycle.carrier" class="md-primary">
+                                <span>Carrier</span>
                             </md-checkbox>
                         </md-input-container>
-                        <div flex hide-sm hide-xs></div>
-                        <md-input-container class="v-border-box" flex-gt-sm="30" layout-align-gt-sm="start center">
-                            <md-checkbox md-no-ink ng-model="data.cb6" class="md-primary">
-                                Feature
-                            </md-checkbox>
-                        </md-input-container>
-                        <div flex hide-sm hide-xs></div>
-                        <md-input-container class="v-border-box" flex-gt-sm="30" layout-align-gt-sm="start center">
-                            <md-checkbox md-no-ink ng-model="data.cb7" class="md-primary">
-                                Feature dadsksaldh jsakljaskldsallaskjdkjsakldjalkdjksajdlasja
-                            </md-checkbox>
+                        <md-input-container flex="20" ng-repeat="feature in ctrl.bicycleFeatures"> 
+                            <md-checkbox md-no-ink ng-model="feature.isSelected" class="md-primary"> 
+                            <span>{{feature.feature}} </span>
+                            </md-checkbox> 
                         </md-input-container>
                     </div>
-                    <md-button class="md-fab md-mini md-primary">
-                        <md-icon>exposure_plus_1</md-icon>
-                    </md-button>
+                    <div layout="column">
+                        <md-input-container ng-repeat="feature in ctrl.newFeatures"> 
+                            <md-checkbox md-no-ink ng-model="feature.isSelected" class="md-primary"> 
+                                <span>{{feature.feature}} </span>
+                            </md-checkbox> 
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container>
+                            <label>Add new feature</label>
+                            <input type="text" ng-model="ctrl.newFeature">
+                        </md-input-container>
+                        <md-button class="md-fab md-mini md-primary" ng-click="ctrl.addFeature()" ng-disabled="!ctrl.newFeature">
+                            <md-icon>exposure_plus_1</md-icon>
+                        </md-button>
+                    </div>
                 </div>
 
                 <div flex style="border: 5px dotted rgba(0,0,0,0.1); text-align: center" layout-margin>
