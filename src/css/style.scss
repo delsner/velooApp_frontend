@@ -3,6 +3,8 @@ $color_mainBlue: rgb(11, 101, 193);
 $color_mainGreen: rgb(70, 173, 90);
 $color_font: rgba(0, 0, 0, 0.87);
 $color_border: rgba(0, 0, 0, 0.12);
+$colors_warn: rgba(221, 44, 0, 1.0);
+$colors_white: rgb(250, 250, 250);
 
 /* Styles go here */
 * {
@@ -25,13 +27,18 @@ body {
 }
 
 #footer {
-  margin-top:50px;
+  margin-top: 50px;
 }
 
 .v-font-color {
   color: $color_font !important;
   font-size: 16px;
   font-weight: normal !important;
+}
+
+.v-warn {
+  background-color: $colors_warn;
+  color: $colors_white;
 }
 
 .v-border-box {
@@ -218,11 +225,11 @@ header .header-content .header-content-inner p {
   color: #ffffff;
 }
 
-.v-footer-link-contrast:hover{
+.v-footer-link-contrast:hover {
   color: #ffcc00;
 }
 
-.v-footer-ul{
+.v-footer-ul {
   list-style-type: none;
   display: table;
   vertical-align: middle;
@@ -230,30 +237,29 @@ header .header-content .header-content-inner p {
 
 }
 
-  /***************************** Landinge Page ********************/
+/***************************** Landinge Page ********************/
 
-.v-home-head{
+.v-home-head {
   color: #ffffff;
   text-transform: uppercase;
   height: 60px;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
-.v-home-howtorent{
+.v-home-howtorent {
   width: 100%;
   height: 400px;
   background-color: #fafafa;
 
-
 }
 
-.v-home-howtooffer{
+.v-home-howtooffer {
   background-color: $color_mainGreen;
   width: 100%;
   height: 400px
 }
 
-.v-home-addtext{
+.v-home-addtext {
   color: $color_mainBlue;
 
 }

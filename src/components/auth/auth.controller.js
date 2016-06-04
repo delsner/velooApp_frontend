@@ -5,7 +5,7 @@
         .module('velooAngular')
         .controller('authCtrl', authCtrl);
 
-    function authCtrl($scope, $mdDialog, authService, $rootScope) {
+    function authCtrl($scope, $route, $location, $mdDialog, authService, $rootScope) {
         var vm = this;
 
         vm.cancel = $mdDialog.cancel;
@@ -15,11 +15,21 @@
         function login() {
             if (vm.username && vm.password) {
                 authService.login(vm.username, vm.password).then(function (success) {
+                    if ($rootScope.routeVisited) {
+                        $location.path($rootScope.routeVisited).search($rootScope.routeVisitedSearchParams);
+                        $rootScope.routeVisited = null;
+                        $rootScope.routeVisitedSearchParams = null;
+                    } else {
+                        $route.reload();
+                    }
                     vm.cancel();
                     console.log(success);
                 }, function (error) {
                     console.log(error);
+                    vm.submitError = true;
                 });
+            } else {
+                vm.formInvalid = true;
             }
         }
 
@@ -36,7 +46,10 @@
                             .ok('OK'));
                 }, function (error) {
                     console.log(error);
+                    vm.submitError = true;
                 });
+            } else {
+                vm.formInvalid = true;
             }
         }
     }
