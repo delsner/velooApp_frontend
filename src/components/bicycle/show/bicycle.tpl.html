@@ -1,8 +1,8 @@
 <md-toolbar class="v-top-toolbar">
     <div layout="row" layout-align="start center" class="md-toolbar-tools">
-        <div flex-gt-sm="90" flex-offset-gt-sm="5" layout="row" layout-align="start center">
+        <div flex-gt-sm="90" flex-offset-gt-sm="5" flex-xl="80" flex-offset-xl="10" layout="row" layout-align="start end">
             <div flex>Bicycle details</div>
-            <md-button class="md-raised md-primary">Book bicycle</md-button>
+            <!--<md-button class="md-raised md-primary">Book bicycle</md-button>-->
         </div>
     </div>
 </md-toolbar>
@@ -25,7 +25,11 @@
 
                 <div flex class="v-create-bicycle-map">
                     <div>
-                        <ui-gmap-google-map center='ctrl.map.center' zoom='ctrl.map.zoom'></ui-gmap-google-map>
+                        <ui-gmap-google-map center='ctrl.map.center' zoom='ctrl.map.zoom'>
+                            <ui-gmap-marker coords="ctrl.marker.coords" options="ctrl.marker.options"
+                                            idkey="ctrl.marker.id">
+                            </ui-gmap-marker>
+                        </ui-gmap-google-map>
                     </div>
                 </div>
 
@@ -33,12 +37,11 @@
                     <md-list-item flex>
                         <md-icon>location_on</md-icon>
                         <div layout="column" flex>
-                            <p class="v-text-overflow"> Fürstenbergstr. 19 </p>
-                            <p class="v-text-overflow"> 80809 München </p>
+                            <p class="v-text-overflow"> {{ctrl.bicycle.street}} </p>
+                            <p class="v-text-overflow"> {{ctrl.bicycle.zipcode}} {{ctrl.bicycle.city}} </p>
                         </div>
                     </md-list-item>
                 </md-list>
-
             </div>
 
             <div class="v-card-style">
@@ -60,18 +63,18 @@
                 <md-divider></md-divider>
 
                 <md-list ng-cloak>
-                    <md-list-item flex class="md-2-line">
+                    <md-list-item flex>
                         <md-icon>person</md-icon>
                         <div layout="column" flex>
-                       <!--     <div layout="row" layout-align="start center">
-                                <p class="v-text-overflow"> Lars L. </p>
-                                <li class="v-rating-stars" ng-repeat="x in [1,2,3,4,5]">
-                                    <md-icon ng-style="{color:'orange'}">star
-                                    </md-icon>
-                                </li>
-                            </div>-->
+                            <!--     <div layout="row" layout-align="start center">
+                                     <p class="v-text-overflow"> Lars L. </p>
+                                     <li class="v-rating-stars" ng-repeat="x in [1,2,3,4,5]">
+                                         <md-icon ng-style="{color:'orange'}">star
+                                         </md-icon>
+                                     </li>
+                                 </div>-->
                             <p class="v-text-overflow"> Lars L. </p>
-                            <p class="v-text-overflow" style="font-style: italic"> Du bist so visionär. Ich rutsche auf den Knien für dich. </p>
+                            <p class="v-text-overflow" style="font-style: italic"> Nice bike! Nice contact! Thanks.... </p>
                         </div>
                         <md-divider></md-divider>
                     </md-list-item>
@@ -88,38 +91,54 @@
                 <md-list ng-cloak flex-gt-sm="50">
                     <md-list-item ng-repeat="x in ctrl.bicycleInformationLeftList">
                         <md-icon> {{x.icon}}</md-icon>
-                        <p class="v-text-overflow"> {{x.bind}} </p>
+                        <div layout="column" flex>
+                            <p class="md-caption">{{x.label}}</p>
+                            <p class="v-text-overflow"> {{x.bind}} </p>
+                        </div>
                     </md-list-item>
                 </md-list>
                 <md-list ng-cloak flex-gt-sm="50">
                     <md-list-item ng-repeat="y in ctrl.bicycleInformationRightList">
                         <md-icon> {{y.icon}}</md-icon>
-                        <p class="v-text-overflow"> {{y.bind}} </p>
+                        <div layout="column" flex>
+                            <p class="md-caption">{{y.label}}</p>
+                            <p class="v-text-overflow"> {{y.bind}} </p>
+                        </div>
                     </md-list-item>
                 </md-list>
             </div>
+
+            <md-list ng-cloak flex>
+                <md-list-item>
+                    <md-icon> description</md-icon>
+                    <div layout="column" flex>
+                        <p class="md-caption">Description:</p>
+                        <p class="v-text-overflow"> {{ctrl.bicycle.description}} </p>
+                    </div>
+                </md-list-item>
+            </md-list>
 
             <div class="v-font-color v-subheader" layout="row" layout-align="start center">
                 <div> Additional features</div>
             </div>
 
-            <div layout-gt-sm="row">
-                <md-list ng-cloak flex-gt-sm="33">
+            <div layout-gt-sm="row" ng-repeat="feature in ctrl.bicycle.features track by $index" ng-show="$index % 3 == 0 || $index == 0">
+                <md-list ng-cloak flex-gt-sm="33" ng-if="ctrl.bicycle.features[$index] != null">
                     <md-list-item>
                         <md-icon class="md-primary">check_box</md-icon>
-                        <p>some feature</p>
+                        <p>{{ctrl.bicycle.features[$index]}}</p>
                     </md-list-item>
                 </md-list>
-                <md-list ng-cloak flex-gt-sm="33">
+                <md-list ng-cloak flex-gt-sm="33" ng-if="ctrl.bicycle.features[$index+1] != null">
                     <md-list-item>
                         <md-icon class="md-primary">check_box</md-icon>
-                        <p>some feature</p>
+                        <p>{{ctrl.bicycle.features[$index+1]}}</p>
                     </md-list-item>
                 </md-list>
-                <md-list ng-cloak>
+                <md-list ng-cloak ng-if="ctrl.bicycle.features[$index+2] != null">
                     <md-list-item flex-gt-sm="33">
                         <md-icon class="md-primary">check_box</md-icon>
-                        <p>some feature</p>
+                        <p>{{ctrl.bicycle.features[$index+2]}}</p>
                     </md-list-item>
                 </md-list>
             </div>

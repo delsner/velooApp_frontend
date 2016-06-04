@@ -66,14 +66,14 @@
             isActive: false,
             description: "",
             category: "",
-            latitude: vm.marker.coords.latitude,
-            longitude: vm.marker.coords.longitude,
+            latitude: 48.137,
+            longitude: 11.577,
             featureArray: vm.bicycleFeatures.concat(vm.newFeatures)
         };
 
         function saveBicycle() {
             velooData.Bicycle.save(vm.bicycle).$promise.then(function (success) {
-                $rootScope.setPathTo("/bicycle/" + success.id)
+                $rootScope.setPathTo("/bicycle/" + success._id)
             }, function (error) {
                 $mdDialog.show(
                     $mdDialog.alert()
@@ -92,7 +92,6 @@
 
         function getGeolocation() {
             if (vm.bicycle.street && vm.bicycle.zipcode && vm.bicycle.city) {
-                console.log('now');
                 $http.get("http://nominatim.openstreetmap.org/search?format=json&addressdetails=0&q=" +
                     vm.bicycle.street + " " + vm.bicycle.zipcode + " " + vm.bicycle.city).then(function (success) {
                     if (success.data[0]) {
@@ -101,6 +100,9 @@
 
                         vm.map.center.latitude = parseFloat(success.data[0].lat);
                         vm.map.center.longitude = parseFloat(success.data[0].lon);
+
+                        vm.bicycle.latitude = parseFloat(success.data[0].lat);
+                        vm.bicycle.longitude = parseFloat(success.data[0].lon);
                     }
                 }, function (error) {
 

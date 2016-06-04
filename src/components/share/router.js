@@ -24,7 +24,7 @@
             })
             .when('/bicycle/:id', {
                 'templateUrl': 'components/bicycle/show/bicycle.tpl.html',
-                'controller': 'bicycleCtrl as ctrl',
+                'controller': 'showBicycleCtrl as ctrl',
                 'auth': false
             })
             .when('/search', {
