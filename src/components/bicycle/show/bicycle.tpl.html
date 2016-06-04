@@ -1,7 +1,7 @@
 <md-toolbar class="v-top-toolbar">
     <div layout="row" layout-align="start center" class="md-toolbar-tools">
         <div flex-gt-sm="90" flex-offset-gt-sm="5" flex-xl="80" flex-offset-xl="10" layout="row" layout-align="start end">
-            <div flex>Bicycle details</div>
+            <div>Bicycle details</div>
             <!--<md-button class="md-raised md-primary">Book bicycle</md-button>-->
         </div>
     </div>
@@ -10,9 +10,9 @@
 <div class="v-top-content v-bicycle-detail-view">
 
     <div flex layout="row" layout-align="center center" class="v-card-style">
-        <img flex="33" src="images/mtb4.jpg" class="v-bicycle-img">
-        <img flex="33" src="images/mtb5.jpeg" class="v-bicycle-img">
-        <img flex="33" src="images/mtb3.jpg" class="v-bicycle-img">
+        <img flex="33" ng-src="{{ctrl.bicycle.pictures[0].data}}" class="v-bicycle-img">
+        <img flex="33" ng-src="{{ctrl.bicycle.pictures[1].data}}" class="v-bicycle-img">
+        <img flex="33" ng-src="{{ctrl.bicycle.pictures[2].data}}" class="v-bicycle-img">
     </div>
 
     <div layout-gt-sm="row" flex-gt-lg="80" flex-offset-gt-lg="10" flex="90" flex-offset="5">
@@ -50,8 +50,8 @@
                 </div>
 
                 <div layout="column" layout-align="center center" class="v-padding">
-                    <img ng-src="images/girl.jpeg" class="md-avatar v-profile-img" alt="avatar"/>
-                    <div>Janina L.</div>
+                    <img ng-src="{{ctrl.bicycle.owner.avatar.data}}" class="md-avatar v-profile-img" alt="avatar"/>
+                    <div>{{ctrl.bicycle.owner.username}}</div>
                     <div layout="row">
                         <li class="v-rating-stars" ng-repeat="x in [1,2,3,4,5]">
                             <md-icon ng-style="{color:'orange'}">star
@@ -126,19 +126,19 @@
                 <md-list ng-cloak flex-gt-sm="33" ng-if="ctrl.bicycle.features[$index] != null">
                     <md-list-item>
                         <md-icon class="md-primary">check_box</md-icon>
-                        <p>{{ctrl.bicycle.features[$index]}}</p>
+                        <p>{{ctrl.bicycle.features[$index].feature}}</p>
                     </md-list-item>
                 </md-list>
                 <md-list ng-cloak flex-gt-sm="33" ng-if="ctrl.bicycle.features[$index+1] != null">
                     <md-list-item>
                         <md-icon class="md-primary">check_box</md-icon>
-                        <p>{{ctrl.bicycle.features[$index+1]}}</p>
+                        <p>{{ctrl.bicycle.features[$index+1].feature}}</p>
                     </md-list-item>
                 </md-list>
                 <md-list ng-cloak ng-if="ctrl.bicycle.features[$index+2] != null">
                     <md-list-item flex-gt-sm="33">
                         <md-icon class="md-primary">check_box</md-icon>
-                        <p>{{ctrl.bicycle.features[$index+2]}}</p>
+                        <p>{{ctrl.bicycle.features[$index+2].feature}}</p>
                     </md-list-item>
                 </md-list>
             </div>

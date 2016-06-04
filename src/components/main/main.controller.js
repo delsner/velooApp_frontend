@@ -28,7 +28,7 @@
         function isFrontPage() {
             return $location.path() == "/"
         }
-
+        
         function getSearchHints(searchText) {
             var deferred = $q.defer();
 
