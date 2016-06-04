@@ -5,7 +5,7 @@
         .module('velooAngular')
         .controller('createBicycleCtrl', createBicycleCtrl);
 
-    function createBicycleCtrl($scope, uiGmapGoogleMapApi, velooData, $mdDialog, $rootScope, $http) {
+    function createBicycleCtrl($scope, $q, uiGmapGoogleMapApi, velooData, $mdDialog, $rootScope, $http, Upload) {
         var vm = this;
 
         vm.saveBicycle = saveBicycle;
@@ -71,17 +71,27 @@
             featureArray: vm.bicycleFeatures.concat(vm.newFeatures)
         };
 
+        vm.saveBicycle = saveBicycle;
+        vm.getGeolocation = getGeolocation;
+        vm.addFeature = addFeature;
+        vm.deleteFile = deleteFile;
+        vm.base64encodeImages = base64encodeImages;
+
         function saveBicycle() {
-            velooData.Bicycle.save(vm.bicycle).$promise.then(function (success) {
-                $rootScope.setPathTo("/bicycle/" + success._id)
-            }, function (error) {
-                $mdDialog.show(
-                    $mdDialog.alert()
-                        .parent(angular.element(document.body))
-                        .clickOutsideToClose(true)
-                        .title('Fehlerhafte Eingaben')
-                        .textContent('Bitte überprüfen Sie Ihre Eingaben.')
-                        .ok('OK'));
+            var promise = base64encodeImages();
+            promise.then(function (images) {
+                vm.bicycle.images = images;
+                velooData.Bicycle.save(vm.bicycle).$promise.then(function (success) {
+                    $rootScope.setPathTo("/bicycle/" + success._id);
+                }, function (error) {
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                            .parent(angular.element(document.body))
+                            .clickOutsideToClose(true)
+                            .title('Bad Input')
+                            .textContent('Please check your inputs.')
+                            .ok('OK'));
+                });
             });
         }
         
@@ -108,7 +118,28 @@
 
                 });
             }
+        }
 
+        function deleteFile(index) {
+            vm.files.splice(index, 1);
+        }
+
+        function base64encodeImages() {
+            return $q(function (resolve, reject) {
+                var results = [];
+                vm.files.forEach(function (e) {
+                    var reader = new window.FileReader();
+                    reader.readAsDataURL(e);
+                    reader.onloadend = function () {
+                        var base64data = reader.result;
+                        results.push({description: e.description ? e.description : e.name, data: reader.result});
+                        if (results.length == vm.files.length) {
+                            resolve(results);
+                            console.log("done");
+                        }
+                    }
+                });
+            });
         }
     }
 })(angular);

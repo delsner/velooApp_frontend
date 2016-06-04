@@ -1,0 +1,20 @@
+<md-toolbar class="v-top-toolbar">
+    <div layout="row" layout-align="start center" class="md-toolbar-tools">
+        <div flex-gt-sm="90" flex-offset-gt-sm="5">Profile</div>
+    </div>
+</md-toolbar>
+
+<div layout-gt-sm="row" flex-gt-lg="80" flex-offset-gt-lg="10" flex="90" flex-offset="5" class="v-top-content">
+    <div layout="row" layout-align="center center">
+        <img ng-src="{{ctrl.user.avatar}}" class="swf-avatar" alt="avatar" width="100" height="100"/>
+    </div>
+    <div layout="row" layout-align="center center">
+        <div hide-gt-sm>
+            <input flex type="file" file-model="ctrl.avatar"/>
+        </div>
+        <md-button ngf-select ngf-capture="'camera'" ng-model="ctrl.avatar" accept="image/*" hide-xs
+                   hide-sm>
+            Bild hochladen
+        </md-button>
+    </div>
+</div>

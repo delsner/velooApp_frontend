@@ -202,6 +202,18 @@ header .header-content .header-content-inner p {
   width: 200px;
 }
 
+.upload-file-list {
+  min-height: 50px !important;
+}
+
+.drop-box {
+  background: #F8F8F8;
+  border: 5px dashed #DDD;
+  height: 65px;
+  text-align: center;
+  padding-top: 25px;
+  margin: 10px;
+}
 /***************************** Bicycle Detail View ********************/
 
 .v-bicycle-img {
@@ -241,6 +253,9 @@ header .header-content .header-content-inner p {
 
 }
 
+.md-button.md-fab {
+  z-index:0
+}
 /***************************** Landinge Page ********************/
 
 .v-home-head {

@@ -116,7 +116,7 @@
 
     function velooData($resource, velooUtil) {
 
-        var Bicycle = $resource(velooUtil.getFullUrl(velooUtil.paths.bicycles + "/:id"),
+        var Bicycle = $resource(velooUtil.getFullUrl(velooUtil.paths.bicycle + "/:id"),
             {
                 id: "@id"
             },
@@ -126,15 +126,16 @@
                 },
                 search: {
                     method: "GET",
-                    url: velooUtil.getFullUrl(velooUtil.paths.bicycles + "/search"),
+                    url: velooUtil.getFullUrl(velooUtil.paths.bicycle + "/search"),
                     isArray: true
                 }
             });
 
-        var Picture = $resource(velooUtil.getFullUrl(velooUtil.paths.pictures + "/:id"),
+        var Picture = $resource(velooUtil.getFullUrl(velooUtil.paths.picture + "/:id"),
             {
                 id: "@id"
-            }, {});
+            });
+        
         return {
             Bicycle: Bicycle,
             Picture: Picture
@@ -176,8 +177,8 @@
 
         function getPaths() {
             return {
-                bicycles: 'bicycle',
-                pictures: 'picture'
+                bicycle: 'bicycle',
+                picture: 'picture'
             };
         }
 

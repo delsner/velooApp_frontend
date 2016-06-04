@@ -1,0 +1,28 @@
+<md-dialog aria-label="Upload" class="dialog-container" ng-cloak flex-gt-sm="40">
+    <div>
+        <form>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>Upload</h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                        <md-icon class="md-icon">close</md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-content class="md-padding" layout="column" layout-align="center center">
+                <div ngf-drop ng-model="ctrl.avatar" ngf-pattern="image/*"
+                     class="cropArea" style="width:350px; height:350px;">
+                    <img-crop image="ctrl.avatar | ngfDataUrl"
+                              result-image="croppedDataUrl" ng-init="croppedDataUrl=''" area-type="square">
+                    </img-crop>
+                </div>
+                <md-button class="md-raised md-primary" ng-click="ctrl.upload(croppedDataUrl)">Upload</md-button>
+                <!--
+                                <md-progress-linear md-mode="determinate" value="{{vm.determinateValue}}"></md-progress-linear>
+                                <md-button class="md-raised md-primary" ng-click="ctrl.uploadAvatar()">Upload</md-button>
+                -->
+            </md-content>
+        </form>
+    </div>
+</md-dialog>
