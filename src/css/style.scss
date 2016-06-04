@@ -227,3 +227,31 @@ header .header-content .header-content-inner p {
   list-sytle-position: inside;
 
 }
+
+  /***************************** Landinge Page ********************/
+
+.v-home-head{
+  color: #ffffff;
+  text-transform: uppercase;
+  height: 60px;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.v-home-howtorent{
+  width: 100%;
+  height: 400px;
+  backround-color: #fafafa;
+
+
+}
+
+.v-home-howtooffer{
+  background-color: $color_mainGreen;
+  width: 100%;
+  height: 400px
+}
+
+.v-home-addtext{
+  color: $color_mainBlue;
+
+}
