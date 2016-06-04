@@ -1,7 +1,7 @@
 (function () {
     angular.module('velooApi', ['ngResource']);
 
-    var VELOO_DEFAULT_URI = 'http://localhost:3000/';
+    var VELOO_DEFAULT_URI = 'http://192.168.0.106:3000/';
     var VELOO_DEFAULT_API_ENDPOINT = 'api/';
 
     angular.module('velooApi').value('velooConnection', {
@@ -175,8 +175,8 @@
 
         function getPaths() {
             return {
-                bicycles: 'bicycles',
-                pictures: 'pictures'
+                bicycles: 'bicycle',
+                pictures: 'picture'
             };
         }
 
