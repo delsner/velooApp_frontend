@@ -1,12 +1,10 @@
-<md-toolbar class="top">
+<md-toolbar class="v-top-toolbar">
     <div layout="row" layout-align="start center" class="md-toolbar-tools">
         <div flex-gt-sm="90" flex-offset-gt-sm="5">Offer a bicycle</div>
     </div>
 </md-toolbar>
 
-<!---->
-
-<div layout-gt-sm="row" flex-gt-lg="80" flex-offset-gt-lg="10" flex="90" flex-offset="5">
+<div layout-gt-sm="row" flex-gt-lg="80" flex-offset-gt-lg="10" flex="90" flex-offset="5" class="v-top-content">
 
     <div flex-gt-sm="30" class="v-create-bicycle-address v-card-style">
 
@@ -20,7 +18,7 @@
             </div>
         </div>
 
-        <div layout="column" layout-margin>
+        <div layout="column" class="v-lr-padding">
             <md-input-container class="md-icon-float">
                 <label>Street</label>
                 <md-icon class="md-icon">person</md-icon>
@@ -43,7 +41,7 @@
         </div>
     </div>
 
-    <div flex-gt-sm="70" class="v-create-bicycle-features v-card-style" layout="column">
+    <div flex-gt-sm="70" class="v-create-bicycle-features v-card-style">
 
         <div class="v-font-color v-subheader" layout="row" layout-align="start center">
             <div layout="row" layout-align="start center" flex>
@@ -52,28 +50,14 @@
             </div>
         </div>
 
-        <div layout="column" class="v-lr-padding">
+        <div layout="column" class="v-lr-padding" flex>
             <div layout-gt-sm="row">
                 <md-input-container flex-gt-sm="45" class="md-icon-float">
                     <label>Street</label>
                     <md-icon class="md-icon">person</md-icon>
                     <input type="text" name="username" class="form-control" ng-model="ctrl.street" required/>
                 </md-input-container>
-                <div flex></div>
-                <md-input-container flex="45" class="md-icon-float">
-                    <label>Street</label>
-                    <md-icon class="md-icon">person</md-icon>
-                    <input type="text" name="username" class="form-control" ng-model="ctrl.street" required/>
-                </md-input-container>
-            </div>
-
-            <div layout-gt-sm="row">
-                <md-input-container flex-gt-sm="45" class="md-icon-float">
-                    <label>Street</label>
-                    <md-icon class="md-icon">person</md-icon>
-                    <input type="text" name="username" class="form-control" ng-model="ctrl.street" required/>
-                </md-input-container>
-                <div flex></div>
+                <div flex hide-lt-sm></div>
                 <md-input-container flex-gt-sm="45" class="md-icon-float">
                     <label>Street</label>
                     <md-icon class="md-icon">person</md-icon>
@@ -87,8 +71,22 @@
                     <md-icon class="md-icon">person</md-icon>
                     <input type="text" name="username" class="form-control" ng-model="ctrl.street" required/>
                 </md-input-container>
-                <div flex></div>
+                <div flex hide-lt-sm></div>
                 <md-input-container flex-gt-sm="45" class="md-icon-float">
+                    <label>Street</label>
+                    <md-icon class="md-icon">person</md-icon>
+                    <input type="text" name="username" class="form-control" ng-model="ctrl.street" required/>
+                </md-input-container>
+            </div>
+
+            <div layout-gt-sm="row">
+                <md-input-container flex-gt-sm="45" class="md-icon-float">
+                    <label>Street</label>
+                    <md-icon class="md-icon">person</md-icon>
+                    <input type="text" name="username" class="form-control" ng-model="ctrl.street" required/>
+                </md-input-container>
+                <div flex hide-lt-sm></div>
+                <md-input-container flex flex-gt-sm="45" class="md-icon-float">
                     <label>Dropdown</label>
                     <md-icon class="md-icon">person</md-icon>
                     <md-select ng-model="ctrl.blabla">
@@ -99,13 +97,10 @@
                 </md-input-container>
             </div>
 
-            <div layout="row" layout-align-gt-md="center end">
-                <div flex></div>
-                <div flex-gt-sm="45" layout="row" layout-align="end center">
-                    <md-switch ng- aria-label="List bicycle" ng-model="disabledModel">
-                        List bicycle in search results
-                    </md-switch>
-                </div>
+            <div layout="row" layout-align-gt-sm="end center" flex>
+                <md-switch aria-label="List bicycle" ng-model="disabledModel">
+                    List bicycle in search results
+                </md-switch>
             </div>
         </div>
 
@@ -116,34 +111,30 @@
         <div class="v-lr-padding" layout="column">
             <div id="features">
                 <div layout-gt-sm="row">
-                    <div flex-gt-sm="33" layout="row" layout-align-gt-sm="start center">
-                        <md-input-container>
+                        <md-input-container flex-gt-sm="30" layout-align-gt-sm="start center" class="v-border-box">
                             <md-checkbox md-no-ink ng-model="data.cb5" class="md-primary">
                                 Feature
                             </md-checkbox>
                         </md-input-container>
-                    </div>
-                    <div flex-gt-sm="33" layout="row" layout-align-gt-sm="center center">
-                        <md-input-container>
+                    <div flex hide-lt-sm></div>
+                        <md-input-container class="v-border-box" flex-gt-sm="30" layout-align-gt-sm="start center">
                             <md-checkbox md-no-ink ng-model="data.cb6" class="md-primary">
                                 Feature
                             </md-checkbox>
                         </md-input-container>
-                    </div>
-                    <div flex-gt-sm="33" layout="row" layout-align-gt-sm="end center">
-                        <md-input-container>
+                    <div flex hide-lt-sm></div>
+                        <md-input-container class="v-border-box" flex-gt-sm="30" layout-align-gt-sm="start center">
                             <md-checkbox md-no-ink ng-model="data.cb7" class="md-primary">
-                                Feature
+                                Feature dadsksaldh jsakljaskldsallaskjdkjsakldjalkdjksajdlasja
                             </md-checkbox>
                         </md-input-container>
-                    </div>
                 </div>
                 <md-button class="md-fab md-mini md-primary">
                     <md-icon>exposure_plus_1</md-icon>
                 </md-button>
             </div>
 
-            <div flex style="border: 5px dotted rgba(0,0,0,0.1); text-align: center">
+            <div flex style="border: 5px dotted rgba(0,0,0,0.1); text-align: center" layout-margin>
                 Drag or click to upload pictures
             </div>
 

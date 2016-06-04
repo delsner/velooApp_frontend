@@ -1,0 +1,129 @@
+<md-toolbar class="v-top-toolbar">
+    <div layout="row" layout-align="start center" class="md-toolbar-tools">
+        <div flex-gt-sm="90" flex-offset-gt-sm="5" layout="row" layout-align="start center">
+            <div flex>Bicycle details</div>
+            <md-button class="md-raised md-primary">Book bicycle</md-button>
+        </div>
+    </div>
+</md-toolbar>
+
+<div class="v-top-content v-bicycle-detail-view">
+
+    <div flex layout="row" layout-align="center center" class="v-card-style">
+        <img flex="33" src="images/mtb4.jpg" class="v-bicycle-img">
+        <img flex="33" src="images/mtb5.jpeg" class="v-bicycle-img">
+        <img flex="33" src="images/mtb3.jpg" class="v-bicycle-img">
+    </div>
+
+    <div layout-gt-sm="row" flex-gt-lg="80" flex-offset-gt-lg="10" flex="90" flex-offset="5">
+
+        <div layout="column" flex-gt-sm="30">
+            <div class="v-card-style">
+                <div class="v-font-color v-subheader" layout="row" layout-align="start center">
+                    <div>Location details</div>
+                </div>
+
+                <div flex class="v-create-bicycle-map">
+                    <div>
+                        <ui-gmap-google-map center='ctrl.map.center' zoom='ctrl.map.zoom'></ui-gmap-google-map>
+                    </div>
+                </div>
+
+                <md-list ng-cloak>
+                    <md-list-item flex>
+                        <md-icon>location_on</md-icon>
+                        <div layout="column" flex>
+                            <p class="v-text-overflow"> Fürstenbergstr. 19 </p>
+                            <p class="v-text-overflow"> 80809 München </p>
+                        </div>
+                    </md-list-item>
+                </md-list>
+
+            </div>
+
+            <div class="v-card-style">
+                <div class="v-font-color v-subheader" layout="row" layout-align="start center">
+                    <div>Provider details</div>
+                </div>
+
+                <div layout="column" layout-align="center center" class="v-padding">
+                    <img ng-src="images/girl.jpeg" class="md-avatar v-profile-img" alt="avatar"/>
+                    <div>Janina L.</div>
+                    <div layout="row">
+                        <li class="v-rating-stars" ng-repeat="x in [1,2,3,4,5]">
+                            <md-icon ng-style="{color:'orange'}">star
+                            </md-icon>
+                        </li>
+                    </div>
+                </div>
+
+                <md-divider></md-divider>
+
+                <md-list ng-cloak>
+                    <md-list-item flex class="md-2-line">
+                        <md-icon>person</md-icon>
+                        <div layout="column" flex>
+                       <!--     <div layout="row" layout-align="start center">
+                                <p class="v-text-overflow"> Lars L. </p>
+                                <li class="v-rating-stars" ng-repeat="x in [1,2,3,4,5]">
+                                    <md-icon ng-style="{color:'orange'}">star
+                                    </md-icon>
+                                </li>
+                            </div>-->
+                            <p class="v-text-overflow"> Lars L. </p>
+                            <p class="v-text-overflow" style="font-style: italic"> Du bist so visionär. Ich rutsche auf den Knien für dich. </p>
+                        </div>
+                        <md-divider></md-divider>
+                    </md-list-item>
+                </md-list>
+            </div>
+        </div>
+
+        <div flex-gt-sm="70" class="v-card-style">
+            <div class="v-font-color v-subheader" layout="row" layout-align="start center">
+                <div>Bicycle information</div>
+            </div>
+
+            <div layout-gt-sm="row">
+                <md-list ng-cloak flex-gt-sm="50">
+                    <md-list-item ng-repeat="x in ctrl.bicycleInformationLeftList">
+                        <md-icon> {{x.icon}}</md-icon>
+                        <p class="v-text-overflow"> {{x.bind}} </p>
+                    </md-list-item>
+                </md-list>
+                <md-list ng-cloak flex-gt-sm="50">
+                    <md-list-item ng-repeat="y in ctrl.bicycleInformationRightList">
+                        <md-icon> {{y.icon}}</md-icon>
+                        <p class="v-text-overflow"> {{y.bind}} </p>
+                    </md-list-item>
+                </md-list>
+            </div>
+
+            <div class="v-font-color v-subheader" layout="row" layout-align="start center">
+                <div> Additional features</div>
+            </div>
+
+            <div layout-gt-sm="row">
+                <md-list ng-cloak flex-gt-sm="33">
+                    <md-list-item>
+                        <md-icon class="md-primary">check_box</md-icon>
+                        <p>some feature</p>
+                    </md-list-item>
+                </md-list>
+                <md-list ng-cloak flex-gt-sm="33">
+                    <md-list-item>
+                        <md-icon class="md-primary">check_box</md-icon>
+                        <p>some feature</p>
+                    </md-list-item>
+                </md-list>
+                <md-list ng-cloak>
+                    <md-list-item flex-gt-sm="33">
+                        <md-icon class="md-primary">check_box</md-icon>
+                        <p>some feature</p>
+                    </md-list-item>
+                </md-list>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,9 +1,8 @@
 /* Color Variables */
 $color_mainBlue: rgb(11, 101, 193);
 $color_mainGreen: rgb(70, 173, 90);
-$color_font: rgba(0,0,0,0.87);
+$color_font: rgba(0, 0, 0, 0.87);
 $color_border: rgba(0, 0, 0, 0.12);
-
 
 /* Styles go here */
 * {
@@ -38,20 +37,50 @@ body {
 .v-subheader {
   background-color: rgba(0, 0, 0, 0.02) !important;
   height: 60px;
-  padding:16px;
+  padding: 16px;
 }
 
 .v-card-style {
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-  margin:3px;
+  margin: 3px;
 }
 
 .v-lr-padding {
   padding-left: 8px;
   padding-right: 8px;
 }
-md-subheader._md-subheader-inner {
-  padding: 8px !important;
+
+.v-padding {
+  padding: 8px;
+}
+
+.v-top-toolbar {
+  margin-top: 64px;
+  background-color: rgb(250, 250, 250) !important;
+  color: $color_font !important;
+  border-bottom: $color_mainBlue 1px solid;
+  z-index: 999;
+  position: fixed;
+}
+
+.v-top-content {
+  margin-top: 128px;
+}
+
+.v-text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.v-rating-stars {
+  list-style-type: none;
+}
+
+.v-profile-img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
 
 /************** NAVBAR **************/
@@ -70,16 +99,7 @@ md-toolbar.navbar-default.isTransparent {
 
 /************** END NAVBAR **************/
 
-
 /************** HEADER FOR BACKGROUND PICTURE **************/
-
-.top {
-  margin-top: 64px;
-  background-color: transparent !important;
-  color: $color_font !important;
-  border-bottom: $color_mainBlue 1px solid;
-  z-index: 0;
-}
 
 header {
   position: relative;
@@ -152,7 +172,8 @@ header .header-content .header-content-inner p {
   }
 }
 
-/***************************** Bicycle View ********************/
+/******************************************* Start Bicycle View ***************************************/
+/***************************** Create Bicycle View ********************/
 .v-create-bicycle-address {
   margin-right: 7px;
 }
@@ -166,8 +187,24 @@ header .header-content .header-content-inner p {
 .v-create-bicycle-features {
 }
 
+/***************************** Bicycle Detail View ********************/
 
+.v-bicycle-img {
+  height: 300px;
+  width: 100%;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  object-fit: cover;
+}
+
+.v-bicycle-detail-view .angular-google-map-container {
+  height: 300px;
+  width: inherit;
+  margin: auto;
+}
 
 /***************************** Bicycle View ********************/
-
-/***************************** Google Maps Container ********************/
+/******************************************* End Bicycle View ******************************************/
