@@ -32,7 +32,23 @@
                 libraries: 'visualization'
             });
         })
-        .run(function ($location, $rootScope, $mdSidenav, $mdMedia, $mdDialog) {
+        .run(function ($location, $route, $rootScope, $mdSidenav, $mdMedia, $mdDialog, authService, $log) {
+            $rootScope.$on('$routeChangeStart', function (evt, next, current) {
+                var nextPath = $location.path(),
+                    nextSearchParams = $location.search(),
+                    nextRoute = next.$$route;
+                if (nextRoute && nextRoute.auth && !authService.isAuthenticated()) {
+                    $rootScope.routeVisited = nextPath;
+                    $rootScope.routeVisitedSearchParams = nextSearchParams;
+                    $location.path("/").search({});
+                    $rootScope.showLogin();
+                }
+                /*if (authService.isAuthenticated()) {
+                    authService.Person.getMessages().$promise.then(function (success) {
+                        $rootScope.messagesSinceLastLogin = success;
+                    });
+                }*/
+            });
         $rootScope.setPathTo = function (path) {
             //$mdSidenav('right').isOpen() && $rootScope.toggleSidenav('right'); //TODO: notwendig?
             $location.search({}); //reset searchParams

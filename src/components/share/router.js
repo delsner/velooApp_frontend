@@ -5,7 +5,7 @@
         .module('velooAngular')
         .config(router);
 
-    function router($routeProvider, $locationProvider) {
+    function router($routeProvider) {
         $routeProvider
             .when('/', {
                 'templateUrl': 'components/home/templates/home.tpl.html',
@@ -15,17 +15,27 @@
             .when('/bicycle/create', {
                 'templateUrl': 'components/bicycle/create/createBicycle.tpl.html',
                 'controller': 'createBicycleCtrl as ctrl',
-                'auth': false
+                'auth': true
             })
             .when('/bicycle/edit', {
                 'templateUrl': 'components/bicycle/edit/editBicycle.tpl.html',
                 'controller': 'bicycleCtrl as ctrl',
-                'auth': false
+                'auth': true
             })
-            .when('/bicycle/', {
+            .when('/bicycle/:id', {
                 'templateUrl': 'components/bicycle/show/bicycle.tpl.html',
                 'controller': 'bicycleCtrl as ctrl',
                 'auth': false
+            })
+            .when('/search', {
+                'templateUrl': 'components/search/search.tpl.html',
+                'controller': 'searchCtrl as ctrl',
+                'auth': false
+            })
+            .when('/account', {
+                'templateUrl': 'components/account/account.tpl.html',
+                'controller': 'accountCtrl as ctrl',
+                'auth': true
             })
     }
 

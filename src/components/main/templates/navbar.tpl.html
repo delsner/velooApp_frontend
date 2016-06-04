@@ -8,13 +8,19 @@
         </h2>
 
         <div hide-xs hide-sm>
-            <md-button class="md-padding md-raised md-accent" ng-click="mainCtrl.setPathTo('/bicycle/create')"> Offer Bicylce
+            <md-button class="md-padding md-raised md-accent" ng-click="mainCtrl.setPathTo('/bicycle/create')" ng-show="mainCtrl.isAuthenticated()"> Offer Bicylce
             </md-button>
-            <md-button class="md-padding" ng-click="mainCtrl.showSignup($event)"> <!--ng-show="!mainCtrl.isAuthed()"-->
+            <md-button class="md-padding" ng-click="mainCtrl.showSignup($event)" ng-show="!mainCtrl.isAuthenticated()">
                 Signup
             </md-button>
-            <md-button class="md-padding" ng-click="mainCtrl.showLogin($event)">
+            <md-button class="md-padding" ng-click="mainCtrl.showLogin($event)" ng-show="!mainCtrl.isAuthenticated()">
                 Login
+            </md-button>
+            <md-button class="md-padding" ng-click="mainCtrl.setPathTo('/account')" ng-show="mainCtrl.isAuthenticated()">
+                My Account
+            </md-button>
+            <md-button class="md-padding" ng-click="mainCtrl.logout()" ng-show="mainCtrl.isAuthenticated()">
+                Logout
             </md-button>
         </div>
 

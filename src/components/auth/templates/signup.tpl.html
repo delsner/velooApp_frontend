@@ -22,6 +22,16 @@
                     <input type="password" name="password" class="form-control" ng-model="ctrl.password" required/>
                 </md-input-container>
             </md-dialog-content>
+            <div class="v-warn" ng-show="ctrl.submitError" layout-align="center center" layout="row">
+                <div>
+                    <p class="md-body-2"> Username or Email already in use.</p>
+                </div>
+            </div>
+            <div class="v-warn" ng-show="ctrl.formInvalid" layout-align="center center" layout="row">
+                <div>
+                    <p class="md-body-2"> You're missing some inputs. </p>
+                </div>
+            </div>
             <md-content layout="column" layout-align="center center">
                 <md-button type="submit" class="md-raised md-primary">Sign up</md-button>
             </md-content>

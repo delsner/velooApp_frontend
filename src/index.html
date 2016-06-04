@@ -49,15 +49,15 @@
                                      ng-keypress="mainCtrl.showSearchResults($event, mainCtrl.searchText)"
                                      md-menu-class="autocomplete-custom-template">
                         <md-item-template>
-                            <div flex ng-click="mainCtrl.setPathTo('transactionObject/'+item.id)">
+                            <div flex ng-click="mainCtrl.setPathTo('bicycle/'+item.id)">
                             <span class="item-title">
-                                <md-icon>place</md-icon>
-                                <span> {{item.name}} </span>
+                                <md-icon>directions_bike</md-icon>
+                                <span> {{item.city}} - {{item.type}} - {{item.description}} </span>
                             </span>
                             </div>
                         </md-item-template>
                         <md-not-found>
-                            Keine Ergebnisse zu {{mainCtrl.searchText}}.
+                            No results for {{mainCtrl.searchText}}.
                         </md-not-found>
                     </md-autocomplete>
                 </div>
@@ -95,6 +95,11 @@
 
 <script src="components/auth/auth.controller.js"></script>
 <script src="components/auth/auth.services.js"></script>
+
+<script src="components/search/search.service.js"></script>
+<script src="components/search/search.controller.js"></script>
+
+<script src="components/account/account.controller.js"></script>
 
 </body>
 

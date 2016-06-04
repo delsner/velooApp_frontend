@@ -126,7 +126,8 @@
                 },
                 search: {
                     method: "GET",
-                    url: velooUtil.getFullUrl(velooUtil.paths.bicycles + "/search")
+                    url: velooUtil.getFullUrl(velooUtil.paths.bicycles + "/search"),
+                    isArray: true
                 }
             });
 
@@ -175,8 +176,8 @@
 
         function getPaths() {
             return {
-                bicycles: 'bicycles',
-                pictures: 'pictures'
+                bicycles: 'bicycle',
+                pictures: 'picture'
             };
         }
 
