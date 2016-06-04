@@ -108,3 +108,78 @@
     }
 })();
 
+(function () {
+    'use strict';
+
+    angular.module('velooApi')
+        .service('velooData', velooData);
+
+    function velooData($resource, velooUtil) {
+
+        var Bicycle = $resource(velooUtil.getFullUrl(velooUtil.paths.bicycles + "/:id"),
+            {
+                id: "@id"
+            },
+            {
+                update: {
+                    method: "PUT"
+                },
+                search: {
+                    method: "GET",
+                    url: velooUtil.getFullUrl(velooUtil.paths.bicycles + "/search")
+                }
+            });
+
+        var Picture = $resource(velooUtil.getFullUrl(velooUtil.paths.pictures + "/:id"),
+            {
+                id: "@id"
+            }, {});
+        return {
+            Bicycle: Bicycle,
+            Picture: Picture
+        };
+    }
+})();
+
+
+(function () {
+    'use strict';
+
+    angular.module('velooApi')
+        .service('velooUtil', velooUtil);
+
+    function velooUtil(velooConnection) {
+
+        var paths = getPaths();
+
+        return {
+            getFullUrl: getFullUrl,
+            paths: paths
+        };
+
+        function combinePaths(str1, str2) {
+            if (str1.charAt(str1.length - 1) === '/') {
+                str1 = str1.substr(0, str1.length - 1);
+            }
+
+            if (str2.charAt(0) === '/') {
+                str2 = str2.substr(1, velooConnection.apiUri.length - 1);
+            }
+
+            return str1 + '/' + str2;
+        }
+
+        function getFullUrl(urlPart) {
+            return combinePaths(velooConnection.apiUri, urlPart);
+        }
+
+        function getPaths() {
+            return {
+                bicycles: 'bicycles',
+                pictures: 'pictures'
+            };
+        }
+
+    }
+
+})();

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('velooAngular', ['velooApi', 'ngMaterial', 'ngSanitize', 'ngRoute', 'angular.filter', 'uiGmapgoogle-maps'])
+        .module('velooAngular', ['velooApi', 'ngMaterial', 'ngSanitize', 'ngRoute', 'angular.filter', 'ngImgCrop', 'ngFileUpload'])
         .config(function ($mdThemingProvider) {
 
             var velooMain = $mdThemingProvider.extendPalette('blue', {
@@ -24,15 +24,7 @@
                     'default': '500'
                 })
 
-        })
-        .config(function(uiGmapGoogleMapApiProvider) {
-            uiGmapGoogleMapApiProvider.configure({
-                //    key: 'your api key',
-                v: '3.20', //defaults to latest 3.X anyhow
-                libraries: 'visualization'
-            });
-        })
-        .run(function ($location, $rootScope, $mdSidenav, $mdMedia, $mdDialog) {
+        }).run(function ($location, $rootScope, $mdSidenav, $mdMedia, $mdDialog) {
         $rootScope.setPathTo = function (path) {
             //$mdSidenav('right').isOpen() && $rootScope.toggleSidenav('right'); //TODO: notwendig?
             $location.search({}); //reset searchParams

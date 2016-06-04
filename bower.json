@@ -13,10 +13,10 @@
     "angular-filter": "master",
     "angular-translate": "*",
     "angular-sanitize": "*",
-    "ng-file-upload": "master",
-    "ng-img-crop": "master",
+    "ng-file-upload": "^12.0.4",
+    "ng-img-crop": "ngImgCrop#^0.3.2",
     "angular-scroll-glue": "master",
-    "angular-google-maps": "2.3.2"
+    "angular-base64": "^2.0.5"
   },
   "resolutions": {
     "angular": "^1.4.8",
