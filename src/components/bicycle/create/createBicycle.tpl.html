@@ -21,21 +21,21 @@
         <div layout="column" class="v-lr-padding">
             <md-input-container class="md-icon-float">
                 <label>Street</label>
-                <md-icon class="md-icon">person</md-icon>
-                <input type="text" name="username" class="form-control" ng-model="ctrl.street" required/>
+                <md-icon class="md-icon">location_on</md-icon>
+                <input type="text"  class="form-control" ng-model="ctrl.bicycle.street" required/>
             </md-input-container>
 
             <div layout-gt-sm="row">
                 <md-input-container flex-gt-sm="60" class="md-icon-float md-block">
                     <label>Zipcode</label>
-                    <md-icon class="md-icon">person</md-icon>
-                    <input type="text" name="username" class="form-control" ng-model="ctrl.zipcode" required/>
+                    <md-icon class="md-icon">location_on</md-icon>
+                    <input type="text"  class="form-control" ng-model="ctrl.bicycle.zipcode" required/>
                 </md-input-container>
 
                 <md-input-container flex-gt-sm="40" class="md-icon-float md-block">
                     <label>City</label>
-                    <md-icon class="md-icon">person</md-icon>
-                    <input type="text" name="username" class="form-control" ng-model="ctrl.city" required/>
+                    <md-icon class="md-icon">location_on</md-icon>
+                    <input type="text"  class="form-control" ng-model="ctrl.bicycle.city" required/>
                 </md-input-container>
             </div>
         </div>
@@ -53,37 +53,55 @@
         <div layout="column" class="v-lr-padding" flex>
             <div layout-gt-sm="row">
                 <md-input-container flex-gt-sm="45" class="md-icon-float">
-                    <label>Street</label>
-                    <md-icon class="md-icon">person</md-icon>
-                    <input type="text" name="username" class="form-control" ng-model="ctrl.street" required/>
+                    <label>Price per day</label>
+                    <md-icon class="md-icon">euro_symbol</md-icon>
+                    <input type="text"  class="form-control" ng-model="ctrl.bicycle.price" required/>
                 </md-input-container>
                 <div flex hide-lt-sm></div>
                 <md-input-container flex-gt-sm="45" class="md-icon-float">
-                    <label>Street</label>
-                    <md-icon class="md-icon">person</md-icon>
-                    <input type="text" name="username" class="form-control" ng-model="ctrl.street" required/>
+                    <label>Bicycle type</label>
+                    <md-icon class="md-icon">directions_bike</md-icon>
+                    <input type="text"  class="form-control" ng-model="ctrl.bicycle.type" required/>
                 </md-input-container>
             </div>
 
             <div layout-gt-sm="row">
                 <md-input-container flex-gt-sm="45" class="md-icon-float">
-                    <label>Street</label>
-                    <md-icon class="md-icon">person</md-icon>
-                    <input type="text" name="username" class="form-control" ng-model="ctrl.street" required/>
+                    <label>Size</label>
+                    <md-icon class="md-icon">format_size</md-icon>
+                    <input type="text" class="form-control" ng-model="ctrl.bicycle.gears" required/>
                 </md-input-container>
                 <div flex hide-lt-sm></div>
                 <md-input-container flex-gt-sm="45" class="md-icon-float">
-                    <label>Street</label>
-                    <md-icon class="md-icon">person</md-icon>
-                    <input type="text" name="username" class="form-control" ng-model="ctrl.street" required/>
+                    <label>Number of gears</label>
+                    <md-icon class="md-icon">settings</md-icon>
+                    <input type="text" class="form-control" ng-model="ctrl.bicycle.gears" required/>
                 </md-input-container>
             </div>
 
             <div layout-gt-sm="row">
                 <md-input-container flex-gt-sm="45" class="md-icon-float">
-                    <label>Street</label>
+                    <label>Brand</label>
+                    <md-icon class="md-icon">polymer</md-icon>
+                    <input type="text"  class="form-control" ng-model="ctrl.street" required/>
+                </md-input-container>
+                <div flex hide-lt-sm></div>
+                <md-input-container flex-gt-sm="45" class="md-icon-float">
+                    <label>Carrier</label>
+                    <md-icon class="md-icon">shopping_basket</md-icon>
+                    <input type="text" class="form-control" ng-model="ctrl.bicycle.carrier" required/>
+                </md-input-container>
+            </div>
+
+            <div layout-gt-sm="row">
+                <md-input-container flex flex-gt-sm="45" class="md-icon-float">
+                    <label>Dropdown</label>
                     <md-icon class="md-icon">person</md-icon>
-                    <input type="text" name="username" class="form-control" ng-model="ctrl.street" required/>
+                    <md-select ng-model="ctrl.blabla">
+                        <md-option value="">
+                            Dropdown
+                        </md-option>
+                    </md-select>
                 </md-input-container>
                 <div flex hide-lt-sm></div>
                 <md-input-container flex flex-gt-sm="45" class="md-icon-float">

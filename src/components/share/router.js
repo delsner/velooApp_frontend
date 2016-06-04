@@ -14,7 +14,7 @@
             })
             .when('/bicycle/create', {
                 'templateUrl': 'components/bicycle/create/createBicycle.tpl.html',
-                'controller': 'bicycleCtrl as ctrl',
+                'controller': 'createBicycleCtrl as ctrl',
                 'auth': false
             })
             .when('/bicycle/edit', {

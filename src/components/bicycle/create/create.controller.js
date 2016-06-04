@@ -3,38 +3,25 @@
 
     angular
         .module('velooAngular')
-        .controller('bicycleCtrl', bicycleCtrl);
+        .controller('createBicycleCtrl', createBicycleCtrl);
 
-    function bicycleCtrl($scope, uiGmapGoogleMapApi) {
+    function createBicycleCtrl($scope, uiGmapGoogleMapApi) {
         var vm = this;
-        vm.bicycleInformationLeftList = [
-            {
-                icon: "euro_symbol",
-                bind: "jdkalsjdklsajdkasjdklasjdkalkl"
-            },
-            {
-                icon: "person",
-                bind: "name"
-            },
-            {
-                icon: "landscape",
-                bind: "bndajdlkasjd"
-            }
-        ];
-        vm.bicycleInformationRightList = [
-            {
-                icon: "euro_symbol",
-                bind: "jdkalsjdklsajdkasjdklasjdkalkljfjdklsajdkasjdkasljdaskljakdjakldjaskldkasjdkas"
-            },
-            {
-                icon: "euro_symbol",
-                bind: "price"
-            },
-            {
-                icon: "euro_symbol",
-                bind: "jdkalsjdklsajdkasjdklasjdkalkljfjdklsajdkasjdkasljdaskljakdjakldjaskldkasjdkas"
-            }
-        ];
+
+        vm.bicycle = {
+            price: "",
+            type: "",
+            size: "",
+            gears: "",
+            carrier: "",
+            brand: "",
+            street: "",
+            zipcode: "",
+            city: "",
+            isActive: "",
+            description: ""
+        };
+
         vm.map = {
             center: {
                 latitude: 48.137,
