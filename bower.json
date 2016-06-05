@@ -17,7 +17,8 @@
     "ng-img-crop": "ngImgCrop#^0.3.2",
     "angular-scroll-glue": "master",
     "angular-base64": "^2.0.5",
-    "angular-google-maps": "2.3.2"
+    "angular-google-maps": "2.3.2",
+    "angular-scroll-animate": "^0.9.8"
   },
   "resolutions": {
     "angular": "^1.4.8",

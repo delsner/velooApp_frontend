@@ -27,13 +27,18 @@ body {
 }
 
 #footer {
-  margin-top: 50px;
+
 }
 
 .v-font-color {
   color: $color_font !important;
   font-size: 16px;
   font-weight: normal !important;
+}
+
+.v-color {
+  color: $color_font !important;
+
 }
 
 .v-warn {
@@ -92,6 +97,23 @@ body {
   width: 100px;
   height: 100px;
   object-fit: cover;
+}
+
+.v-hidden {
+  visibility: hidden;
+}
+
+.v-home-offer-section {
+  background-color: $color_mainGreen;
+  padding: 80px 0;
+}
+
+.v-home-rent-section {
+  padding: 80px 0;
+}
+
+.v-color-white {
+  color: $colors_white !important;
 }
 
 /************** NAVBAR **************/
@@ -181,6 +203,19 @@ header .header-content .header-content-inner p {
     max-width: 80%;
     font-size: 18px;
   }
+}
+
+/******************************************* START HOME *****************************/
+.v-home-hr-rent {
+  width: 50px;
+  border-color: $color_mainBlue;
+  margin: 20px 0;
+}
+
+.v-home-hr-offer {
+  width: 50px;
+  border-color: $colors_white;
+  margin: 20px 0;
 }
 
 /******************************************* Start Bicycle View ***************************************/

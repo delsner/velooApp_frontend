@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('velooAngular', ['velooApi', 'ngMaterial', 'ngSanitize', 'ngRoute', 'angular.filter', 'ngImgCrop', 'ngFileUpload', 'uiGmapgoogle-maps'])
+        .module('velooAngular', ['velooApi', 'ngMaterial', 'ngSanitize', 'ngRoute', 'angular.filter', 'ngImgCrop', 'ngFileUpload', 'angular-scroll-animate', 'uiGmapgoogle-maps'])
         .config(function ($mdThemingProvider) {
 
             var velooMain = $mdThemingProvider.extendPalette('blue', {

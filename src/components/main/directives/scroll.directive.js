@@ -23,9 +23,13 @@
                         scope.isTransparent = false;
                     }
 
-                    if (angular.element(this)[0].scrollTop >= document.querySelector('.v-home-head').offsetTop - 150) {
+                    if (angular.element(this)[0].scrollTop >= document.querySelector('.v-home-rent-section').offsetTop - 150) {
                         $rootScope.animateFirstBox = true;
                     }
+                    if (angular.element(this)[0].scrollTop >= document.querySelector('.v-home-offer-section').offsetTop - 150) {
+                        $rootScope.animateSecondBox = true;
+                    }
+
                 } else {
                     scope.isTransparent = false;
                 }
