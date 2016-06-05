@@ -3,7 +3,7 @@
         .module('velooAngular')
         .directive('scroll', scroll);
 
-    function scroll($window, $location, $route) {
+    function scroll($window, $location, $route, $rootScope) {
 
         return function (scope, element, attrs) {
             scope.isTransparent = ($location.$$path == '/');
@@ -21,6 +21,10 @@
                         scope.isTransparent = true;
                     } else {
                         scope.isTransparent = false;
+                    }
+
+                    if (angular.element(this)[0].scrollTop >= document.querySelector('.v-home-head').offsetTop - 150) {
+                        $rootScope.animateFirstBox = true;
                     }
                 } else {
                     scope.isTransparent = false;
