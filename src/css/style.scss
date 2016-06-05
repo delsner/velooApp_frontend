@@ -38,8 +38,11 @@ body {
 
 .v-color {
   color: $color_font !important;
-
 }
+.v-color-blue {
+  color: $color_mainBlue !important;
+}
+
 
 .v-warn {
   background-color: $colors_warn;
@@ -150,7 +153,7 @@ header {
 
 header hr {
   max-width: 50px;
-  border-color: white;
+  border-color: $colors_white;
 }
 
 header .header-content {
