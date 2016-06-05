@@ -294,6 +294,11 @@ header .header-content .header-content-inner p {
 .md-button.md-fab {
   z-index:0
 }
+
+#footer hr {
+  max-width: 500px;
+  border-color: $colors_white;
+}
 /***************************** Landinge Page ********************/
 
 .v-home-head {
