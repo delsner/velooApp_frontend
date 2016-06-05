@@ -112,6 +112,7 @@
 
                         vm.map.center.latitude = parseFloat(success.data[0].lat);
                         vm.map.center.longitude = parseFloat(success.data[0].lon);
+                        vm.map.zoom = 15;
 
                         vm.bicycle.latitude = parseFloat(success.data[0].lat);
                         vm.bicycle.longitude = parseFloat(success.data[0].lon);
