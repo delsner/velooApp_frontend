@@ -82,8 +82,6 @@
             promise.then(function (images) {
                 vm.bicycle.images = images;
                 vm.bicycle.featureArray = vm.bicycleFeatures.concat(vm.newFeatures);
-                console.log("featureeeeees");
-                console.log(vm.bicycle.featureArray);
                 velooData.Bicycle.save(vm.bicycle).$promise.then(function (success) {
                     console.log(vm.bicycle);
                     $rootScope.setPathTo("/bicycle/" + success._id);
