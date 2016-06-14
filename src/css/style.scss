@@ -80,6 +80,9 @@ body {
   border-bottom: $color_mainBlue 1px solid;
   z-index: 999;
   position: fixed;
+  @media(max-width: 768px) {
+      margin-top: 48px;
+  }
 }
 
 .v-top-content {

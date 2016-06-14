@@ -27,7 +27,6 @@
 
                 var token = velooToken.getToken();
 
-                //TODO: catch unauthorized response in case of unauthorized api call
                 if (token && velooToken.parseJwt(token).exp < new Date().getTime()) {
                     token = null;
                     velooToken.logout();
@@ -135,7 +134,7 @@
             {
                 id: "@id"
             });
-        
+
         return {
             Bicycle: Bicycle,
             Picture: Picture

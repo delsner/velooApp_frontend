@@ -46,11 +46,11 @@
                                      md-items="item in mainCtrl.getSearchHints(mainCtrl.searchText)"
                                      md-item-text="item.name"
                                      md-min-length="2"
-                                     placeholder="Search for bicycles in ..."
+                                     placeholder="Search for bicycles ..."
                                      ng-keypress="mainCtrl.showSearchResults($event, mainCtrl.searchText)"
                                      md-menu-class="autocomplete-custom-template">
                         <md-item-template>
-                            <div flex ng-click="mainCtrl.setPathTo('bicycle/'+item.id)">
+                            <div flex ng-click="mainCtrl.setPathTo('bicycle/'+item._id)">
                             <span class="item-title">
                                 <md-icon>directions_bike</md-icon>
                                 <span> {{item.city}} - {{item.type}} - {{item.description}} </span>
