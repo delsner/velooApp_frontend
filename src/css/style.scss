@@ -39,10 +39,10 @@ body {
 .v-color {
   color: $color_font !important;
 }
+
 .v-color-blue {
   color: $color_mainBlue !important;
 }
-
 
 .v-warn {
   background-color: $colors_warn;
@@ -81,7 +81,7 @@ body {
   z-index: 999;
   position: fixed;
   @media(max-width: 768px) {
-      margin-top: 48px;
+    margin-top: 48px;
   }
 }
 
@@ -259,6 +259,7 @@ header .header-content .header-content-inner p {
   padding-top: 25px;
   margin: 10px;
 }
+
 /***************************** Bicycle Detail View ********************/
 
 .v-bicycle-img {
@@ -299,13 +300,14 @@ header .header-content .header-content-inner p {
 }
 
 .md-button.md-fab {
-  z-index:0
+  z-index: 0
 }
 
 #footer hr {
   max-width: 500px;
   border-color: $colors_white;
 }
+
 /***************************** Landinge Page ********************/
 
 .v-home-head {
@@ -333,6 +335,33 @@ header .header-content .header-content-inner p {
 
 }
 
+/*************************PROFILE****************************/
+
+.v-profile-bars {
+/*  background-color: rgba(0, 0, 0, 0.33);
+  //backround-color: $color_mainGreen;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  height: 40px;
+  text-align: center;*/
+  font-weight: bold;
+}
+
+.v-profile-margin-top{
+  margin-top: 30px;
+}
+
+.v-profile-margin-rightleft{
+  margin-top: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.v-profile-margin-right{
+  margin-right: 40px;
+}
 /**********************************  BOOKING PROCESS ***********************************/
 
 .v-message-container {

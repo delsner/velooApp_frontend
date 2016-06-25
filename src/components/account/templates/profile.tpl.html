@@ -1,20 +1,120 @@
-<md-toolbar class="v-top-toolbar">
+<md-toolbar class="v-top-toolbar" background-color:>
     <div layout="row" layout-align="start center" class="md-toolbar-tools">
-        <div flex-gt-sm="90" flex-offset-gt-sm="5">Profile</div>
+        <div flex-gt-sm="90" flex-offset-gt-sm="5" flex-xl="80" flex-offset-xl="10" layout="row">
+            <div flex>
+                Profile
+            </div>
+        </div>
     </div>
 </md-toolbar>
 
-<div layout-gt-sm="row" flex-gt-lg="80" flex-offset-gt-lg="10" flex="90" flex-offset="5" class="v-top-content">
-    <div layout="row" layout-align="center center">
-        <img ng-src="{{ctrl.user.avatar}}" class="swf-avatar" alt="avatar" width="100" height="100"/>
-    </div>
-    <div layout="row" layout-align="center center">
-        <div hide-gt-sm>
-            <input flex type="file" file-model="ctrl.avatar"/>
+<md-content layout-padding="" class="v-top-content">
+    <form name="userForm" ng-submit="ctrl.updateUserDetails()">
+        <div layout="row" layout-xs="column">
+            <div flex="20" class="v-profile-margin">
+                <div layout="column" flex-gt-lg="80" flex-offset-gt-lg="10" flex="90" flex-offset="5">
+                    <div layout="row" layout-align="center center">
+                        <img ng-src="{{ctrl.user.avatar}}" class="swf-avatar" alt="avatar" width="100"
+                             height="100"/>
+                    </div>
+                    <div layout="column" layout-align="end center">
+                        <div hide-gt-sm>
+                            <input flex type="file" file-model="ctrl.avatar"/>
+                        </div>
+                        <md-button ngf-select ngf-capture="'camera'" ng-model="ctrl.avatar" accept="image/*" hide-xs
+                                   hide-sm>
+                            Upload avatar!
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+
+            <div flex="80" class="v-profile-margin-right">
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm="">
+                        <label>Username</label>
+                        <input ng-model="ctrl.user.username">
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm="">
+                        <label>First name</label>
+                        <input ng-model="ctrl.user.firstname">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm="">
+                        <label>Last name</label>
+                        <input ng-model="ctrl.user.lastname">
+                    </md-input-container>
+                </div>
+            </div>
         </div>
-        <md-button ngf-select ngf-capture="'camera'" ng-model="ctrl.avatar" accept="image/*" hide-xs
-                   hide-sm>
-            Bild hochladen
-        </md-button>
-    </div>
-</div>
+
+        <div layout="row">
+             <div flex layout="row" layout-align="start center" class="v-font-color v-subheader v-profile-margin-rightleft">
+               <div>
+                   Address details
+               </div>
+            </div>
+        </div>
+
+        <div layout="row" layout-xs="column" class="v-profile-margin-rightleft">
+            <div flex>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm="">
+                        <label>Street</label>
+                        <input ng-model="ctrl.user.street">
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label>Street number</label>
+                        <input ng-model="ctrl.user.streetNumber">
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm="">
+                        <label>City</label>
+                        <input ng-model="ctrl.user.city">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm="">
+                        <label>Country</label>
+                        <input ng-model="ctrl.user.country">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm="">
+                        <label>Postal Code</label>
+                        <input ng-model="ctrl.user.zipcode" placeholder="12345" required
+                              type="number">
+
+                    </md-input-container>
+                </div>
+                <div layout=column layout-align="center end">
+                <md-button class="md-raised md-accent md-padding" ng-click="showAction()" type="submit">Save Profile Update</md-button>
+                </div>
+
+            </div>
+        </div>
+
+
+<!--**************RATINGS******************
+
+        <div layout="row">
+            <div flex layout="row" layout-align="start center" class="v-font-color v-subheader v-profile-margin-rightleft">
+                Your Ratings
+            </div>
+        </div>
+
+        <div layout="row" layout-xs="column" class="v-profile-margin-top v-profile-margin-rightleft">
+            <div flex>
+            [RATINGS]
+            </div>
+        </div>
+
+-->
+
+
+    </form>
+</md-content>

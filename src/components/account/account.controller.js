@@ -8,6 +8,36 @@
     function accountCtrl($scope, $mdDialog, velooData, $mdMedia) {
         var vm = this;
 
+        vm.updateUserDetails = updateUserDetails;
+
+        velooData.User.getUserDetails().$promise.then(function(data){
+
+            vm.user = data;
+
+            console.log(vm.user);
+
+            });
+
+        function updateUserDetails() {
+            velooData.User.updateUserDetails(vm.user).$promise.then(function (success){
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.body))
+                        .clickOutsideToClose(true)
+                        .title('Success!')
+                        .textContent('Welcome at Veloo!')
+                        .ok('OK'));
+            }, function (error) {
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.body))
+                        .clickOutsideToClose(true)
+                        .title('Bad Input')
+                        .textContent('Please check your inputs.')
+                        .ok('OK'));
+            });
+        }
+
         $scope.$watch('ctrl.avatar', function (newValue, oldValue) {
             if (newValue) {
                 var useFullScreen = ($mdMedia('sm') || $mdMedia('xs') || $mdMedia('md'));
@@ -23,6 +53,7 @@
                     }
                 });
             }
+
         });
 
         function CropDialogController($scope, $rootScope, $http, $mdDialog, avatar, Upload, velooUtil) {
@@ -43,7 +74,7 @@
                         $mdDialog.alert()
                             .parent(angular.element(document.body))
                             .clickOutsideToClose(true)
-                            .title('Profildaten geändert')
+                            .title('Profil information updated')
                             .textContent('Ihre Profildaten wurden erfolgreich geändert.')
                             .ok('OK'));
                 }, function (response) {

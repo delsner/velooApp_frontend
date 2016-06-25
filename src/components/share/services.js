@@ -135,9 +135,24 @@
                 id: "@id"
             });
 
+        var User = $resource(velooUtil.getFullUrl(velooUtil.paths.user), {},
+            {
+                updateUserDetails: {
+                    method: "POST",
+                    url: velooUtil.getFullUrl(velooUtil.paths.user),
+                    isArray: false
+                },
+                getUserDetails: {
+                    method: "GET",
+                    url: velooUtil.getFullUrl(velooUtil.paths.user),
+                    isArray: false
+                }
+            });
+
         return {
             Bicycle: Bicycle,
-            Picture: Picture
+            Picture: Picture,
+            User: User
         };
     }
 })();
@@ -177,10 +192,12 @@
         function getPaths() {
             return {
                 bicycle: 'bicycle',
-                picture: 'picture'
+                picture: 'picture',
+                user: 'user'
             };
         }
 
     }
+
 
 })();
