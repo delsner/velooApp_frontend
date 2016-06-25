@@ -19,14 +19,15 @@
             });
 
         function updateUserDetails() {
-            velooData.User.updateUserDetails(vm.user).$promise.then(function (success){
-                $mdDialog.show(
-                    $mdDialog.alert()
-                        .parent(angular.element(document.body))
-                        .clickOutsideToClose(true)
-                        .title('Success!')
-                        .textContent('Welcome at Veloo!')
-                        .ok('OK'));
+            velooData.User.updateUserDetails(vm.user).$promise.then(function (success){$mdDialog.show(
+
+                $mdDialog.alert()
+                    .parent(angular.element(document.body))
+                    .clickOutsideToClose(true)
+                    .title('Läuft bei dir')
+                    .textContent('Passt.')
+                    .ok('Great'));
+
             }, function (error) {
                 $mdDialog.show(
                     $mdDialog.alert()
