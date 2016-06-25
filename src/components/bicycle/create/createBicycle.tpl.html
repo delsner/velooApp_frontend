@@ -135,7 +135,7 @@
 
             <div class="v-lr-padding" layout="column">
                 <div id="features">
-                    <div layout-gt-sm="row">
+                    <div layout-xs="column" layout-gt-sm="row">
                         <md-input-container flex="20">
                             <md-checkbox md-no-ink ng-model="ctrl.bicycle.carrier" class="md-primary">
                                 <span>Carrier</span>
@@ -196,7 +196,7 @@
                                 <img ngf-thumbnail="f"
                                      ngf-size="{width: 48, height: 48, quality: 0.9, centerCrop:true}">
                                 &nbsp; {{f.name}} &nbsp;
-                                <small class="v-font-color">{{f.size/1000}} KB</small>
+                                <small>{{f.size/1000}} KB</small>
                                 &nbsp;
                                 <small class="v-warn">{{f.$error}} {{f.$errorParam}}</small>
                             </div>

@@ -122,6 +122,10 @@ body {
   color: $colors_white !important;
 }
 
+.v-hide {
+  visibility: hidden;
+}
+
 /************** NAVBAR **************/
 md-toolbar.navbar-default {
   background-color: $color_mainBlue;
@@ -328,3 +332,37 @@ header .header-content .header-content-inner p {
   color: $color_mainBlue;
 
 }
+
+/**********************************  BOOKING PROCESS ***********************************/
+
+.v-message-container {
+  height: calc(100vh - 150px);
+  height: -moz-calc(100vh - 150px);
+  height: -webkit-calc(100vh - 150px);
+}
+
+#message-box {
+  height: 40vh;
+  overflow: auto;
+}
+
+.message-container {
+  min-height: 50px !important;
+}
+
+.message {
+  background-color: lightblue;
+  /*border: solid 1px rgba(0, 0, 0, 0.5);*/
+  border-radius: 15px;
+  box-sizing: border-box;
+  padding: 8px 30px;
+  margin-top: 8px !important;
+  max-width: 400px;
+}
+
+.message-alt {
+  background-color: lightgreen;
+}
+
+/**********************************  END BOOKING PROCESS *******************************/
+

@@ -68,7 +68,7 @@
     <div id='content' ng-view autoscroll="true" flex>
     </div>
 
-    <div id='footer'>
+    <div id='footer' ng-if="mainCtrl.currentLocation()=='/'">
         <footer ng-include src="'components/home/templates/footer.tpl.html'"></footer>
     </div>
 
@@ -93,6 +93,8 @@
 
 <script src="components/bicycle/show/show.controller.js"></script>
 <script src="components/bicycle/create/create.controller.js"></script>
+
+<script src="components/bookingProcess/bookingProcess.ctrl.js"></script>
 
 <script src="components/auth/auth.controller.js"></script>
 <script src="components/auth/auth.services.js"></script>

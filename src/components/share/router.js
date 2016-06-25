@@ -23,7 +23,7 @@
                 'auth': true
             })
             .when('/bicycle/:id', {
-                'templateUrl': 'components/bicycle/show/bicycle.tpl.html',
+                'templateUrl': 'components/bicycle/show/showBicycle.tpl.html',
                 'controller': 'showBicycleCtrl as ctrl',
                 'auth': false
             })
@@ -35,6 +35,11 @@
             .when('/account', {
                 'templateUrl': 'components/account/templates/profile.tpl.html',
                 'controller': 'accountCtrl as ctrl',
+                'auth': true
+            })
+            .when('/bookingProcess/:id', {
+                'templateUrl': 'components/bookingProcess/templates/bookingProcess.tpl.html',
+                'controller': 'bookingProcessCtrl as ctrl',
                 'auth': true
             })
     }
