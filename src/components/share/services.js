@@ -44,7 +44,13 @@
                 if (res.config.url.indexOf(velooConnection.baseUri) === 0 && res.data.token) {
                     velooToken.saveToken(res.data.token);
                 }
-
+                /*
+                console.log(res.config.url);
+                console.log(res.data.token);
+                if (res.config.url.indexOf(velooConnection.baseUri+"login/facebook/return") === 0 && res.data.token) {
+                    velooToken.saveToken(res.data.token);
+                }
+                 */
                 return res;
             }
         }
