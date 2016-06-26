@@ -42,6 +42,11 @@
                 'controller': 'bookingProcessCtrl as ctrl',
                 'auth': true
             })
+            .when('/payment', {
+                'templateUrl': 'components/bookingProcess/templates/payment.tpl.html',
+                'controller': 'bookingProcessCtrl as ctrl',
+                'auth': true
+            })
     }
 
 })();

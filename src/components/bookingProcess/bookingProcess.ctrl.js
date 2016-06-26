@@ -11,6 +11,7 @@
     function bookingProcessCtrl($scope, $q, uiGmapGoogleMapApi, velooData, $mdDialog, $rootScope, $http, Upload) {
         var vm = this;
 
+
         
 
     }
