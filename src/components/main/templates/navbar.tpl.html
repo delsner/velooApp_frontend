@@ -8,7 +8,7 @@
         </h2>
 
         <div hide-xs hide-sm>
-            <md-button class="md-padding md-raised md-accent" ng-click="mainCtrl.setPathTo('/bicycle/create')" ng-show="mainCtrl.isAuthenticated()"
+            <md-button class="md-padding" ng-click="mainCtrl.setPathTo('/bicycle/create')" ng-show="mainCtrl.isAuthenticated()"
                        ng-disabled="mainCtrl.currentLocation()=='/bicycle/create'"> Offer Bicylce
             </md-button>
             <md-button class="md-padding" ng-click="mainCtrl.showSignup($event)" ng-show="!mainCtrl.isAuthenticated()">

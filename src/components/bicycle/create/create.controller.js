@@ -7,11 +7,7 @@
 
     function createBicycleCtrl($scope, $q, uiGmapGoogleMapApi, velooData, $mdDialog, $rootScope, $http, Upload) {
         var vm = this;
-
-        vm.saveBicycle = saveBicycle;
-        vm.getGeolocation = getGeolocation;
-        vm.addFeature = addFeature;
-
+        
         vm.bicycleTypes = ["Mountainbike", "Racing Bicycle", "Road Bicycle", "Touring Bicycle"];
         vm.bicycleCategories = ["Female", "Male", "Children"];
         vm.bicycleSizes = ["XS", "S", "M", "L", "XL"];

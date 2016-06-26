@@ -33,7 +33,7 @@
                 'auth': false
             })
             .when('/account', {
-                'templateUrl': 'components/account/templates/profile.tpl.html',
+                'templateUrl': 'components/account/templates/account.tpl.html',
                 'controller': 'accountCtrl as ctrl',
                 'auth': true
             })

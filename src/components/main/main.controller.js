@@ -25,6 +25,17 @@
         vm.currentLocation = currentLocation;
 
         //functions
+/*
+        if (vm.isAuthenticated()) {
+            //$rootScope.ownUsername = velooAuth.getUsername();
+            swfAccountService.getAvatar($rootScope.ownUsername).then(function (result) {
+                vm.myAvatar = result;
+            });
+            swfData.Person.setLastLogin().$promise.then(function (success) {
+                $rootScope.messagesSinceLastLogin = success;
+            });
+        }*/
+        
         function getSearchHints(searchText) {
             var deferred = $q.defer();
 
