@@ -5,12 +5,14 @@
         .module('velooAngular')
         .controller('authCtrl', authCtrl);
 
-    function authCtrl($scope, $route, $location, $mdDialog, authService, $rootScope) {
+    function authCtrl($scope, $route, $location, $mdDialog, authService, $rootScope, $sce) {
         var vm = this;
 
         vm.cancel = $mdDialog.cancel;
         vm.login = login;
         vm.signup = signup;
+        vm.showFacebookLogin = showFacebookLogin;
+        $scope.url=$sce.trustAsResourceUrl("http://localhost:3000/login/facebook");
 
         function login() {
             if (vm.username && vm.password) {
@@ -52,5 +54,15 @@
                 vm.formInvalid = true;
             }
         }
+        
+        function showFacebookLogin() {
+            $mdDialog.show({
+                controller: 'authCtrl as ctrl',
+                templateUrl: 'components/auth/templates/fblogin.tpl.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: true
+            });
+        }
+
     }
 })();
