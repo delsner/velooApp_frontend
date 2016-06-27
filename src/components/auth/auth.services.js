@@ -24,8 +24,9 @@
             });
         }
 
-        function fbaccountcheck(fbtoken) {
+        function fbaccountcheck(fbtoken, fbname) {
             this.fbtoken = fbtoken;
+            this.fbname = fbname;
             console.log('Called fblogin with fbtoken ' + fbtoken);
             return $http.post(velooConnection.baseUri + 'fbusercheck', {
                 fbtoken: fbtoken

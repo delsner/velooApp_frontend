@@ -5,7 +5,7 @@
         .module('velooAngular')
         .controller('authCtrl', authCtrl);
 
-    function authCtrl($scope, $route, $location, $mdDialog, authService, $rootScope, $auth) {
+    function authCtrl($scope, $route, $location, $mdDialog, authService, $rootScope, $auth, $http) {
         var vm = this;
 
         vm.cancel = $mdDialog.cancel;
@@ -29,11 +29,12 @@
 
         function authenticate(provider) {
             $auth.authenticate(provider).then(function (res) {
-                console.log(res.access_token);
-                vm.fbtoken = res.access_token;
-                $rootScope = res.access_token;
-                $scope = res.access_token;
-                authService.fbaccountcheck(res.access_token).then(function (res) {
+                $http.get('https://graph.facebook.com/me?access_token=' + res.access_token).then(function(res) {
+                    console.log(res);
+                    vm.fbname = res.data.name;
+                    vm.fbtoken = res.data.id;
+                });
+                authService.fbaccountcheck(vm.fbtoken, vm.fbname).then(function (res) {
                         if(res.status == 204) {
                             $mdDialog.show({
                                 controller: 'fbloginCtrl as ctrl',

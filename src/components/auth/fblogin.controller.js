@@ -10,6 +10,8 @@
 
     function fbloginCtrl($scope, $route, $mdDialog, authService, $rootScope, $auth) {
         var vm = this;
+        vm.cancel = $mdDialog.cancel;
+        vm.fbname = authService.fbname;
 
         vm.loginWithFacebook = loginWithFacebook;
 
