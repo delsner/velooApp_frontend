@@ -11,8 +11,21 @@
         vm.cancel = $mdDialog.cancel;
         vm.login = login;
         vm.signup = signup;
+        vm.sendPasswordToMail = sendPasswordToMail;
         vm.showFacebookLogin = showFacebookLogin;
+        vm.showForgotPassword = showForgotPassword;
         $scope.url=$sce.trustAsResourceUrl("http://localhost:3000/login/facebook");
+
+        function sendPasswordToMail() {
+            $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.body))
+                .clickOutsideToClose(true)
+                .title('Thank you!')
+                .textContent('A password reset Email was sent to you!')
+                .ok('OK'));
+            vm.cancel();
+        }
 
         function login() {
             if (vm.username && vm.password) {
@@ -59,6 +72,15 @@
             $mdDialog.show({
                 controller: 'authCtrl as ctrl',
                 templateUrl: 'components/auth/templates/fblogin.tpl.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: true
+            });
+        }
+
+        function showForgotPassword() {
+            $mdDialog.show({
+                controller: 'authCtrl as ctrl',
+                templateUrl: 'components/auth/templates/passwordforgot.tpl.html',
                 parent: angular.element(document.body),
                 clickOutsideToClose: true
             });
