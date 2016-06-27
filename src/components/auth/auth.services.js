@@ -11,7 +11,9 @@
             login: login,
             logout: logout,
             isAuthenticated: isAuthenticated,
-            getUserdata: getUserdata
+            getUserdata: getUserdata,
+            fbaccountcheck: fbaccountcheck,
+            fblogin: fblogin
         };
 
         function login(username, password) {
@@ -19,6 +21,22 @@
             return $http.post(velooConnection.baseUri + 'login', {
                 username: username,
                 password: password
+            });
+        }
+
+        function fbaccountcheck(fbtoken) {
+            this.fbtoken = fbtoken;
+            console.log('Called fblogin with fbtoken ' + fbtoken);
+            return $http.post(velooConnection.baseUri + 'fbusercheck', {
+                fbtoken: fbtoken
+            });
+        }
+
+        function fblogin(fbtoken, username) {
+            console.log('Called login with: ' + username + ', fbtoken ' + fbtoken);
+            return $http.post(velooConnection.baseUri + 'fblogin', {
+                username: username,
+                fbtoken: fbtoken
             });
         }
 

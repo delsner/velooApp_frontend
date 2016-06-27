@@ -5,16 +5,15 @@
         .module('velooAngular')
         .controller('authCtrl', authCtrl);
 
-    function authCtrl($scope, $route, $location, $mdDialog, authService, $rootScope, $sce) {
+    function authCtrl($scope, $route, $location, $mdDialog, authService, $rootScope, $auth) {
         var vm = this;
 
         vm.cancel = $mdDialog.cancel;
         vm.login = login;
         vm.signup = signup;
         vm.sendPasswordToMail = sendPasswordToMail;
-        vm.showFacebookLogin = showFacebookLogin;
         vm.showForgotPassword = showForgotPassword;
-        $scope.url=$sce.trustAsResourceUrl("http://localhost:3000/login/facebook");
+        vm.authenticate = authenticate;
 
         function sendPasswordToMail() {
             $mdDialog.show(
@@ -24,7 +23,31 @@
                 .title('Thank you!')
                 .textContent('A password reset Email was sent to you!')
                 .ok('OK'));
+                //TODO 
             vm.cancel();
+        }
+
+        function authenticate(provider) {
+            $auth.authenticate(provider).then(function (res) {
+                console.log(res.access_token);
+                vm.fbtoken = res.access_token;
+                $rootScope = res.access_token;
+                $scope = res.access_token;
+                authService.fbaccountcheck(res.access_token).then(function (res) {
+                        if(res.status == 204) {
+                            $mdDialog.show({
+                                controller: 'fbloginCtrl as ctrl',
+                                templateUrl: 'components/auth/templates/fblogin.tpl.html',
+                                parent: angular.element(document.body),
+                                clickOutsideToClose: true,
+                            });
+                        } else {
+                            vm.cancel();
+                        }
+                    });
+            }, function (err) {
+                console.log(err);
+            });
         }
 
         function login() {
@@ -67,22 +90,13 @@
                 vm.formInvalid = true;
             }
         }
-        
-        function showFacebookLogin() {
-            $mdDialog.show({
-                controller: 'authCtrl as ctrl',
-                templateUrl: 'components/auth/templates/fblogin.tpl.html',
-                parent: angular.element(document.body),
-                clickOutsideToClose: true
-            });
-        }
 
         function showForgotPassword() {
             $mdDialog.show({
                 controller: 'authCtrl as ctrl',
                 templateUrl: 'components/auth/templates/passwordforgot.tpl.html',
                 parent: angular.element(document.body),
-                clickOutsideToClose: true
+                clickOutsideToClose: true,
             });
         }
 

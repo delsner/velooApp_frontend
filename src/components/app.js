@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('velooAngular', ['velooApi', 'ngMaterial', 'ngSanitize', 'ngRoute', 'angular.filter', 'ngImgCrop', 'ngFileUpload', 'angular-scroll-animate', 'uiGmapgoogle-maps'])
+        .module('velooAngular', ['velooApi', 'ngMaterial', 'ngSanitize', 'ngRoute', 'angular.filter', 'ngImgCrop', 'ngFileUpload', 'angular-scroll-animate', 'uiGmapgoogle-maps', 'satellizer'])
         .config(function ($mdThemingProvider) {
 
             var velooMain = $mdThemingProvider.extendPalette('blue', {
@@ -30,6 +30,21 @@
                 //    key: 'your api key',
                 v: '3.20', //defaults to latest 3.X anyhow
                 libraries: 'visualization'
+            });
+        })
+        .config(function ($authProvider) {
+            $authProvider.facebook({
+                clientId: '1765141377054303',
+                responseType: 'token',
+                name: 'facebook',
+                authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
+                redirectUri: window.location.origin + '/',
+                requiredUrlParams: ['display', 'scope'],
+                scope: ['email','user_likes'],
+                scopeDelimiter: ',',
+                display: 'popup',
+                type: '2.0',
+                popupOptions: { width: 580, height: 400 }
             });
         })
         .run(function ($location, $route, $rootScope, $mdSidenav, $mdMedia, $mdDialog, authService, $log) {

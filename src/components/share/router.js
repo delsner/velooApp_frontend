@@ -44,7 +44,7 @@
             })
             .when('/payment', {
                 'templateUrl': 'components/bookingProcess/templates/payment.tpl.html',
-                'controller': 'bookingProcessCtrl as ctrl',
+                'controller': 'paymentCtrl as ctrl',
                 'auth': true
             })
     }
