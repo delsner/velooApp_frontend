@@ -23,6 +23,7 @@
                     } else {
                         $route.reload();
                     }
+                    $rootScope.getUserDetails();
                     vm.cancel();
                     console.log(success);
                 }, function (error) {

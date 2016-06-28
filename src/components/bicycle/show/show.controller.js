@@ -100,7 +100,7 @@
                 velooData.Message.save({
                     text: vm.bookingText,
                     booking: data._id
-                }).$promise.then(function (data) {
+                }).$promise.then(function (message) {
                     $mdDialog.show(
                         $mdDialog.alert()
                             .parent(angular.element(document.body))

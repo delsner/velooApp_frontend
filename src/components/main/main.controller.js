@@ -8,7 +8,11 @@
     function mainCtrl($scope, $q, $log, $rootScope, $location, searchService, authService) {
         //variables
         var vm = this;
-
+        
+        $rootScope.$watch('user', function(newValue, oldValue) {
+            vm.user = $rootScope.user;
+        });
+        
         //external functions
         vm.setPathTo = $rootScope.setPathTo;
         vm.showLogin = $rootScope.showLogin;
@@ -27,18 +31,6 @@
         vm.getOwnId = getOwnId;
 
         //functions
-
-        console.log(getOwnId());
-/*
-        if (vm.isAuthenticated()) {
-            //$rootScope.ownUsername = velooAuth.getUsername();
-            swfAccountService.getAvatar($rootScope.ownUsername).then(function (result) {
-                vm.myAvatar = result;
-            });
-            swfData.Person.setLastLogin().$promise.then(function (success) {
-                $rootScope.messagesSinceLastLogin = success;
-            });
-        }*/
         
         function getSearchHints(searchText) {
             var deferred = $q.defer();

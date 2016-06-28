@@ -4,14 +4,15 @@
     angular.module('velooAngular')
         .service('authService', authService);
 
-    function authService(velooConnection, $http, velooToken) {
+    function authService(velooConnection, $http, velooToken, velooData, $q) {
 
         return {
             signup: signup,
             login: login,
             logout: logout,
             isAuthenticated: isAuthenticated,
-            getUserdata: getUserdata
+            getUserdata: getUserdata,
+            getUserDetails: getUserDetails
         };
 
         function login(username, password) {
@@ -40,6 +41,10 @@
 
         function getUserdata() {
             return velooToken.getUserdata();
+        }
+
+        function getUserDetails() {
+            return velooData.User.getUserDetails().$promise;
         }
 
     }

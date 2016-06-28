@@ -10,23 +10,25 @@
 
         vm.updateUserDetails = updateUserDetails;
 
-        velooData.User.getUserDetails().$promise.then(function(data){
+        velooData.User.getUserDetails().$promise.then(function (data) {
 
             vm.user = data;
 
             console.log(vm.user);
 
-            });
+        });
 
         function updateUserDetails() {
-            velooData.User.updateUserDetails(vm.user).$promise.then(function (success){$mdDialog.show(
+            velooData.User.updateUserDetails(vm.user).$promise.then(function (success) {
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.body))
+                        .clickOutsideToClose(true)
+                        .title('Läuft bei dir')
+                        .textContent('Passt.')
+                        .ok('Great'));
 
-                $mdDialog.alert()
-                    .parent(angular.element(document.body))
-                    .clickOutsideToClose(true)
-                    .title('Läuft bei dir')
-                    .textContent('Passt.')
-                    .ok('Great'));
+                $rootScope.getUserDetails();
 
             }, function (error) {
                 $mdDialog.show(
@@ -78,6 +80,7 @@
                             .title('Profil information updated')
                             .textContent('Ihre Profildaten wurden erfolgreich geändert.')
                             .ok('OK'));
+                    $rootScope.getUserDetails();
                 }, function (response) {
                     $mdDialog.show(
                         $mdDialog.alert()
