@@ -1,0 +1,31 @@
+<md-dialog class="slider-container">
+    <md-toolbar>
+        <div class="md-toolbar-tools top-margin">
+            <h2>Bilder zu {{ctrl.transactionObject.name}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                <md-icon aria-label="Close dialog">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content flex ng-click="ctrl.cancel()">
+        <md-tabs md-dynamic-height md-border-bottom md-selected="ctrl.tabIndex">
+            <md-tab ng-repeat="x in ctrl.bicycle.pictures" label="{{$index + 1}}">
+                <div layout="row" layout-align="begin center" class="md-padding">
+                    <div class="slider-controls" ng-click="ctrl.lastTabIndex();$event.stopPropagation()">
+                        <md-icon class="left">keyboard_arrow_left</md-icon>
+                    </div>
+                    <div layout="column" layout-align="center center" flex>
+                        <div class="slider-image" layout="row" layout-align="center center" ng-click="ctrl.nextTabIndex();$event.stopPropagation()">
+                            <img ng-src="{{x.data}}">
+                        </div>
+                        <div class="v-color-white">{{x.description}}</div>
+                    </div>
+                    <div class="slider-controls" ng-click="ctrl.nextTabIndex();$event.stopPropagation()">
+                        <md-icon class="right">keyboard_arrow_right</md-icon>
+                    </div>
+                </div>
+            </md-tab>
+        </md-tabs>
+    </md-dialog-content>
+</md-dialog>

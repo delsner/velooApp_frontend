@@ -19,6 +19,7 @@
                         $location.path($rootScope.routeVisited).search($rootScope.routeVisitedSearchParams);
                         $rootScope.routeVisited = null;
                         $rootScope.routeVisitedSearchParams = null;
+                        $rootScope.ownUsername = authService.getUserdata().username;
                     } else {
                         $route.reload();
                     }

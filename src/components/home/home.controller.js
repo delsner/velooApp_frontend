@@ -5,10 +5,14 @@
         .module('velooAngular')
         .controller('homeCtrl', homeCtrl);
 
-    function homeCtrl($scope, $rootScope) {
+    function homeCtrl($scope, $rootScope, velooData) {
         var vm = this;
+        velooData.Bicycle.getBicycles().$promise.then(function (data) {
+            vm.bicycles = data;
+            console.log(vm.bicycles);
+        })
 
-        $rootScope.$watch('animateFirstBox', function (newValue, oldValue) {
+        /*$rootScope.$watch('animateFirstBox', function (newValue, oldValue) {
             if(newValue) {
                 console.log("call animate");
                 vm.animateElementIn(angular.element(document.querySelector('.v-home-animate-first')));
@@ -26,6 +30,6 @@
             console.log($el);
             $el.removeClass('v-hidden');
             $el.addClass('animated bounce'); // this example leverages animate.css classes
-        };
+        };*/
     }
 })();

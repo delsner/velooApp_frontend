@@ -1,0 +1,37 @@
+<md-dialog ng-cloak flex-gt-md="40">
+    <form ng-submit="ctrl.sendBooking()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Booking</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <md-icon class="md-icon">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content class="md-padding">
+            <md-dialog-content layout-padding>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Message: </label>
+                    <md-icon class="md-icon">message</md-icon>
+                    <textarea ng-model="ctrl.bookingText" rows="3" md-select-on-focus required></textarea>
+                </md-input-container>
+                <div layout-align="row" flex layout-align="center center">
+                    <md-datepicker ng-model="ctrl.startDate" md-placeholder="Start date"></md-datepicker>
+                    <md-datepicker ng-model="ctrl.endDate" md-placeholder="End date"></md-datepicker>
+                </div>
+                <div class="swf-warn" ng-show="ctrl.formInvalid" layout-align="center center" layout="row">
+                    <div>
+                        <p class="md-body-2"> Please supply all information. </p>
+                    </div>
+                </div>
+            </md-dialog-content>
+
+            <md-content layout="column" layout-align="center center">
+                <md-button class="md-raised md-primary" type="submit">Book
+                </md-button>
+            </md-content>
+        </md-content>
+    </form>
+</md-dialog>
+

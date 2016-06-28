@@ -1,0 +1,20 @@
+<div ng-cloak>
+    <md-grid-list
+            md-cols-xs="1" md-cols-sm="1" md-cols-md="1" md-cols-gt-md="1"
+            md-row-height="250px"
+            md-gutter="12px" md-gutter-gt-sm="8px" class="picture-container">
+        <md-grid-tile class="picture-list-item"
+                      md-rowspan="1" md-rowspan-gt-md="2" md-rowspan-md="2" md-colspan="1">
+        </md-grid-tile>
+        <md-grid-tile class="picture-list-item"  ng-click="ctrl.showTabDialog(1)">
+        </md-grid-tile>
+        <md-grid-tile class="picture-list-item" ng-click="ctrl.showTabDialog(2)">
+            <h1 ng-if="amountPictures > 3">+{{amountPictures-3}} <span
+                    ng-show="amountPictures>4">weitere Bilder</span><span
+                    ng-show="amountPictures<=4">weiteres Bild</span> ...</h1>
+            <!--<md-grid-tile-footer class="picture-list-footer">
+                <h3 class="md-subhead">Hier klicken für eine größere Ansicht</h3>
+            </md-grid-tile-footer>-->
+        </md-grid-tile>
+    </md-grid-list>
+</div>

@@ -1,6 +1,7 @@
 <md-toolbar class="v-top-toolbar">
     <div layout="row" layout-align="start center" class="md-toolbar-tools">
-        <div>Booking with xxxx</div>
+        <div>Booking with {{mainCtrl.getOwnId===ctrl.booking.endUser.id ?
+            ctrl.booking.provider.username : ctrl.booking.endUser.username}}</div>
     </div>
 </md-toolbar>
 
@@ -11,8 +12,18 @@
             <div>Details</div>
         </div>
 
-        <div flex layout-gt-sm="row" layout-align="center center">
+       <!-- <div flex layout-gt-sm="row" layout-align="center center">
             <img flex ng-src="/images/mtb3.jpg" class="v-bicycle-img">
+        </div>-->
+
+        <div flex class="v-create-bicycle-map">
+            <div>
+                <ui-gmap-google-map center='ctrl.map.center' zoom='ctrl.map.zoom'>
+                    <ui-gmap-marker coords="ctrl.marker.coords" options="ctrl.marker.options"
+                                    idkey="ctrl.marker.id">
+                    </ui-gmap-marker>
+                </ui-gmap-google-map>
+            </div>
         </div>
 
         <div layout-gt-sm="row">
@@ -22,14 +33,14 @@
                         <md-icon> directions_bike</md-icon>
                         <div layout="column" flex>
                             <p class="md-caption">Bicycle:</p>
-                            <p class="v-text-overflow"> Link to bicycle </p>
+                            <a class="v-text-overflow v-hover v-link" ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.booking.bicycle)"> Bicycle </a>
                         </div>
                     </md-list-item>
                     <md-list-item>
                         <md-icon> date_range</md-icon>
                         <div layout="column" flex>
                             <p class="md-caption">Start Date:</p>
-                            <p class="v-text-overflow"> 01.06.2016 </p>
+                            <p class="v-text-overflow"> {{ctrl.booking.startDate | date:"dd.MM.yyyy"}} </p>
                         </div>
                     </md-list-item>
                 </div>
@@ -40,51 +51,57 @@
                         <md-icon> euro_symbol</md-icon>
                         <div layout="column" flex>
                             <p class="md-caption">Price in € for x days: </p>
-                            <p class="v-text-overflow"> x (y/day) </p>
+                            <p class="v-text-overflow"> {{ctrl.booking.bicycle.price}} </p>
                         </div>
                     </md-list-item>
                     <md-list-item>
                         <md-icon> date_range</md-icon>
                         <div layout="column" flex>
                             <p class="md-caption">End Date: </p>
-                            <p class="v-text-overflow">02.06.2016 </p>
+                            <p class="v-text-overflow"> {{ctrl.booking.endDate | date:"dd.MM.yyyy"}} </p>
                         </div>
                     </md-list-item>
                 </div>
             </md-list>
         </div>
 
+    <!--    >-->
+
     </div>
 
     <div flex-gt-sm="25" class="v-card-style">
         <div class="v-font-color v-subheader" layout="row" layout-align="start center">
-            <div>Vendordetails</div>
+            <div>{{mainCtrl.getOwnId===ctrl.booking.endUser.id ?
+                'Details about renter' : 'Details about rentee'}}</div>
         </div>
 
         <div layout="column" layout-align="center center" class="v-padding">
             <img ng-src="/images/girl.jpeg" class="md-avatar v-profile-img" alt="avatar"/>
-            <div>Username</div>
+            <div>{{mainCtrl.getOwnId===ctrl.booking.endUser.id ?
+                ctrl.booking.provider.username : ctrl.booking.endUser.username}}</div>
             <div layout="row">
                 <li class="v-rating-stars" ng-repeat="x in [1,2,3,4,5]">
-                    <md-icon ng-style="{color:'orange'}">star
+                    <md-icon ng-style="{color:'orange'}"
+                             ng-show="ctrl.booking.provider.aggregatedRating >= x">
+                        star
                     </md-icon>
                 </li>
             </div>
         </div>
         <md-divider></md-divider>
         <md-list ng-cloak>
-            <md-list-item flex>
+            <md-list-item flex ng-if="mainCtrl.getOwnId==ctrl.booking.enduser.id">
                 <md-icon>location_on</md-icon>
                 <div layout="column" flex>
-                    <p class="v-text-overflow"> Some street</p>
-                    <p class="v-text-overflow"> Some ZIP Some City </p>
+                    <p class="v-text-overflow"> {{ctrl.booking.provider.street}}</p>
+                    <p class="v-text-overflow"> {{ctrl.booking.provider.zipcode}} &nbsp; {{ctrl.booking.provider.city}}</p>
                 </div>
             </md-list-item>
             <md-divider></md-divider>
             <md-list-item flex>
                 <md-icon>phone</md-icon>
                 <div layout="column" flex>
-                    <p class="v-text-overflow"> Some number</p>
+                    <p class="v-text-overflow"> phone necessary?</p>
                 </div>
             </md-list-item>
         </md-list>
@@ -92,7 +109,7 @@
             <div>Ratings</div>
         </div>
         <md-list ng-cloak>
-            <md-list-item flex>
+            <md-list-item flex ng-repeat="rating in ctrl.booking.provider.ratings">
                 <md-icon>person</md-icon>
                 <div layout="column" flex>
                     <!--     <div layout="row" layout-align="start center">
@@ -102,8 +119,8 @@
                                  </md-icon>
                              </li>
                          </div>-->
-                    <p class="v-text-overflow"> Lars L. </p>
-                    <p class="v-text-overflow" style="font-style: italic"> Nice bike! Nice contact! Thanks....</p>
+                    <p class="v-text-overflow"> {{rating.rater}} </p>
+                    <p class="v-text-overflow" style="font-style: italic"> {{rating.text}}</p>
                 </div>
                 <md-divider></md-divider>
             </md-list-item>
@@ -115,7 +132,7 @@
         <div class="v-font-color v-subheader" layout="row" layout-align="start center">
             <div>Messages</div>
         </div>
-        <div id="message-box" scroll-glue layout-gt-md="column" class="md-padding" flex>
+        <!--  <div id="message-box" scroll-glue layout-gt-md="column" class="md-padding" flex>
             <md-list>
                 <md-list-item class="message-container">
                     <div layout="row" flex>
@@ -146,40 +163,41 @@
                     </div>
                 </md-list-item>
             </md-list>
-        </div>
-        <!--<div id="message-box" scroll-glue layout-gt-md="column" class="md-padding" flex>
+        </div> -->
+        <div id="message-box" scroll-glue layout-gt-md="column" class="md-padding" flex>
             <md-list>
-                <md-list-item class="message-container" ng-repeat="x in ctrl.bookingProcess.messages">
-                    <div layout="row" ng-class="{'layout-align-end-start':ctrl.ownUsername != x.receiver,
-                'last-message':$index+1===ctrl.bookingProcess.messages.length}" flex>
-                        <div ng-show="ctrl.ownUsername == x.receiver" hide-xs>
-                            <img ng-src="../images/girl.jpeg"
-                                 class="md-avatar"
-                                 alt="avatar"/>
-                        </div>
+                <md-list-item ng-repeat="x in ctrl.booking.messages">
+                    <div layout="row" ng-class="{'layout-align-end-start': mainCtrl.getOwnId() != x.receiver,
+                'last-message':$index+1===ctrl.booking.messages.length}" flex>
+                        <!-- <div ng-show="mainCtrl.getOwnId() == x.receiver" hide-xs>
+                             <img ng-src="../images/girl.jpeg"
+                                  class="md-avatar"
+                                  alt="avatar"/>
+                         </div>-->
                         <div>
                             <div class="md-list-item-text message" layout="column"
-                                 ng-class="{'message-alt':ctrl.ownUsername != x.receiver">
+                                 ng-class="{'message-alt':mainCtrl.getOwnId() != x.receiver}">
                                 <p>{{x.text}}</p>
                             </div>
                         </div>
-                        <div ng-show="ctrl.ownUsername != x.receiver" class="received" hide-xs>
+                        <!--<div ng-show="mainCtrl.getOwnId() != x.receiver}" class="received" hide-xs>
                             <img ng-src="../images/girl.jpeg"
                                  class="md-avatar"
                                  alt="avatar"/>
-                        </div>
+                        </div>-->
                     </div>
                 </md-list-item>
             </md-list>
-        </div>-->
+        </div>
+
         <div class="v-font-color v-subheader" layout="row" layout-align="center center">
             <md-input-container flex class="md-icon-float">
                 <label>New message</label>
                 <md-icon class="md-icon">email</md-icon>
-                <input type="text" class="form-control" ng-model="ctrl.bicycle.description"/>
+                <input type="text" class="form-control" ng-model="ctrl.newMessage"/>
             </md-input-container>
             <div flex="20" layot="row" layout-align="center center">
-                <md-button class="md-raised md-primary">Send</md-button>
+                <md-button class="md-raised md-primary" ng-click="ctrl.sendMessage()">Send</md-button>
             </div>
         </div>
     </div>

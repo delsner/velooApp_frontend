@@ -23,8 +23,12 @@
         vm.searchTextChange = searchTextChange;
         vm.selectedItemChange = selectedItemChange;
         vm.currentLocation = currentLocation;
+        vm.getOwnUsername = getOwnUsername;
+        vm.getOwnId = getOwnId;
 
         //functions
+
+        console.log(getOwnId());
 /*
         if (vm.isAuthenticated()) {
             //$rootScope.ownUsername = velooAuth.getUsername();
@@ -74,6 +78,13 @@
         
         function currentLocation() {
             return $location.path();
+        }
+        
+        function getOwnUsername() {
+            return authService.getUserdata().username;
+        }
+        function getOwnId() {
+            return authService.getUserdata()._id;
         }
     }
 })();
