@@ -7,7 +7,7 @@
 
     function createBicycleCtrl($scope, $q, uiGmapGoogleMapApi, velooData, $mdDialog, $rootScope, $http, Upload) {
         var vm = this;
-        
+
         vm.bicycleTypes = ["Mountainbike", "Racing Bicycle", "Road Bicycle", "Touring Bicycle"];
         vm.bicycleCategories = ["Female", "Male", "Children"];
         vm.bicycleSizes = ["XS", "S", "M", "L", "XL"];
@@ -64,6 +64,7 @@
             category: "",
             latitude: 48.137,
             longitude: 11.577,
+            location: [],
             featureArray: []
         };
 
@@ -78,6 +79,7 @@
             promise.then(function (images) {
                 vm.bicycle.images = images;
                 vm.bicycle.featureArray = vm.bicycleFeatures.concat(vm.newFeatures);
+                vm.bicycle.location = [vm.bicycle.longitude, vm.bicycle.latitude];
                 velooData.Bicycle.save(vm.bicycle).$promise.then(function (success) {
                     console.log(vm.bicycle);
                     $rootScope.setPathTo("/bicycle/" + success._id);
@@ -92,7 +94,7 @@
                 });
             });
         }
-        
+
         function addFeature() {
             vm.newFeatures.push({feature: vm.newFeature, isSelected: true});
             vm.newFeature = "";
@@ -142,4 +144,3 @@
         }
     }
 })(angular);
-

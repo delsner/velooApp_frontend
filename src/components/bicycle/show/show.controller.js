@@ -20,8 +20,8 @@
 
             vm.map = {
                 center: {
-                    latitude: vm.bicycle.latitude,
-                    longitude: vm.bicycle.longitude
+                    latitude: vm.bicycle.location[1],
+                    longitude: vm.bicycle.location[0]
                 },
                 zoom: 12
             };
@@ -29,8 +29,8 @@
             vm.marker = {
                 id: 0,
                 coords: {
-                    latitude: vm.bicycle.latitude,
-                    longitude: vm.bicycle.longitude
+                    latitude: vm.bicycle.location[1],
+                    longitude: vm.bicycle.location[0]
                 },
                 options: {draggable: false}
             };
@@ -119,4 +119,3 @@
 
     }
 })(angular);
-
