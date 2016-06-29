@@ -35,6 +35,7 @@
                 bind: "jdkalsjdklsajdkasjdklasjdkalkljfjdklsajdkasjdkasljdaskljakdjakldjaskldkasjdkas"
             }
         ];
+        vm.test = "test"
         vm.map = {
             center: {
                 latitude: 48.137,
