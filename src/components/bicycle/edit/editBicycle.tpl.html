@@ -7,14 +7,8 @@
         </div>
     </div>
 </md-toolbar>
-<div layout-gt-sm="row" flex-gt-lg="80" flex-offset-gt-lg="10" flex="90" flex-offset="5" class="v-top-content" style="margin-bottom:20px;">
-    <h1>
-        {{ctrl.test}}
-        {{ctrl.bicycle}}
-    </h1>
-</div>
 
-<form name="createBicycle" ng-submit="ctrl.saveBicycle()">
+<form name="editBicycle" ng-submit="ctrl.saveBicycle()">
     <div layout-gt-sm="row" flex-gt-lg="80" flex-offset-gt-lg="10" flex="90" flex-offset="5" class="v-top-content" style="margin-bottom:20px;">
 
         <div flex-gt-sm="30" class="v-create-bicycle-address v-card-style">
@@ -142,12 +136,7 @@
             <div class="v-lr-padding" layout="column">
                 <div id="features">
                     <div layout-xs="column" layout-gt-sm="row">
-                        <md-input-container flex="20">
-                            <md-checkbox md-no-ink ng-model="ctrl.bicycle.carrier" class="md-primary">
-                                <span>Carrier</span>
-                            </md-checkbox>
-                        </md-input-container>
-                        <md-input-container flex="20" ng-repeat="feature in ctrl.bicycle.features"> 
+                        <md-input-container flex="20" ng-repeat="feature in ctrl.bicycleFeatures"> 
                             <md-checkbox md-no-ink ng-model="feature.isSelected" class="md-primary"> 
                                 <span>{{feature.feature}} </span>
                             </md-checkbox>
