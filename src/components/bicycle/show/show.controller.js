@@ -5,12 +5,13 @@
         .module('velooAngular')
         .controller('showBicycleCtrl', showBicycleCtrl);
 
-    function showBicycleCtrl($scope, uiGmapGoogleMapApi, velooData, $routeParams, $rootScope, $mdDialog, $mdMedia, $mdSidenav, $location) {
+    function showBicycleCtrl($scope, uiGmapGoogleMapApi, velooData, $routeParams, $rootScope, $mdDialog, $mdMedia, $mdSidenav, $location, $window) {
         var vm = this;
 
         vm.showBookingRequest = showBookingRequest;
         vm.sendBooking = sendBooking;
         vm.cancel = cancel;
+        vm.goToEdit = goToEdit;
 
         velooData.Bicycle.get({id: $routeParams.id}).$promise.then(function (data) {
 
@@ -111,6 +112,11 @@
                 });
             });
 
+        }
+
+        function goToEdit() {
+            $location.path("/bicycle/edit/" + vm.bicycle.id);
+            vm.$apply();
         }
 
         function cancel() {
