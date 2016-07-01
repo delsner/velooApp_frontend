@@ -19,24 +19,7 @@
         vm.bicycleTypes = ["Mountainbike", "Racing Bicycle", "Road Bicycle", "Touring Bicycle"];
         vm.bicycleCategories = ["Female", "Male", "Children"];
         vm.bicycleSizes = ["XS", "S", "M", "L", "XL"];
-        vm.bicycleFeatures = [
-            {
-                feature: "Lock",
-                isSelected: false,
-            },
-            {
-                feature: "Helmet",
-                isSelected: false,
-            },
-            {
-                feature: "Airpump",
-                isSelected: false,
-            },
-            {
-                feature: "Repairkit",
-                isSelected: false,
-            }
-        ];
+        vm.bicycleFeatures = [];
 
         vm.bicycleInformationLeftList = [
             {
@@ -66,7 +49,7 @@
                 bind: "jdkalsjdklsajdkasjdklasjdkalkljfjdklsajdkasjdkasljdaskljakdjakldjaskldkasjdkas"
             }
         ];
-        vm.test = "test"
+
         vm.map = {
             center: {
                 latitude: 48.137,
@@ -144,6 +127,7 @@
                 }
             ];
 
+            getGeolocation();
             vm.bicycleFeatures.push(vm.bicycle.features);
         });
 
