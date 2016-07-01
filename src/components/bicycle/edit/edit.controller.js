@@ -11,7 +11,7 @@
         vm.saveBicycle = saveBicycle;
         vm.addFeature = addFeature;
         vm.deleteFile = deleteFile;
-        //vm.base64encodeImages = base64encodeImages;
+        vm.base64encodeImages = base64encodeImages;
         vm.getGeolocation = getGeolocation;
         vm.files = [];
         vm.images = [];
@@ -208,4 +208,3 @@
 
     }
 })(angular);
-
