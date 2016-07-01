@@ -5,6 +5,7 @@ $color_font: rgba(0, 0, 0, 0.87);
 $color_border: rgba(0, 0, 0, 0.12);
 $colors_warn: rgba(221, 44, 0, 1.0);
 $colors_white: rgb(250, 250, 250);
+$colors_transparent_light_background: rgba(255, 255, 255, 0.7);
 
 /* Styles go here */
 * {
@@ -28,6 +29,14 @@ body {
 
 #footer {
 
+}
+
+.spinner-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 999;
+  background-color: $colors_transparent_light_background;
 }
 
 .v-font-color {

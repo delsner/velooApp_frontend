@@ -30,6 +30,10 @@
 </md-sidenav>
 <!--<div id="sidenav" ng-include src="'components/main/templates/sidenav.tpl.html'"></div>-->
 
+<div layout="row" layout-sm="column" layout-align="space-around" class="spinner-container" ng-show="mainCtrl.loading">
+    <md-progress-circular md-mode="indeterminate" style="top:50%" class="md-warn"></md-progress-circular>
+</div>
+
 <md-content scroll flex layout='column' ng-class="{scrollable:mainCtrl.scrollable()}" ng-class="{{mainCtrl.currentLocation()=='/' ? '' : 'not-front-page'}}">
 
     <header md-page-header ng-if="mainCtrl.currentLocation()=='/'">

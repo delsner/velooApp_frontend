@@ -143,7 +143,7 @@
                     }
                 });
 
-                if (vm.files.length == 0) {
+                if (vm.files.length == 0 || results.length == vm.files.length) {
                     resolve(results);
                 }
             });
