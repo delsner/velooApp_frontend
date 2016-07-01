@@ -115,7 +115,8 @@
         }
 
         function goToEdit() {
-            $location.path("/bicycle/edit/" + vm.bicycle.id);
+            console.log('/bicycle/edit/' + vm.bicycle._id);
+            $location.path('/bicycle/edit/' + vm.bicycle._id);
             vm.$apply();
         }
 

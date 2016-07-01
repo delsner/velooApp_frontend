@@ -9,14 +9,19 @@
         var vm = this;
 
         vm.updateUserDetails = updateUserDetails;
+        vm.bicycles = [];
+        
+
 
         velooData.User.getUserDetails().$promise.then(function (data) {
 
             vm.user = data;
-
+            vm.bicycles = velooData.Bicycle.getBicyclesOfUser({id: vm.user._id});
             console.log(vm.user);
 
         });
+
+        ;
 
         function updateUserDetails() {
             velooData.User.updateUserDetails(vm.user).$promise.then(function (success) {
