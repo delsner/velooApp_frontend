@@ -19,7 +19,8 @@
     "angular-base64": "^2.0.5",
     "angular-google-maps": "2.3.2",
     "angular-scroll-animate": "^0.9.8",
-    "satellizer": "^0.14.1"
+    "satellizer": "^0.14.1",
+    "angular-moment": "^0.10.3"
   },
   "resolutions": {
     "angular": "^1.4.8",

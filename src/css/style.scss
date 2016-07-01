@@ -5,7 +5,8 @@ $color_font: rgba(0, 0, 0, 0.87);
 $color_border: rgba(0, 0, 0, 0.12);
 $colors_warn: rgba(221, 44, 0, 1.0);
 $colors_white: rgb(250, 250, 250);
-
+$colors_transparent_light_background: rgba(255, 255, 255, 0.7);
+$colors_transparent_dark_background: rgba(0, 0, 0, 0.5);
 /* Styles go here */
 * {
   margin: 0;
@@ -96,6 +97,7 @@ body {
 .v-top-content {
   margin-top: 128px;
 }
+
 .v-top-content-search {
   margin-top: 64px;
   border-bottom: $color_mainBlue 1px solid;
@@ -104,6 +106,9 @@ body {
   }
 }
 
+.v-not-available{
+  background-color: $colors_transparent_dark_background;
+}
 
 .v-text-overflow {
   overflow: hidden;
@@ -157,6 +162,18 @@ body {
   border-radius: 50px;
 }
 
+.v-paginate-active {
+  font-weight: bold;
+}
+
+.v-a-tag-custom {
+  color: $color_font !important;
+}
+
+.v-a-tag-custom:hover {
+  color: $colors_warn !important;
+  cursor: pointer !important;
+}
 /************** NAVBAR **************/
 md-toolbar.navbar-default {
   background-color: $color_mainBlue;

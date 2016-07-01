@@ -1,9 +1,9 @@
-(function () {
+(function() {
     'use strict';
 
     angular
-        .module('velooAngular', ['velooApi', 'ngMaterial', 'ngSanitize', 'ngRoute', 'angular.filter', 'ngImgCrop', 'ngFileUpload', 'angular-scroll-animate', 'uiGmapgoogle-maps', 'satellizer'])
-        .config(function ($mdThemingProvider) {
+        .module('velooAngular', ['velooApi', 'ngMaterial', 'ngSanitize', 'ngRoute', 'angular.filter', 'ngImgCrop', 'ngFileUpload', 'angular-scroll-animate', 'uiGmapgoogle-maps', 'satellizer','angularMoment'])
+        .config(function($mdThemingProvider) {
 
             var velooMain = $mdThemingProvider.extendPalette('blue', {
                 '500': '0B65C1' //main blue
@@ -25,14 +25,14 @@
                 })
 
         })
-        .config(function (uiGmapGoogleMapApiProvider) {
+        .config(function(uiGmapGoogleMapApiProvider) {
             uiGmapGoogleMapApiProvider.configure({
                 //    key: 'your api key',
                 v: '3.20', //defaults to latest 3.X anyhow
                 libraries: 'visualization'
             });
         })
-        .config(function ($authProvider) {
+        .config(function($authProvider) {
             $authProvider.facebook({
                 clientId: '1765141377054303',
                 responseType: 'token',
@@ -40,15 +40,18 @@
                 authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
                 redirectUri: window.location.origin + '/',
                 requiredUrlParams: ['display', 'scope'],
-                scope: ['email','user_likes'],
+                scope: ['email', 'user_likes'],
                 scopeDelimiter: ',',
                 display: 'popup',
                 type: '2.0',
-                popupOptions: { width: 580, height: 400 }
+                popupOptions: {
+                    width: 580,
+                    height: 400
+                }
             });
         })
-        .run(function ($location, $route, $rootScope, $mdSidenav, $mdMedia, $mdDialog, authService, $log, velooData) {
-            $rootScope.$on('$routeChangeStart', function (evt, next, current) {
+        .run(function($location, $route, $rootScope, $mdSidenav, $mdMedia, $mdDialog, authService, $log, velooData) {
+            $rootScope.$on('$routeChangeStart', function(evt, next, current) {
                 var nextPath = $location.path(),
                     nextSearchParams = $location.search(),
                     nextRoute = next.$$route;
@@ -64,7 +67,7 @@
                  });
                  }*/
             });
-            $rootScope.setPathTo = function (path) {
+            $rootScope.setPathTo = function(path) {
                 //$mdSidenav('right').isOpen() && $rootScope.toggleSidenav('right'); //TODO: notwendig?
                 $location.search({}); //reset searchParams
                 if (angular.isString(path)) {
@@ -74,7 +77,7 @@
                 }
             };
 
-            $rootScope.getUserDetails = function () {
+            $rootScope.getUserDetails = function() {
                 authService.getUserDetails().then(function(userDetails) {
                     $rootScope.user = {
                         avatar: userDetails.avatar ? userDetails.avatar.data : "images/avatar.png",
@@ -84,15 +87,15 @@
                 });
             };
 
-            if(authService.isAuthenticated()) {
+            if (authService.isAuthenticated()) {
                 $rootScope.getUserDetails();
             }
 
-            $rootScope.toggleSidenav = function (menuId) {
+            $rootScope.toggleSidenav = function(menuId) {
                 $mdSidenav(menuId).toggle();
             };
 
-            $rootScope.showLogin = function () {
+            $rootScope.showLogin = function() {
                 $mdSidenav('right').isOpen() && $rootScope.toggleSidenav('right'); //TODO: notwendig?
                 var useFullScreen = ($mdMedia('sm') || $mdMedia('xs') || $mdMedia('md')); //TODO: notwendig?
 
@@ -105,7 +108,7 @@
                 });
             };
 
-            $rootScope.showSignup = function () {
+            $rootScope.showSignup = function() {
                 $mdSidenav('right').isOpen() && $rootScope.toggleSidenav('right'); //TODO: notwendig?
                 var useFullScreen = ($mdMedia('sm') || $mdMedia('xs') || $mdMedia('md')); //TODO: notwendig?
 

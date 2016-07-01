@@ -42,11 +42,11 @@
             var deferred = $q.defer();
 
             var searchParams = {
-                searchText: searchText
+                q: searchText
             };
 
             searchService.getSearchHints(searchParams, function(success) {
-                deferred.resolve(success);
+                deferred.resolve(success.results);
             }, function(error) {
                 $log.info("error searchHints");
             });
@@ -55,15 +55,12 @@
         }
 
         function showSearchResults(keyEvent, searchText) {
-            console.log("Normally I would go to search results page now");
-            /*if (keyEvent != undefined && keyEvent.which === 13) {
-
-             var searchParams = {
-             searchText: searchText
-             };
-
-             $location.path('search').search(searchParams);
-             }*/
+            if (keyEvent != undefined && keyEvent.which === 13 && searchText != "") {
+                var searchParams = {
+                    q: searchText
+                };
+                $location.path('search').search(searchParams);
+            }
         }
 
         function searchTextChange(text) {
@@ -85,6 +82,7 @@
         function getOwnId() {
             return authService.getUserdata()._id;
         }
+
         function isOfTypeRoute(route) {
             return (currentLocation().indexOf(route) > -1);
         }

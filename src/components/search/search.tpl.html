@@ -2,14 +2,14 @@
     <div flex="20" layout="row">
         <md-input-container flex class="md-icon-float" layout="row" layout-align="end end">
             <md-icon class="md-icon">location_on</md-icon>
-            <input type="text" class="form-control" placeholder="Address" ng-model="ctrl.searchFilter.location"/>
+            <input type="text" class="form-control" placeholder="Address" required ng-model="ctrl.searchFilter.q"/>
         </md-input-container>
     </div>
     <div flex layout="row">
-        <md-datepicker ng-model="ctrl.startDate" md-placeholder="Start date"></md-datepicker>
+        <md-datepicker ng-model="ctrl.searchFilter.startDate" md-placeholder="Start date"></md-datepicker>
     </div>
     <div flex>
-        <md-datepicker ng-model="ctrl.endDate" md-placeholder="End date"></md-datepicker>
+        <md-datepicker ng-model="ctrl.searchFilter.endDate" md-placeholder="End date"></md-datepicker>
     </div>
     <div flex>
         <md-input-container class="md-icon-float">
@@ -36,7 +36,7 @@
 
 
     <div flex layout="row" layout-align="end center">
-        <md-button class="md-primary md-raised" ng-click="ctrl.searchForBicycles()">
+        <md-button class="md-primary md-raised" ng-click="ctrl.getSearchResultsWithPaginationOffset(0)">
             <md-icon>search</md-icon>
             <span>Apply filters </span>
         </md-button>
@@ -44,11 +44,10 @@
 </div>
 
 <div layout="row">
-
     <div flex class="v-search-map v-card-style" flex="35" hide-sm hide-xs>
         <div>
             <ui-gmap-google-map center='ctrl.map.center' zoom='ctrl.map.zoom'>
-                <ui-gmap-markers models="ctrl.marker" coords="'coords'" click="ctrl.showMarkerWindow">
+                <ui-gmap-markers models="ctrl.markers" coords="'coords'" click="ctrl.showMarkerWindow">
                     <ui-gmap-windows show="'show'" >
                         <div ng-non-bindable> {{title}} </div>
                     </ui-gmap-windows>
@@ -59,7 +58,7 @@
     </div>
 
     <md-content class="v-search-results" flex="65">
-        <md-card flex-gt-sm="45" ng-repeat="x in [0,1]" ng-show="ctrl.bicycles[x]"
+        <md-card flex-gt-sm="45" ng-repeat="x in [0,1]" ng-show="ctrl.bicycles[x]" ng-class="{'v-not-available':!ctrl.bicycles[x].available}"
                  ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.bicycles[x]._id)">
             <div class="card-image-container"
                  ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[x]._id)">
@@ -99,7 +98,7 @@
                 </div>
             </md-card-content>
         </md-card>
-        <md-card flex-gt-sm="45" ng-repeat="x in [2,3]" ng-show="ctrl.bicycles[x]"
+        <md-card flex-gt-sm="45" ng-repeat="x in [2,3]" ng-show="ctrl.bicycles[x]" ng-class="{'v-not-available':!ctrl.bicycles[x].available}"
                  ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.bicycles[x]._id)">
             <div class="card-image-container"
                  ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[x]._id)">
@@ -139,7 +138,7 @@
                 </div>
             </md-card-content>
         </md-card>
-        <md-card flex-gt-sm="45" ng-repeat="x in [3,4]" ng-show="ctrl.bicycles[x]"
+        <md-card flex-gt-sm="45" ng-repeat="x in [4,5]" ng-show="ctrl.bicycles[x]" ng-class="{'v-not-available':!ctrl.bicycles[x].available}"
                  ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.bicycles[x]._id)">
             <div class="card-image-container"
                  ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[x]._id)">
@@ -179,7 +178,47 @@
                 </div>
             </md-card-content>
         </md-card>
-        <md-card flex-gt-sm="45" ng-repeat="x in [5,6]" ng-show="ctrl.bicycles[x]"
+        <md-card flex-gt-sm="45" ng-repeat="x in [6,7]" ng-show="ctrl.bicycles[x]"
+                 ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.bicycles[x]._id)" ng-class="{'v-not-available':!ctrl.bicycles[x].available}">
+            <div class="card-image-container"
+                 ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[x]._id)">
+                <img ng-src="{{ctrl.bicycles[x].pictures[0].data}}">
+            </div>
+            <md-card-title>
+                <md-card-title-text layout="row" layout-align="center center">
+                    <span class="md-headline">{{ctrl.bicycles[x].type}} - {{ctrl.bicycles[x].city}} </span>
+                    <div layout="row" ng-show="ctrl.bicycles[x].provider.aggregatedRating"
+                         layout-align="center center">
+                        <li class="stars" ng-repeat="i in [1,2,3,4,5]">
+                            <md-icon ng-style="{color:'orange'}"
+                                     ng-show="ctrl.bicycles[x].provider.aggregatedRating >= i">
+                                star
+                            </md-icon>
+                        </li>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="row">
+                <div layout="row" layout-align="start center" flex>
+                    <div flex layout="row" layout-align="start center">
+                        <md-icon>euro_symbol</md-icon>
+                        <div class="v-lr-padding" flex><b>{{ctrl.bicycles[x].price}}</b>/day</div>
+                    </div>
+                    <div flex layout="row" layout-align="center center">
+                        <span flex></span>
+                        <md-icon flex="none">polymer</md-icon>
+                        <div class="v-lr-padding"><b>{{ctrl.bicycles[x].brand}}</b></div>
+                        <span flex></span>
+                    </div>
+                    <div flex layout="row" layout-align="end center">
+                        <span flex></span>
+                        <md-icon flex="none">format_size</md-icon>
+                        <div class="v-lr-padding"><b>{{ctrl.bicycles[x].size}}</b></div>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+        <md-card flex-gt-sm="45" ng-repeat="x in [8,9]" ng-show="ctrl.bicycles[x]" ng-class="{'v-not-available':!ctrl.bicycles[x].available}"
                  ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.bicycles[x]._id)">
             <div class="card-image-container"
                  ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[x]._id)">
@@ -219,45 +258,14 @@
                 </div>
             </md-card-content>
         </md-card>
-        <md-card flex-gt-sm="45" ng-repeat="x in [7,8]" ng-show="ctrl.bicycles[x]"
-                 ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.bicycles[x]._id)">
-            <div class="card-image-container"
-                 ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[x]._id)">
-                <img ng-src="{{ctrl.bicycles[x].pictures[0].data}}">
+        <div class="md-padding pagination" flex layout="row" layout-align="center center">
+            <div>
+                <a class="v-a-tag-custom" ng-repeat="i in ctrl.paginationArray track by $index"
+                   ng-class="{'v-paginate-active': ctrl.paginationActiveIndex($index+1)}"
+                   ng-click="ctrl.getSearchResultsWithPaginationOffset($index*10)">
+                    {{$index + 1}}
+                </a>
             </div>
-            <md-card-title>
-                <md-card-title-text layout="row" layout-align="center center">
-                    <span class="md-headline">{{ctrl.bicycles[x].type}} - {{ctrl.bicycles[x].city}} </span>
-                    <div layout="row" ng-show="ctrl.bicycles[x].provider.aggregatedRating"
-                         layout-align="center center">
-                        <li class="stars" ng-repeat="i in [1,2,3,4,5]">
-                            <md-icon ng-style="{color:'orange'}"
-                                     ng-show="ctrl.bicycles[x].provider.aggregatedRating >= i">
-                                star
-                            </md-icon>
-                        </li>
-                    </div>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content layout="row">
-                <div layout="row" layout-align="start center" flex>
-                    <div flex layout="row" layout-align="start center">
-                        <md-icon>euro_symbol</md-icon>
-                        <div class="v-lr-padding" flex><b>{{ctrl.bicycles[x].price}}</b>/day</div>
-                    </div>
-                    <div flex layout="row" layout-align="center center">
-                        <span flex></span>
-                        <md-icon flex="none">polymer</md-icon>
-                        <div class="v-lr-padding"><b>{{ctrl.bicycles[x].brand}}</b></div>
-                        <span flex></span>
-                    </div>
-                    <div flex layout="row" layout-align="end center">
-                        <span flex></span>
-                        <md-icon flex="none">format_size</md-icon>
-                        <div class="v-lr-padding"><b>{{ctrl.bicycles[x].size}}</b></div>
-                    </div>
-                </div>
-            </md-card-content>
-        </md-card>
+        </div>
     </md-content>
 </div>
