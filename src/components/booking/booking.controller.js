@@ -17,28 +17,30 @@
         vm.getMessages = getMessages;
         vm.getAvatar = getAvatar;
         vm.getMyId = getMyId;
-        
-        velooData.Booking.get({id: $routeParams.id}).$promise.then(function (success) {
-            console.log(success);
-            vm.booking = success;
+
+        $rootScope.$watch('user', function(newValue, oldValue) {
+            vm.user = $rootScope.user;
         });
-
-        vm.map = {
-            center: {
-                latitude: 48.137,
-                longitude: 11.577
-            },
-            zoom: 12
-        };
-
-        vm.marker = {
-            id: 0,
-            coords: {
-                latitude: 48.137,
-                longitude: 11.577
-            },
-            options: {draggable: false}
-        };
+        
+        velooData.Booking.get({id: $routeParams.id}).$promise.then(function (res) {
+            vm.booking = res;
+            vm.messageCount = vm.booking.messages.length;
+            vm.marker = {
+                id: 0,
+                coords: {
+                    latitude: vm.booking.bicycle.location[1],
+                    longitude: vm.booking.bicycle.location[0]
+                },
+                options: {draggable: false}
+            };
+            vm.map = {
+                center: {
+                    latitude: vm.booking.bicycle.location[1],
+                    longitude: vm.booking.bicycle.location[0]
+                },
+                zoom: 14
+            };
+        });
 
         function sendMessage() {
 
@@ -58,6 +60,7 @@
                 id: $routeParams.id
             }).$promise.then(function (res) {
                 vm.booking.messages = res;
+                vm.messageCount = vm.booking.messages.length;
             });
 
         }

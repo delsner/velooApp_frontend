@@ -1,7 +1,9 @@
 <md-toolbar class="v-top-toolbar">
     <div layout="row" layout-align="start center" class="md-toolbar-tools">
-        <div>Booking with {{mainCtrl.user.id==ctrl.booking.endUser.id ?
-            ctrl.booking.provider.username : ctrl.booking.endUser.username}}</div>
+        <div>
+            Booking with {{ctrl.user.id==ctrl.booking.endUser._id ?
+            ctrl.booking.provider.username : ctrl.booking.endUser.username}}
+        </div>
     </div>
 </md-toolbar>
 
@@ -50,7 +52,7 @@
                     <md-list-item>
                         <md-icon> euro_symbol</md-icon>
                         <div layout="column" flex>
-                            <p class="md-caption">Price in € for x days: </p>
+                            <p class="md-caption">Price/day (€): </p>
                             <p class="v-text-overflow"> {{ctrl.booking.bicycle.price}} </p>
                         </div>
                     </md-list-item>
@@ -65,19 +67,17 @@
             </md-list>
         </div>
 
-    <!--    >-->
-
     </div>
 
     <div flex-gt-sm="25" class="v-card-style">
         <div class="v-font-color v-subheader" layout="row" layout-align="start center">
-            <div>{{mainCtrl.user.id==ctrl.booking.endUser.id ?
+            <div>{{mainCtrl.user.id==ctrl.booking.endUser._id ?
                 'Details about renter' : 'Details about rentee'}}</div>
         </div>
 
         <div layout="column" layout-align="center center" class="v-padding">
             <img ng-src="{{ctrl.getAvatar()}}" class="md-avatar v-profile-img" alt="avatar"/>
-            <div>{{mainCtrl.user.id==ctrl.booking.endUser.id ?
+            <div>{{mainCtrl.user.id==ctrl.booking.endUser._id ?
                 ctrl.booking.provider.username : ctrl.booking.endUser.username}}</div>
             <div layout="row">
                 <li class="v-rating-stars" ng-repeat="x in [1,2,3,4,5]">
@@ -90,11 +90,11 @@
         </div>
         <md-divider></md-divider>
         <md-list ng-cloak>
-            <md-list-item flex ng-if="mainCtrl.getOwnId==ctrl.booking.enduser.id">
+            <md-list-item flex ng-if="ctrl.user.id==ctrl.booking.endUser._id">
                 <md-icon>location_on</md-icon>
                 <div layout="column" flex>
-                    <p class="v-text-overflow"> {{ctrl.booking.provider.street}}</p>
-                    <p class="v-text-overflow"> {{ctrl.booking.provider.zipcode}} &nbsp; {{ctrl.booking.provider.city}}</p>
+                    <p class="v-text-overflow"> {{ctrl.booking.bicycle.street}}</p>
+                    <p class="v-text-overflow"> {{ctrl.booking.bicycle.zipcode}}&nbsp;{{ctrl.booking.bicycle.city}}</p>
                 </div>
             </md-list-item>
             <md-divider></md-divider>
@@ -132,71 +132,29 @@
         <div class="v-font-color v-subheader" layout="row" layout-align="start center">
             <div>Messages</div>
         </div>
-        <!--  <div id="message-box" scroll-glue layout-gt-md="column" class="md-padding" flex>
-            <md-list>
-                <md-list-item class="message-container">
-                    <div layout="row" flex>
-                        <div class="received" hide-xs>
-                            <img ng-src="../images/girl.jpeg"
-                                 class="md-avatar"
-                                 alt="avatar"/>
-                        </div>
-                        <div>
-                            <div class="md-list-item-text message" layout="column">
-                                <p>adasdsad</p>
-                            </div>
-                        </div>
-                    </div>
-                </md-list-item>
-                <md-list-item class="message-container">
-                    <div layout="row" flex layout-align="end center">
-                        <div>
-                            <div class="md-list-item-text message message-alt" layout="column">
-                                <p>dasdsad</p>
-                            </div>
-                        </div>
-                        <div class="received" hide-xs>
-                            <img ng-src="../images/girl.jpeg"
-                                 class="md-avatar"
-                                 alt="avatar"/>
-                        </div>
-                    </div>
-                </md-list-item>
-            </md-list>
-        </div> -->
-        <div id="message-box" scroll-glue layout-gt-md="column" class="md-padding" flex>
+        <div id="message-box" message-box scroll-glue layout-gt-md="column" class="md-padding" flex>
             <md-list>
                 <md-list-item ng-repeat="x in ctrl.booking.messages">
                     <div layout="row" ng-class="{'layout-align-end-start': mainCtrl.getOwnId() != x.receiver,
                 'last-message':$index+1===ctrl.booking.messages.length}" flex>
-                        <!-- <div ng-show="mainCtrl.getOwnId() == x.receiver" hide-xs>
-                             <img ng-src="../images/girl.jpeg"
-                                  class="md-avatar"
-                                  alt="avatar"/>
-                         </div>-->
                         <div>
                             <div class="md-list-item-text message" layout="column"
                                  ng-class="{'message-alt':mainCtrl.getOwnId() != x.receiver}">
                                 <p>{{x.text}}</p>
                             </div>
                         </div>
-                        <!--<div ng-show="mainCtrl.getOwnId() != x.receiver}" class="received" hide-xs>
-                            <img ng-src="../images/girl.jpeg"
-                                 class="md-avatar"
-                                 alt="avatar"/>
-                        </div>-->
+
                     </div>
                 </md-list-item>
             </md-list>
         </div>
 
-        <div class="v-font-color v-subheader" layout="row" layout-align="center center">
-            <md-input-container flex class="md-icon-float">
+        <div class="v-font-color v-grey-background" layout="row" layout-align="center center" >
+            <md-input-container flex class="md-icon-float v-lr-padding">
                 <label>New message</label>
-                <md-icon class="md-icon">email</md-icon>
-                <input type="text" class="form-control" ng-model="ctrl.newMessage"/>
+                <textarea ng-model="ctrl.newMessage" md-maxlength="1000" rows="2" md-select-on-focus></textarea>
             </md-input-container>
-            <div flex="20" layot="row" layout-align="center center">
+            <div layot="row" layout-align="center center">
                 <md-button class="md-raised md-primary" ng-click="ctrl.sendMessage()">Send</md-button>
             </div>
         </div>
