@@ -77,12 +77,11 @@
             $rootScope.getUserDetails = function () {
                 authService.getUserDetails().then(function(userDetails) {
                     $rootScope.user = {
-                        avatar: userDetails.avatar ? userDetails.avatar.data : "images/dummyAvatar.png",
+                        avatar: userDetails.avatar ? userDetails.avatar.data : "images/avatar.png",
                         id: userDetails._id,
                         username: userDetails.username
                     };
                 });
-
             };
 
             if(authService.isAuthenticated()) {

@@ -131,6 +131,16 @@
                     method: "GET",
                     url: velooUtil.getFullUrl(velooUtil.paths.bicycle),
                     isArray: true
+                },
+                getBicyclesOfUser: {
+                    method: "GET",
+                    url: velooUtil.getFullUrl(velooUtil.paths.bicycle + "/ofuser/:id"),
+                    isArray: true
+                },
+                updateBicycle: {
+                    method: "PUT",
+                    url: velooUtil.getFullUrl(velooUtil.paths.bicycle + "/:id"),
+                    isArray: false
                 }
             });
 

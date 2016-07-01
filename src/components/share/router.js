@@ -17,7 +17,7 @@
                 'controller': 'createBicycleCtrl as ctrl',
                 'auth': true
             })
-            .when('/bicycle/edit', {
+            .when('/bicycle/edit/:id', {
                 'templateUrl': 'components/bicycle/edit/editBicycle.tpl.html',
                 'controller': 'bicycleCtrl as ctrl',
                 'auth': true
