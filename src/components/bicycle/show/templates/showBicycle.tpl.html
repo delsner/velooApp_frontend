@@ -125,7 +125,7 @@
                 Additional features</div>
         </div>
 
-        <div layout-gt-sm="row" ng-repeat="feature in ctrl.bicycle.features track by $index | filter: {isSelected:true}" ng-show="$index % 3 == 0 || $index == 0">
+        <div layout-gt-sm="row" ng-repeat="feature in ctrl.bicycle.features track by $index" ng-show="$index % 3 == 0 || $index == 0">
             <md-list ng-cloak flex-gt-sm="33" ng-if="ctrl.bicycle.features[$index] != null">
                 <md-list-item>
                     <md-icon class="md-primary">check_box</md-icon>
