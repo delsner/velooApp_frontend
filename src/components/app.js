@@ -85,7 +85,9 @@
 
             };
 
-            $rootScope.getUserDetails();
+            if(authService.isAuthenticated()) {
+                $rootScope.getUserDetails();
+            }
 
             $rootScope.toggleSidenav = function (menuId) {
                 $mdSidenav(menuId).toggle();
