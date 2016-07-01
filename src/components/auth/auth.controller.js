@@ -33,19 +33,19 @@
                     console.log(res);
                     vm.fbname = res.data.name;
                     vm.fbtoken = res.data.id;
+                    authService.fbaccountcheck(vm.fbtoken, vm.fbname).then(function (res) {
+                            if(res.status == 204) {
+                                $mdDialog.show({
+                                    controller: 'fbloginCtrl as ctrl',
+                                    templateUrl: 'components/auth/templates/fblogin.tpl.html',
+                                    parent: angular.element(document.body),
+                                    clickOutsideToClose: true,
+                                });
+                            } else {
+                                vm.cancel();
+                            }
+                        });
                 });
-                authService.fbaccountcheck(vm.fbtoken, vm.fbname).then(function (res) {
-                        if(res.status == 204) {
-                            $mdDialog.show({
-                                controller: 'fbloginCtrl as ctrl',
-                                templateUrl: 'components/auth/templates/fblogin.tpl.html',
-                                parent: angular.element(document.body),
-                                clickOutsideToClose: true,
-                            });
-                        } else {
-                            vm.cancel();
-                        }
-                    });
             }, function (err) {
                 console.log(err);
             });
