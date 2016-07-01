@@ -11,11 +11,10 @@
         vm.bicycleTypes = ["Mountainbike", "Racing Bicycle", "Road Bicycle", "Touring Bicycle"];
         vm.bicycleCategories = ["Female", "Male", "Children"];
         vm.bicycleSizes = ["XS", "S", "M", "L", "XL"];
-        vm.bicycleFeatures = [
-          {
+        vm.bicycleFeatures = [{
             feature: "Carrier",
             isSelected: false
-          },{
+        }, {
             feature: "Lock",
             isSelected: false,
         }, {
@@ -72,6 +71,16 @@
         vm.addFeature = addFeature;
         vm.deleteFile = deleteFile;
         vm.base64encodeImages = base64encodeImages;
+        vm.start = start;
+        vm.end = end;
+
+        function end() {
+            $rootScope.loading = false;
+        }
+
+        function start() {
+            $rootScope.loading = true;
+        }
 
         function saveBicycle() {
             var promise = base64encodeImages();

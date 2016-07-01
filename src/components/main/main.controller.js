@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -8,9 +8,14 @@
     function mainCtrl($scope, $q, $log, $rootScope, $location, searchService, authService) {
         //variables
         var vm = this;
+        vm.loading = false;
 
         $rootScope.$watch('user', function(newValue, oldValue) {
             vm.user = $rootScope.user;
+        });
+
+        $rootScope.$watch('loading', function(newValue, oldValue) {
+            vm.loading = newValue;
         });
 
         //external functions
@@ -40,9 +45,9 @@
                 searchText: searchText
             };
 
-            searchService.getSearchHints(searchParams, function (success) {
+            searchService.getSearchHints(searchParams, function(success) {
                 deferred.resolve(success);
-            }, function (error) {
+            }, function(error) {
                 $log.info("error searchHints");
             });
 
@@ -76,6 +81,7 @@
         function getOwnUsername() {
             return authService.getUserdata().username;
         }
+
         function getOwnId() {
             return authService.getUserdata()._id;
         }
