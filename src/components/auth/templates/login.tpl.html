@@ -20,6 +20,9 @@
                     <label>Password</label>
                     <md-icon class="md-icon">security</md-icon>
                     <input type="password" name="password" class="form-control" ng-model="ctrl.password" required/>
+                    <md-button class="md-padding" ng-click="ctrl.showForgotPassword($event)">
+                        FORGOT PASSWORD?
+                    </md-button>
                 </md-input-container>
             </md-dialog-content>
             <div class="v-warn" ng-show="ctrl.submitError" layout-align="center center" layout="row">
@@ -34,6 +37,9 @@
             </div>
             <md-content layout="column" layout-align="center center">
                 <md-button type="submit" class="md-raised md-primary">Login</md-button>
+            </md-content>
+            <md-content layout="column" layout-align="end end">
+                <md-button ng-click="ctrl.authenticate('facebook')">Sign in with Facebook</md-button>
             </md-content>
         </md-content>
     </form>
