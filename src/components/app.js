@@ -121,8 +121,8 @@
             $rootScope.logout = function logout() {
                 authService.logout();
                 $location.path('/');
-                //$rootScope.routeVisited = null; //TODO: notwendig
-                //window.location.reload(true); //TODO: notwendig
+                $rootScope.routeVisited = null;
+                window.location.reload(true);
             };
 
         });

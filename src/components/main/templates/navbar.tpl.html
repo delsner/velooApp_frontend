@@ -8,8 +8,11 @@
         </h2>
 
         <div hide-xs hide-sm>
+            <md-button class="md-padding" ng-click="mainCtrl.setPathTo('/search')"
+                       ng-class="{'v-selected-route' : mainCtrl.isOfTypeRoute('search')}"> Search
+            </md-button>
             <md-button class="md-padding" ng-click="mainCtrl.setPathTo('/bicycle/create')" ng-show="mainCtrl.isAuthenticated()"
-                       ng-disabled="mainCtrl.currentLocation()=='/bicycle/create'"> Offer Bicylce
+                      ng-class="{'v-selected-route' : mainCtrl.isOfTypeRoute('/bicycle/create')}"> Offer Bicylce
             </md-button>
             <md-button class="md-padding" ng-click="mainCtrl.showSignup($event)" ng-show="!mainCtrl.isAuthenticated()">
                 Signup
@@ -17,7 +20,8 @@
             <md-button class="md-padding" ng-click="mainCtrl.showLogin($event)" ng-show="!mainCtrl.isAuthenticated()">
                 Login
             </md-button>
-            <md-button class="md-padding" ng-click="mainCtrl.setPathTo('/account')" ng-show="mainCtrl.isAuthenticated()">
+            <md-button class="md-padding" ng-click="mainCtrl.setPathTo('/account')" ng-show="mainCtrl.isAuthenticated()"
+                       ng-class="{'v-selected-route' : mainCtrl.isOfTypeRoute('/account')}">
                 My Account
             </md-button>
             <md-button class="md-padding" ng-click="mainCtrl.logout()" ng-show="mainCtrl.isAuthenticated()">

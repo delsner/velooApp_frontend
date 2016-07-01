@@ -14,7 +14,10 @@
         vm.newMessage = "";
 
         vm.sendMessage = sendMessage;
-
+        vm.getMessages = getMessages;
+        vm.getAvatar = getAvatar;
+        vm.getMyId = getMyId;
+        
         velooData.Booking.get({id: $routeParams.id}).$promise.then(function (success) {
             console.log(success);
             vm.booking = success;
@@ -44,8 +47,29 @@
                     text: vm.newMessage,
                     booking: vm.booking._id
                 }).$promise.then(function (data) {
-                    $route.reload();
+                    vm.getMessages();
+                    vm.newMessage = "";
                 });
+            }
+        }
+
+        function getMessages() {
+            velooData.Message.get({
+                id: $routeParams.id
+            }).$promise.then(function (res) {
+                vm.booking.messages = res;
+            });
+
+        }
+
+        function getAvatar() {
+            if(vm.booking && $rootScope.user) {
+                return $rootScope.user.id == vm.booking.endUser._id ? vm.booking.provider.avatar.data : vm.booking.endUser.avatar.data;
+            }
+        }
+        function getMyId() {
+            if($rootScope.user) {
+                return $rootScope.user.id;
             }
         }
 

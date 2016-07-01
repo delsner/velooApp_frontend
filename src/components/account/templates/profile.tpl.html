@@ -11,7 +11,9 @@
             <div flex="20" class="v-profile-margin">
                 <div layout="column" flex-gt-lg="80" flex-offset-gt-lg="10" flex="90" flex-offset="5">
                     <div layout="row" layout-align="center center">
-                        <img ng-src="{{mainCtrl.user.avatar}}" class="v-avatar" alt="avatar" width="100"
+                        <img ng-if="mainCtrl.user.avatar" ng-src="{{mainCtrl.user.avatar}}" class="v-avatar" alt="avatar" width="100"
+                             height="100"/>
+                        <img ng-if="!mainCtrl.user.avatar" src="/images/avatar.png" class="v-avatar" alt="avatar" width="100"
                              height="100"/>
                     </div>
                     <div layout="column" layout-align="end center">
@@ -19,8 +21,8 @@
                             <input flex type="file" file-model="ctrl.avatar"/>
                         </div>
                         <md-button ngf-select ngf-capture="'camera'" ng-model="ctrl.avatar" accept="image/*" hide-xs
-                                   hide-sm>
-                            Upload avatar!
+                                   hide-sm class="md-raised">
+                            Upload avatar
                         </md-button>
                     </div>
                 </div>

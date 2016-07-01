@@ -1,0 +1,263 @@
+<div layout-gt-sm="row" layout-align="start center" class="v-top-content-search" flex>
+    <div flex="20" layout="row">
+        <md-input-container flex class="md-icon-float" layout="row" layout-align="end end">
+            <md-icon class="md-icon">location_on</md-icon>
+            <input type="text" class="form-control" placeholder="Address" ng-model="ctrl.searchFilter.location"/>
+        </md-input-container>
+    </div>
+    <div flex layout="row">
+        <md-datepicker ng-model="ctrl.startDate" md-placeholder="Start date"></md-datepicker>
+    </div>
+    <div flex>
+        <md-datepicker ng-model="ctrl.endDate" md-placeholder="End date"></md-datepicker>
+    </div>
+    <div flex>
+        <md-input-container class="md-icon-float">
+            <label class="md-caption">Bicycle Type</label>
+            <md-icon class="md-icon">directions_bike</md-icon>
+            <md-select ng-model="ctrl.searchFilter.type">
+                <md-option ng-repeat="type in ctrl.bicycleTypes">
+                    {{type}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <div flex>
+        <md-input-container class="md-icon-float ">
+            <label>Size</label>
+            <md-icon class="md-icon">format_size</md-icon>
+            <md-select ng-model="ctrl.searchFilter.size">
+                <md-option ng-repeat="size in ctrl.bicycleSizes">
+                    {{size}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+
+
+    <div flex layout="row" layout-align="end center">
+        <md-button class="md-primary md-raised" ng-click="ctrl.searchForBicycles()">
+            <md-icon>search</md-icon>
+            <span>Apply filters </span>
+        </md-button>
+    </div>
+</div>
+
+<div layout="row">
+
+    <div flex class="v-search-map v-card-style" flex="35" hide-sm hide-xs>
+        <div>
+            <ui-gmap-google-map center='ctrl.map.center' zoom='ctrl.map.zoom'>
+                <ui-gmap-markers models="ctrl.marker" coords="'coords'" click="ctrl.showMarkerWindow">
+                    <ui-gmap-windows show="'show'" >
+                        <div ng-non-bindable> {{title}} </div>
+                    </ui-gmap-windows>
+                </ui-gmap-markers>
+
+            </ui-gmap-google-map>
+        </div>
+    </div>
+
+    <md-content class="v-search-results" flex="65">
+        <md-card flex-gt-sm="45" ng-repeat="x in [0,1]" ng-show="ctrl.bicycles[x]"
+                 ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.bicycles[x]._id)">
+            <div class="card-image-container"
+                 ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[x]._id)">
+                <img ng-src="{{ctrl.bicycles[x].pictures[0].data}}">
+            </div>
+            <md-card-title>
+                <md-card-title-text layout="row" layout-align="center center">
+                    <span class="md-headline">{{ctrl.bicycles[x].type}} - {{ctrl.bicycles[x].city}} </span>
+                    <div layout="row" ng-show="ctrl.bicycles[x].provider.aggregatedRating"
+                         layout-align="center center">
+                        <li class="stars" ng-repeat="i in [1,2,3,4,5]">
+                            <md-icon ng-style="{color:'orange'}"
+                                     ng-show="ctrl.bicycles[x].provider.aggregatedRating >= i">
+                                star
+                            </md-icon>
+                        </li>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="row">
+                <div layout="row" layout-align="start center" flex>
+                    <div flex layout="row" layout-align="start center">
+                        <md-icon>euro_symbol</md-icon>
+                        <div class="v-lr-padding" flex><b>{{ctrl.bicycles[x].price}}</b>/day</div>
+                    </div>
+                    <div flex layout="row" layout-align="center center">
+                        <span flex></span>
+                        <md-icon flex="none">polymer</md-icon>
+                        <div class="v-lr-padding"><b>{{ctrl.bicycles[x].brand}}</b></div>
+                        <span flex></span>
+                    </div>
+                    <div flex layout="row" layout-align="end center">
+                        <span flex></span>
+                        <md-icon flex="none">format_size</md-icon>
+                        <div class="v-lr-padding"><b>{{ctrl.bicycles[x].size}}</b></div>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+        <md-card flex-gt-sm="45" ng-repeat="x in [2,3]" ng-show="ctrl.bicycles[x]"
+                 ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.bicycles[x]._id)">
+            <div class="card-image-container"
+                 ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[x]._id)">
+                <img ng-src="{{ctrl.bicycles[x].pictures[0].data}}">
+            </div>
+            <md-card-title>
+                <md-card-title-text layout="row" layout-align="center center">
+                    <span class="md-headline">{{ctrl.bicycles[x].type}} - {{ctrl.bicycles[x].city}} </span>
+                    <div layout="row" ng-show="ctrl.bicycles[x].provider.aggregatedRating"
+                         layout-align="center center">
+                        <li class="stars" ng-repeat="i in [1,2,3,4,5]">
+                            <md-icon ng-style="{color:'orange'}"
+                                     ng-show="ctrl.bicycles[x].provider.aggregatedRating >= i">
+                                star
+                            </md-icon>
+                        </li>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="row">
+                <div layout="row" layout-align="start center" flex>
+                    <div flex layout="row" layout-align="start center">
+                        <md-icon>euro_symbol</md-icon>
+                        <div class="v-lr-padding" flex><b>{{ctrl.bicycles[x].price}}</b>/day</div>
+                    </div>
+                    <div flex layout="row" layout-align="center center">
+                        <span flex></span>
+                        <md-icon flex="none">polymer</md-icon>
+                        <div class="v-lr-padding"><b>{{ctrl.bicycles[x].brand}}</b></div>
+                        <span flex></span>
+                    </div>
+                    <div flex layout="row" layout-align="end center">
+                        <span flex></span>
+                        <md-icon flex="none">format_size</md-icon>
+                        <div class="v-lr-padding"><b>{{ctrl.bicycles[x].size}}</b></div>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+        <md-card flex-gt-sm="45" ng-repeat="x in [3,4]" ng-show="ctrl.bicycles[x]"
+                 ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.bicycles[x]._id)">
+            <div class="card-image-container"
+                 ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[x]._id)">
+                <img ng-src="{{ctrl.bicycles[x].pictures[0].data}}">
+            </div>
+            <md-card-title>
+                <md-card-title-text layout="row" layout-align="center center">
+                    <span class="md-headline">{{ctrl.bicycles[x].type}} - {{ctrl.bicycles[x].city}} </span>
+                    <div layout="row" ng-show="ctrl.bicycles[x].provider.aggregatedRating"
+                         layout-align="center center">
+                        <li class="stars" ng-repeat="i in [1,2,3,4,5]">
+                            <md-icon ng-style="{color:'orange'}"
+                                     ng-show="ctrl.bicycles[x].provider.aggregatedRating >= i">
+                                star
+                            </md-icon>
+                        </li>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="row">
+                <div layout="row" layout-align="start center" flex>
+                    <div flex layout="row" layout-align="start center">
+                        <md-icon>euro_symbol</md-icon>
+                        <div class="v-lr-padding" flex><b>{{ctrl.bicycles[x].price}}</b>/day</div>
+                    </div>
+                    <div flex layout="row" layout-align="center center">
+                        <span flex></span>
+                        <md-icon flex="none">polymer</md-icon>
+                        <div class="v-lr-padding"><b>{{ctrl.bicycles[x].brand}}</b></div>
+                        <span flex></span>
+                    </div>
+                    <div flex layout="row" layout-align="end center">
+                        <span flex></span>
+                        <md-icon flex="none">format_size</md-icon>
+                        <div class="v-lr-padding"><b>{{ctrl.bicycles[x].size}}</b></div>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+        <md-card flex-gt-sm="45" ng-repeat="x in [5,6]" ng-show="ctrl.bicycles[x]"
+                 ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.bicycles[x]._id)">
+            <div class="card-image-container"
+                 ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[x]._id)">
+                <img ng-src="{{ctrl.bicycles[x].pictures[0].data}}">
+            </div>
+            <md-card-title>
+                <md-card-title-text layout="row" layout-align="center center">
+                    <span class="md-headline">{{ctrl.bicycles[x].type}} - {{ctrl.bicycles[x].city}} </span>
+                    <div layout="row" ng-show="ctrl.bicycles[x].provider.aggregatedRating"
+                         layout-align="center center">
+                        <li class="stars" ng-repeat="i in [1,2,3,4,5]">
+                            <md-icon ng-style="{color:'orange'}"
+                                     ng-show="ctrl.bicycles[x].provider.aggregatedRating >= i">
+                                star
+                            </md-icon>
+                        </li>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="row">
+                <div layout="row" layout-align="start center" flex>
+                    <div flex layout="row" layout-align="start center">
+                        <md-icon>euro_symbol</md-icon>
+                        <div class="v-lr-padding" flex><b>{{ctrl.bicycles[x].price}}</b>/day</div>
+                    </div>
+                    <div flex layout="row" layout-align="center center">
+                        <span flex></span>
+                        <md-icon flex="none">polymer</md-icon>
+                        <div class="v-lr-padding"><b>{{ctrl.bicycles[x].brand}}</b></div>
+                        <span flex></span>
+                    </div>
+                    <div flex layout="row" layout-align="end center">
+                        <span flex></span>
+                        <md-icon flex="none">format_size</md-icon>
+                        <div class="v-lr-padding"><b>{{ctrl.bicycles[x].size}}</b></div>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+        <md-card flex-gt-sm="45" ng-repeat="x in [7,8]" ng-show="ctrl.bicycles[x]"
+                 ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.bicycles[x]._id)">
+            <div class="card-image-container"
+                 ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[x]._id)">
+                <img ng-src="{{ctrl.bicycles[x].pictures[0].data}}">
+            </div>
+            <md-card-title>
+                <md-card-title-text layout="row" layout-align="center center">
+                    <span class="md-headline">{{ctrl.bicycles[x].type}} - {{ctrl.bicycles[x].city}} </span>
+                    <div layout="row" ng-show="ctrl.bicycles[x].provider.aggregatedRating"
+                         layout-align="center center">
+                        <li class="stars" ng-repeat="i in [1,2,3,4,5]">
+                            <md-icon ng-style="{color:'orange'}"
+                                     ng-show="ctrl.bicycles[x].provider.aggregatedRating >= i">
+                                star
+                            </md-icon>
+                        </li>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="row">
+                <div layout="row" layout-align="start center" flex>
+                    <div flex layout="row" layout-align="start center">
+                        <md-icon>euro_symbol</md-icon>
+                        <div class="v-lr-padding" flex><b>{{ctrl.bicycles[x].price}}</b>/day</div>
+                    </div>
+                    <div flex layout="row" layout-align="center center">
+                        <span flex></span>
+                        <md-icon flex="none">polymer</md-icon>
+                        <div class="v-lr-padding"><b>{{ctrl.bicycles[x].brand}}</b></div>
+                        <span flex></span>
+                    </div>
+                    <div flex layout="row" layout-align="end center">
+                        <span flex></span>
+                        <md-icon flex="none">format_size</md-icon>
+                        <div class="v-lr-padding"><b>{{ctrl.bicycles[x].size}}</b></div>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </md-content>
+</div>

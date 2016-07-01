@@ -17,8 +17,10 @@
                     <textarea ng-model="ctrl.bookingText" rows="3" md-select-on-focus required></textarea>
                 </md-input-container>
                 <div layout-align="row" flex layout-align="center center">
-                    <md-datepicker ng-model="ctrl.startDate" md-placeholder="Start date"></md-datepicker>
+                    <div flex>
+                    <md-datepicker class="md-icon" ng-model="ctrl.startDate" md-placeholder="Start date"></md-datepicker>
                     <md-datepicker ng-model="ctrl.endDate" md-placeholder="End date"></md-datepicker>
+                    </div>
                 </div>
                 <div class="swf-warn" ng-show="ctrl.formInvalid" layout-align="center center" layout="row">
                     <div>

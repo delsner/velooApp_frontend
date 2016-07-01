@@ -125,7 +125,7 @@
                 search: {
                     method: "GET",
                     url: velooUtil.getFullUrl(velooUtil.paths.bicycle + "/search"),
-                    isArray: true
+                    isArray: false
                 },
                 getBicycles: {
                     method: "GET",
@@ -185,7 +185,14 @@
                 }
             });
 
-        var Message = $resource(velooUtil.getFullUrl(velooUtil.paths.message));
+        var Message = $resource(velooUtil.getFullUrl(velooUtil.paths.message), {},
+            {
+                get: {
+                    method: "GET",
+                    url: velooUtil.getFullUrl(velooUtil.paths.message + '/booking/:id'),
+                    isArray: true
+                }
+            });
 
         return {
             Bicycle: Bicycle,

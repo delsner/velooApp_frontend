@@ -14,9 +14,7 @@
 
             var deferred = $q.defer();
             
-            velooData.Bicycle.search({
-                q: params.searchText
-            }).$promise.then(function (res) {
+            velooData.Bicycle.search(params).$promise.then(function (res) {
                 $log.warn('Results:');
                 $log.warn(res);
                 if (callback && angular.isFunction(callback)) {

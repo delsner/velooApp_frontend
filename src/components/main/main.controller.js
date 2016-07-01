@@ -29,6 +29,8 @@
         vm.currentLocation = currentLocation;
         vm.getOwnUsername = getOwnUsername;
         vm.getOwnId = getOwnId;
+        vm.isOfTypeRoute = isOfTypeRoute;
+
 
         //functions
         function getSearchHints(searchText) {
@@ -76,6 +78,9 @@
         }
         function getOwnId() {
             return authService.getUserdata()._id;
+        }
+        function isOfTypeRoute(route) {
+            return (currentLocation().indexOf(route) > -1);
         }
     }
 })();

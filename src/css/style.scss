@@ -88,6 +88,14 @@ body {
 .v-top-content {
   margin-top: 128px;
 }
+.v-top-content-search {
+  margin-top: 64px;
+  border-bottom: $color_mainBlue 1px solid;
+  @media(max-width: 768px) {
+    margin-top: 48px;
+  }
+}
+
 
 .v-text-overflow {
   overflow: hidden;
@@ -153,6 +161,10 @@ md-toolbar.navbar-default {
 md-toolbar.navbar-default.isTransparent {
   background-color: rgba(0, 0, 0, 0.4);
   border-style: none;
+}
+
+.v-selected-route {
+  border-bottom:2px solid $color_mainGreen;
 }
 
 /************** END NAVBAR **************/
@@ -490,4 +502,17 @@ header .header-content .header-content-inner p {
   img {
     object-fit: cover;
   }
+}
+
+
+
+/************ SEARCH ***********/
+.v-search-map .angular-google-map-container {
+  height: calc(100vh - 170px);
+  width: inherit;
+  margin: auto;
+}
+
+.v-search-results {
+  height: calc(100vh - 170px);
 }

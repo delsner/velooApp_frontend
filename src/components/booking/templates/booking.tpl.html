@@ -1,6 +1,6 @@
 <md-toolbar class="v-top-toolbar">
     <div layout="row" layout-align="start center" class="md-toolbar-tools">
-        <div>Booking with {{mainCtrl.getOwnId===ctrl.booking.endUser.id ?
+        <div>Booking with {{mainCtrl.user.id==ctrl.booking.endUser.id ?
             ctrl.booking.provider.username : ctrl.booking.endUser.username}}</div>
     </div>
 </md-toolbar>
@@ -71,13 +71,13 @@
 
     <div flex-gt-sm="25" class="v-card-style">
         <div class="v-font-color v-subheader" layout="row" layout-align="start center">
-            <div>{{mainCtrl.getOwnId===ctrl.booking.endUser.id ?
+            <div>{{mainCtrl.user.id==ctrl.booking.endUser.id ?
                 'Details about renter' : 'Details about rentee'}}</div>
         </div>
 
         <div layout="column" layout-align="center center" class="v-padding">
-            <img ng-src="/images/girl.jpeg" class="md-avatar v-profile-img" alt="avatar"/>
-            <div>{{mainCtrl.getOwnId===ctrl.booking.endUser.id ?
+            <img ng-src="{{ctrl.getAvatar()}}" class="md-avatar v-profile-img" alt="avatar"/>
+            <div>{{mainCtrl.user.id==ctrl.booking.endUser.id ?
                 ctrl.booking.provider.username : ctrl.booking.endUser.username}}</div>
             <div layout="row">
                 <li class="v-rating-stars" ng-repeat="x in [1,2,3,4,5]">
