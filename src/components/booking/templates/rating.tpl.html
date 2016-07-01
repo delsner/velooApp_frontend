@@ -1,0 +1,45 @@
+<md-dialog ng-cloak aria-label="Rating" class="dialog-container" flex-gt-sm="40">
+    <form ng-submit="ctrl.rateBooking()">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Rate {{ctrl.user.id ==
+                ctrl.booking.endUser._id ?
+                ctrl.booking.provider.username: ctrl.booking.endUser.username}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                <md-icon class="md-icon">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content class="md-padding" flex>
+        <div layout-gt-md="column">
+            <div layout="row" layout-align="start center" class="md-padding">
+                <span> Give 1 to 5 stars: &nbsp; </span>
+                <div layout="row">
+                    <li class="stars" ng-repeat="x in [1,2,3,4,5]">
+                        <md-icon ng-class="{'rating-set': x <= ctrl.rating,
+                        'rating-not-set' : x >= ctrl.rating, 'rating-hover' : x <= ctrl.hoverRating}"
+                                 ng-click="ctrl.setRating(x)"
+                                 ng-mouseenter="ctrl.hoverRating = x" ng-mouseleave="ctrl.hoverRating = ctrl.rating">star
+                        </md-icon>
+                    </li>
+                </div>
+            </div>
+
+            <md-input-container class="md-block" class="md-padding">
+                <label>Rating text</label>
+                <md-icon class="md-icon">message</md-icon>
+                <textarea ng-model="ctrl.ratingText" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+            </md-input-container>
+
+            <div layout-align="center center" layout="row">
+                <md-button class="md-raised md-primary"
+                           type="submit">
+                    Send rating
+                </md-button>
+            </div>
+        </div>
+    </md-content>
+    </form>
+</md-dialog>
+

@@ -18,6 +18,10 @@ body {
   flex-direction: column;
 }
 
+li {
+  list-style-type: none;
+}
+
 #nav {
   z-index: 2;
 }
@@ -29,6 +33,10 @@ body {
 
 #footer {
 
+}
+
+md-icon svg {
+  fill: inherit;
 }
 
 .spinner-container {
@@ -507,6 +515,46 @@ header .header-content .header-content-inner p {
 
 .message-alt {
   background-color: lightgreen;
+}
+
+.status-confirmed {
+  color: $color_mainGreen !important;
+}
+
+.status-rateable {
+  color: orange !important;
+}
+
+.status-cancelled {
+  color: $colors_warn !important;
+}
+
+.status-confirmed {
+  color: $color_mainGreen !important;
+}
+
+.rating-set {
+  color: orange;
+}
+
+.rating-not-set {
+  color: grey;
+}
+
+.rating:hover {
+  cursor: pointer;
+  color: orange !important;
+}
+
+.rating-hover {
+  color: orange !important;
+}
+
+.stars {
+  list-style-type: none;
+}
+.stars:hover {
+  cursor:pointer;
 }
 
 /**********************************  END BOOKING PROCESS *******************************/

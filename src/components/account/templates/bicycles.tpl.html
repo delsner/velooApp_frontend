@@ -1,71 +1,26 @@
-<div layout-gt-sm="row" flex-gt-lg="80" flex-offset-gt-lg="10" flex="90" flex-offset="5" class="md-padding"
-     layout-align="center center">
-    <md-card flex-gt-sm="45" ng-repeat="x in [0,2]" ng-show="ctrl.bicycles[x]"
-             ng-click="mainCtrl.setPathTo('/bicycle/edit/'+ctrl.bicycles[x]._id)">
-        <div class="card-image-container"
-             ng-click="mainCtrl.setPathTo('bicycle/edit/'+ctrl.bicycles[x]._id)">
-            <img ng-src="{{ctrl.bicycles[x].pictures[0].data}}">
+<md-list>
+    <md-list-item ng-repeat="bicycle in ctrl.bicycles" ng-click="mainCtrl.setPathTo('/bicycle/' + bicycle._id)">
+        <md-icon>directions_bike</md-icon>
+        <div flex="30">
+            ID: {{bicycle._id}}
         </div>
-        <md-card-title>
-            <md-card-title-text layout="row" layout-align="center center">
-                <span class="md-headline">{{ctrl.bicycles[x].type}} - {{ctrl.bicycles[x].city}}  </span>
-            </md-card-title-text>
-        </md-card-title>
-        <md-card-content layout="row">
-            <div layout="row" layout-align="start center" flex>
-                <div flex layout="row" layout-align="start center">
-                    <md-icon>euro_symbol</md-icon>
-                    <div class="v-lr-padding" flex><b>{{ctrl.bicycles[x].price}}</b>/day</div>
-                </div>
-                <div flex layout="row" layout-align="center center">
-                    <span flex></span>
-                    <md-icon flex="none">polymer</md-icon>
-                    <div class="v-lr-padding"><b>{{ctrl.bicycles[x].brand}}</b></div>
-                    <span flex></span>
-                </div>
-                <div flex layout="row" layout-align="end center">
-                    <span flex></span>
-                    <md-icon flex="none">format_size</md-icon>
-                    <div class="v-lr-padding"><b>{{ctrl.bicycles[x].size}}</b></div>
-                </div>
-
-            </div>
-        </md-card-content>
-    </md-card>
-</div>
-
-<div layout-gt-sm="row" flex-gt-lg="80" flex-offset-gt-lg="10" flex="90" flex-offset="5" class="md-padding"
-     layout-align="center center">
-    <md-card flex-gt-sm="45" ng-repeat="x in [1,3]" ng-show="ctrl.bicycles[x]"
-             ng-click="mainCtrl.setPathTo('/bicycle/edit/'+ctrl.bicycles[x]._id)">
-        <div class="card-image-container"
-             ng-click="mainCtrl.setPathTo('bicycle/edit/'+ctrl.bicycles[x]._id)">
-            <img ng-src="{{ctrl.bicycles[x].pictures[0].data}}">
+        <div flex="20">
+            Type: {{bicycle.type}}
         </div>
-        <md-card-title>
-            <md-card-title-text layout="row" layout-align="center center">
-                <span class="md-headline">{{ctrl.bicycles[x].type}} - {{ctrl.bicycles[x].city}}  </span>
-            </md-card-title-text>
-        </md-card-title>
-        <md-card-content layout="row">
-            <div layout="row" layout-align="start center" flex>
-                <div flex layout="row" layout-align="start center">
-                    <md-icon>euro_symbol</md-icon>
-                    <div class="v-lr-padding" flex><b>{{ctrl.bicycles[x].price}}</b>/day</div>
+        <div flex="20">
+            City: {{bicycle.city}}
+        </div>
+        <div flex layout="row" layout-align="end center">
+            <div layout="row">
+                <div class="v-lr-padding">
+                    {{bicycle.isActive ? 'Bicycle is active' : 'Bicycle not active'}}
                 </div>
-                <div flex layout="row" layout-align="center center">
-                    <span flex></span>
-                    <md-icon flex="none">polymer</md-icon>
-                    <div class="v-lr-padding"><b>{{ctrl.bicycles[x].brand}}</b></div>
-                    <span flex></span>
-                </div>
-                <div flex layout="row" layout-align="end center">
-                    <span flex></span>
-                    <md-icon flex="none">format_size</md-icon>
-                    <div class="v-lr-padding"><b>{{ctrl.bicycles[x].size}}</b></div>
-                </div>
-
+                <md-icon
+                        ng-class="{'status-confirmed' : bicycle.isActive == true, 'status-cancelled' : bicycle.isActive == false}">
+                    {{bicycle.isActive ? 'check_circle' : 'remove_circle'}}
+                </md-icon>
             </div>
-        </md-card-content>
-    </md-card>
-</div>
+        </div>
+        <md-divider></md-divider>
+    </md-list-item>
+</md-list>

@@ -165,7 +165,8 @@
             {
                 getBookings: {
                     method: "GET",
-                    url: velooUtil.getFullUrl(velooUtil.paths.booking)
+                    url: velooUtil.getFullUrl(velooUtil.paths.booking),
+                    isArray: true
                 },
                 getBooking: {
                     method: "GET",
@@ -194,12 +195,16 @@
                 }
             });
 
+        var Rating = $resource(velooUtil.getFullUrl(velooUtil.paths.rating));
+            
+
         return {
             Bicycle: Bicycle,
             Picture: Picture,
             User: User,
             Booking: Booking,
-            Message: Message
+            Message: Message,
+            Rating: Rating
         };
     }
 })();
@@ -242,7 +247,8 @@
                 picture: 'picture',
                 user: 'user',
                 booking: 'booking',
-                message: 'message'
+                message: 'message',
+                rating: 'rating'
             };
         }
 
