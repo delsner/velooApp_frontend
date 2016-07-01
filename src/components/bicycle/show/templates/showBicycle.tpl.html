@@ -60,7 +60,8 @@
                 </div>
 
                 <div layout="column" layout-align="center center" class="v-padding">
-                    <img ng-src="{{ctrl.bicycle.owner.avatar.data}}" class="md-avatar v-profile-img" alt="avatar"/>
+                    <img ng-if="ctrl.bicycle.owner.avatar" ng-src="{{ctrl.bicycle.owner.avatar.data}}" class="md-avatar v-profile-img" alt="avatar"/>
+                    <img ng-if="!ctrl.bicycle.owner.avatar" src="images/avatar.png" class="md-avatar v-profile-img" alt="avatar"/>
                     <div>{{ctrl.bicycle.owner.username}}</div>
                     <div layout="row">
                     <li class="v-rating-stars" ng-repeat="x in [1,2,3,4,5]">
@@ -125,36 +126,14 @@
                 Additional features</div>
         </div>
 
-        <div layout-gt-sm="row" ng-repeat="feature in ctrl.bicycle.features track by $index" ng-show="$index % 3 == 0 || $index == 0">
-            <md-list ng-cloak flex-gt-sm="33" ng-if="ctrl.bicycle.features[$index] != null">
-                <md-list-item>
-                    <md-icon class="md-primary">check_box</md-icon>
-                    <p>{{ctrl.bicycle.features[$index].feature}}</p>
-                </md-list-item>
-            </md-list>
-            <md-list ng-cloak flex-gt-sm="33" ng-if="ctrl.bicycle.features[$index+1] != null">
-                <md-list-item>
-                    <md-icon class="md-primary">check_box</md-icon>
-                    <p>{{ctrl.bicycle.features[$index+1].feature}}</p>
-                </md-list-item>
-            </md-list>
-            <md-list ng-cloak ng-if="ctrl.bicycle.features[$index+2] != null">
-                <md-list-item flex-gt-sm="33">
-                    <md-icon class="md-primary">check_box</md-icon>
-                    <p>{{ctrl.bicycle.features[$index+2].feature}}</p>
-                </md-list-item>
-            </md-list>
+        <div layout-gt-sm="row" ng-repeat="feature in ctrl.bicycle.features | filter:{ isSelected:true }" >
+          <md-list ng-cloak>
+              <md-list-item>
+                  <md-icon class="md-primary">check_box</md-icon>
+                  <p>{{feature.feature}}</p>
+              </md-list-item>
+          </md-list>
         </div>
-
-        <div layout="row" ng-if="ctrl.bicycle.carrier">
-            <md-list ng-cloak ng-if="ctrl.bicycle.features[$index+2] != null">
-                <md-list-item flex>
-                    <md-icon class="md-primary">check_box</md-icon>
-                    <p>Carrier</p>
-                </md-list-item>
-            </md-list>
-        </div>
-
     </div>
 </div>
 </div>

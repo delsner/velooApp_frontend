@@ -16,8 +16,6 @@
 
             vm.bicycle = data;
 
-            console.log(vm.bicycle);
-
             vm.map = {
                 center: {
                     latitude: vm.bicycle.location[1],
@@ -34,7 +32,6 @@
                 },
                 options: {draggable: false}
             };
-
 
             vm.bicycleInformationLeftList = [
                 {

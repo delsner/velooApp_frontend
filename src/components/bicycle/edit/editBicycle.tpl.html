@@ -8,7 +8,7 @@
     </div>
 </md-toolbar>
 
-<form name="editBicycle" ng-submit="ctrl.saveBicycle()">
+<form name="editBicycle" ng-submit="ctrl.editBicycle()">
     <div layout-gt-sm="row" flex-gt-lg="80" flex-offset-gt-lg="10" flex="90" flex-offset="5" class="v-top-content" style="margin-bottom:20px;">
 
         <div flex-gt-sm="30" class="v-create-bicycle-address v-card-style">
@@ -19,9 +19,7 @@
             <div flex class="v-create-bicycle-map">
                 <div>
                     <ui-gmap-google-map center='ctrl.map.center' zoom='ctrl.map.zoom'>
-                        <ui-gmap-marker coords="ctrl.marker.coords" options="ctrl.marker.options"
-                                        idkey="ctrl.marker.id">
-                        </ui-gmap-marker>
+                        <ui-gmap-marker coords="ctrl.marker.coords" options="ctrl.marker.options" idkey="ctrl.marker.id"></ui-gmap-marker>
                     </ui-gmap-google-map>
                 </div>
             </div>
@@ -29,23 +27,20 @@
                 <md-input-container class="md-icon-float">
                     <label>Street and number</label>
                     <md-icon class="md-icon">location_on</md-icon>
-                    <input type="text" class="form-control" ng-model="ctrl.bicycle.street"
-                           ng-blur="ctrl.bicycle.getGeolocation()" required/>
+                    <input type="text" class="form-control" ng-model="ctrl.bicycle.street" ng-blur="ctrl.getGeolocation()" required/>
                 </md-input-container>
 
                 <div layout-gt-sm="row">
                     <md-input-container flex-gt-sm="60" class="md-icon-float md-block">
                         <label>Zipcode</label>
                         <md-icon class="md-icon">location_on</md-icon>
-                        <input type="text" class="form-control" ng-model="ctrl.bicycle.zipcode"
-                               ng-blur="ctrl.getGeolocation()" required/>
+                        <input type="text" class="form-control" ng-model="ctrl.bicycle.zipcode" ng-blur="ctrl.getGeolocation()" required/>
                     </md-input-container>
 
                     <md-input-container flex-gt-sm="40" class="md-icon-float md-block">
                         <label>City</label>
                         <md-icon class="md-icon">location_on</md-icon>
-                        <input type="text" class="form-control" ng-model="ctrl.bicycle.city"
-                               ng-blur="ctrl.getGeolocation()" required/>
+                        <input type="text" class="form-control" ng-model="ctrl.bicycle.city" ng-blur="ctrl.getGeolocation()" required/>
                     </md-input-container>
                 </div>
             </div>
@@ -55,7 +50,8 @@
 
             <div class="v-font-color v-subheader" layout="row" layout-align="start center">
                 <div layout="row" layout-align="start center" flex>
-                    <div class="v-font-color" flex> Bicycle description</div>
+                    <div class="v-font-color" flex>
+                        Bicycle description</div>
                     <md-button class="md-raised md-accent md-padding" type="submit">Save bicycle</md-button>
                 </div>
             </div>
@@ -72,7 +68,7 @@
                         <label>Bicycle Type</label>
                         <md-icon class="md-icon">directions_bike</md-icon>
                         <md-select ng-model="ctrl.bicycle.type">
-                            <md-option ng-selected="{{ctrl.bicycle.type}}" ng-repeat="type in ctrl.bicycleTypes">
+                            <md-option ng-repeat="type in ctrl.bicycleTypes">
                                 {{type}}
                             </md-option>
                         </md-select>
@@ -84,7 +80,7 @@
                         <label>Size</label>
                         <md-icon class="md-icon">format_size</md-icon>
                         <md-select ng-model="ctrl.bicycle.size">
-                            <md-option ng-selected="{{ctrl.bicycle.size}}" ng-repeat="size in ctrl.bicycleSizes">
+                            <md-option ng-repeat="size in ctrl.bicycleSizes">
                                 {{size}}
                             </md-option>
                         </md-select>
@@ -108,7 +104,7 @@
                         <label>Category</label>
                         <md-icon class="md-icon">supervisor_account</md-icon>
                         <md-select ng-model="ctrl.bicycle.category">
-                            <md-option ng-selected="{{ctrl.bicycle.cytegory}}" ng-repeat="category in ctrl.bicycleCategories">
+                            <md-option ng-repeat="category in ctrl.bicycleCategories">
                                 {{category}}
                             </md-option>
                         </md-select>
@@ -136,19 +132,26 @@
             <div class="v-lr-padding" layout="column">
                 <div id="features">
                     <div layout-xs="column" layout-gt-sm="row">
-                        <md-input-container flex="20" ng-repeat="feature in ctrl.bicycleFeatures"> 
-                            <md-checkbox md-no-ink ng-model="feature.isSelected" class="md-primary"> 
-                                <span>{{feature.feature}} </span>
+                        <md-input-container flex="20">
+                            <md-checkbox md-no-ink ng-model="ctrl.bicycle.carrier" class="md-primary">
+                                <span>Carrier</span>
                             </md-checkbox>
-                             
+                        </md-input-container>
+                        <md-input-container flex="20" ng-repeat="feature in ctrl.bicycleFeatures">
+                            <md-checkbox md-no-ink ng-model="feature.isSelected" class="md-primary">
+                                <span>{{feature.feature}}
+                                </span>
+                            </md-checkbox>
+
                         </md-input-container>
                     </div>
                     <div layout="column">
-                        <md-input-container ng-repeat="feature in ctrl.newFeatures"> 
-                            <md-checkbox md-no-ink ng-model="feature.isSelected" class="md-primary"> 
-                                <span>{{feature.feature}} </span>
+                        <md-input-container ng-repeat="feature in ctrl.newFeatures">
+                            <md-checkbox md-no-ink ng-model="feature.isSelected" class="md-primary">
+                                <span>{{feature.feature}}
+                                </span>
                             </md-checkbox>
-                             
+
                         </md-input-container>
                     </div>
                     <div layout="row">
@@ -156,8 +159,7 @@
                             <label>Add new feature</label>
                             <input type="text" ng-model="ctrl.newFeature">
                         </md-input-container>
-                        <md-button class="md-fab md-mini md-primary" ng-click="ctrl.addFeature()"
-                                   ng-disabled="!ctrl.newFeature">
+                        <md-button class="md-fab md-mini md-primary" ng-click="ctrl.addFeature()" ng-disabled="!ctrl.newFeature">
                             <md-icon>exposure_plus_1</md-icon>
                         </md-button>
                     </div>
@@ -168,32 +170,67 @@
                 <div>Upload Pictures (max. 5)</div>
             </div>
             <md-list>
-                <md-list-item hide-gt-sm class="md-2-line upload-file-list"
-                              ng-repeat="x in [0,1,2,3,4]" ng-show="x === 0 || ctrl.mobileUpload[x-1]">
+                <md-list-item hide-gt-sm class="md-2-line upload-file-list" ng-repeat="x in [0,1,2,3,4]" ng-show="x === 0 || ctrl.files[x-1]">
                     <md-icon>file_upload</md-icon>
-                    <div class="md-list-item-text" layout="column">
-                        <input type="file" file-model="ctrl.mobileUpload[x]"/>
+                    <div class="md-list-item-text" layout="row" layout-align="begin center">
+                        <input
+                            ng-if="!ctrl.files[x].id"
+                            type="file"
+                            ngf-select
+                            ngf-fix-orientation="true"
+                            ng-model="ctrl.files[x]"
+                            ngf-change="ctrl.end()"
+                            ngf-before-model-change="ctrl.start()"
+                            ngf-pattern="'image/*'"
+                            ngf-accept="'image/*'"
+                            ngf-max-size="5MB"
+                            ngf-resize-if="$width > 2000 || $height > 1000"
+                            ngf-resize="{width: 1920, height: 1080, quality: .7, type: 'image/jpeg',
+                       centerCrop: true, pattern='.png,.jpg', restoreExif: false}">
+                        <img ng-if="ctrl.files[x].src" ng-src="{{ctrl.files[x].src}}" width="48" height="48">
+                        <small class="v-font-color" ng-if="ctrl.files[x].id">Already saved picture</small>
+                        <md-button ng-if="ctrl.files[x]" class="md-fab md-mini md-primary" ng-click="ctrl.deleteFile(x)">
+                            <md-icon>close</md-icon>
+                        </md-button>
                     </div>
                 </md-list-item>
 
                 <div hide-xs hide-sm>
-                    <div ngf-drop ngf-select ng-model="ctrl.files" class="drop-box" ngf-drag-over-class="'dragover'"
-                         ngf-multiple="true" ngf-keep="true" accept="image/*" ngf-pattern="'image/*'"
-                         ngf-max-files="5" ngf-max-size="5MB" ngf-resize-if="$width > 2000 || $height > 1000"
-                         ngf-resize="{width: 1920, height: 1080, quality: .7, type: 'image/jpeg',
-                         centerCrop: true, pattern='.png,.jpg', restoreExif: false}" flex>
+                    <div
+                        ngf-drop
+                        ngf-select
+                        ng-model="ctrl.files"
+                        ngf-change="ctrl.end()"
+                        ngf-before-model-change="ctrl.start()"
+                        class="drop-box"
+                        ngf-drag-over-class="'dragover'"
+                        ngf-multiple="true"
+                        ngf-keep="true"
+                        accept="image/*"
+                        ngf-pattern="'image/*'"
+                        ngf-max-files="5"
+                        ngf-max-size="5MB"
+                        ngf-resize-if="$width > 2000 || $height > 1000"
+                        ngf-resize="{width: 1920, height: 1080, quality: .7, type: 'image/jpeg',
+                         centerCrop: true, pattern='.png,.jpg', restoreExif: false}"
+                        flex>
                         Drag and Drop Pictures here or click.
                     </div>
                     <div ngf-no-file-drop>Drag/Drop not supported by this browser.</div>
-                    <md-list flex>
+                    <md-list flex class="md-padding">
                         <md-list-item ng-repeat="f in ctrl.files track by $index">
-                            <div flex layout="row" layout-align="center center">
-                                <img ngf-thumbnail="f"
-                                     ngf-size="{width: 48, height: 48, quality: 0.9, centerCrop:true}">
-                                &nbsp; {{f.name}} &nbsp;
-                                <small>{{f.size/1000}} KB</small>
+                            <div flex layout="row" layout-align="begin center">
+                                <img ng-if="f.data" ng-src="{{f.data}}" width="48" height="48">
+                                <img ng-if="!f.data" ngf-thumbnail="f" ngf-size="{width: 48, height: 48, quality: 0.9, centerCrop:true}">
                                 &nbsp;
-                                <small class="v-warn">{{f.$error}} {{f.$errorParam}}</small>
+                                {{f.name}}
+                                &nbsp;
+                                <small class="v-font-color" ng-if="f.size">{{f.size/1000}}
+                                    KB</small>
+                                <small class="v-font-color" ng-if="!f.size">Already saved picture</small>
+                                &nbsp;
+                                <small class="v-warn">{{f.$error}}
+                                    {{f.$errorParam}}</small>
                             </div>
                             <div flex layout="row" layout-align="center center">
                                 <md-button class="md-fab md-mini md-primary" ng-click="ctrl.deleteFile($index)">

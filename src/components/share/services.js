@@ -137,11 +137,6 @@
                     url: velooUtil.getFullUrl(velooUtil.paths.bicycle + "/ofuser/:id"),
                     isArray: true
                 },
-                updateBicycle: {
-                    method: "PUT",
-                    url: velooUtil.getFullUrl(velooUtil.paths.bicycle + "/:id"),
-                    isArray: false
-                }
             });
 
         var Picture = $resource(velooUtil.getFullUrl(velooUtil.paths.picture + "/:id"),
@@ -189,7 +184,7 @@
                     url: velooUtil.getFullUrl(velooUtil.paths.booking + "/:id/rate")
                 }
             });
-        
+
         var Message = $resource(velooUtil.getFullUrl(velooUtil.paths.message));
 
         return {

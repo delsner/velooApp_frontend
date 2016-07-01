@@ -11,7 +11,11 @@
         vm.bicycleTypes = ["Mountainbike", "Racing Bicycle", "Road Bicycle", "Touring Bicycle"];
         vm.bicycleCategories = ["Female", "Male", "Children"];
         vm.bicycleSizes = ["XS", "S", "M", "L", "XL"];
-        vm.bicycleFeatures = [{
+        vm.bicycleFeatures = [
+          {
+            feature: "Carrier",
+            isSelected: false
+          },{
             feature: "Lock",
             isSelected: false,
         }, {
@@ -25,7 +29,6 @@
             isSelected: false,
         }];
         vm.newFeature = "";
-        vm.newFeatures = [];
         vm.files = [];
 
         vm.map = {
@@ -60,10 +63,8 @@
             isActive: false,
             description: "",
             category: "",
-            latitude: 48.137,
-            longitude: 11.577,
             location: [],
-            featureArray: []
+            features: []
         };
 
         vm.saveBicycle = saveBicycle;
@@ -75,9 +76,8 @@
         function saveBicycle() {
             var promise = base64encodeImages();
             promise.then(function(images) {
-                vm.bicycle.images = images;
-                vm.bicycle.featureArray = vm.bicycleFeatures.concat(vm.newFeatures);
-                vm.bicycle.location = [vm.bicycle.longitude, vm.bicycle.latitude];
+                vm.bicycle.pictures = images;
+                vm.bicycle.features = vm.bicycleFeatures;
                 velooData.Bicycle.save(vm.bicycle).$promise.then(function(success) {
                     console.log(vm.bicycle);
                     $rootScope.setPathTo("/bicycle/" + success._id);
@@ -94,7 +94,7 @@
         }
 
         function addFeature() {
-            vm.newFeatures.push({
+            vm.bicycleFeatures.push({
                 feature: vm.newFeature,
                 isSelected: true
             });
@@ -113,8 +113,8 @@
                         vm.map.center.longitude = parseFloat(success.data[0].lon);
                         vm.map.zoom = 15;
 
-                        vm.bicycle.latitude = parseFloat(success.data[0].lat);
-                        vm.bicycle.longitude = parseFloat(success.data[0].lon);
+                        vm.bicycle.location[0] = parseFloat(success.data[0].lon);
+                        vm.bicycle.location[1] = parseFloat(success.data[0].lat);
                     }
                 }, function(error) {
 
@@ -149,7 +149,6 @@
                     resolve(results);
                 }
             });
-
         }
     }
 })(angular);
