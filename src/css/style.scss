@@ -36,7 +36,7 @@ body {
   height: 100%;
   position: fixed;
   z-index: 999;
-  background-color: $colors_transparent_light_background;
+  background-color: lightgrey;
 }
 
 .v-font-color {
@@ -66,6 +66,10 @@ body {
   background-color: rgba(0, 0, 0, 0.02) !important;
   height: 60px;
   padding: 16px;
+}
+
+.v-grey-background {
+  background-color: rgba(0, 0, 0, 0.02) !important;
 }
 
 .v-card-style {
@@ -477,9 +481,9 @@ header .header-content .header-content-inner p {
 /**********************************  BOOKING PROCESS ***********************************/
 
 .v-message-container {
-  height: calc(100vh - 150px);
-  height: -moz-calc(100vh - 150px);
-  height: -webkit-calc(100vh - 150px);
+  min-height: calc(100vh - 150px);
+  min-height: -moz-calc(100vh - 150px);
+  min-height: -webkit-calc(100vh - 150px);
 }
 
 #message-box {
