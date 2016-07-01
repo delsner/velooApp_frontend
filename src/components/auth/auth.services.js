@@ -13,7 +13,7 @@
             isAuthenticated: isAuthenticated,
             getUserdata: getUserdata,
             fbaccountcheck: fbaccountcheck,
-            fblogin: fblogin
+            fblogin: fblogin,
             getUserDetails: getUserDetails
         };
 
