@@ -1,13 +1,22 @@
 <md-toolbar class="v-top-toolbar">
     <div layout="row" layout-align="start center" class="md-toolbar-tools">
-        <div flex-gt-sm="90" flex-offset-gt-sm="5" flex-xl="80" flex-offset-xl="10" layout="row" layout-align="start end">
-            <div>Bicycle details</div>
-            <!--<md-button class="md-raised md-primary">Book bicycle</md-button>-->
+        <div flex-gt-sm="90" flex-offset-gt-sm="5" flex-xl="80" flex-offset-xl="10" layout="row" layout-align="start center">
+            <div flex>Bicycle details</div>
+            <md-button class="md-raised md-primary" ng-if="mainCtrl.getOwnUsername() != ctrl.bicycle.owner.username"
+                        ng-click="ctrl.showBookingRequest()" layout="row" layout-align="center center">
+                <md-icon>local_grocery_store</md-icon>
+                    <span class="v-lr-padding">Book bicycle</span>
+            </md-button>
+            <md-button class="md-raised md-primary" ng-if="mainCtrl.getOwnUsername() == ctrl.bicycle.owner.username">Edit bicycle</md-button>
         </div>
     </div>
 </md-toolbar>
 
 <div class="v-top-content v-bicycle-detail-view" style="margin-bottom:20px;">
+
+ <!--   <div class="md-padding">
+        <picture-slider></picture-slider>
+    </div>-->
 
     <div flex layout-gt-sm="row" layout-align="center center" class="v-card-style">
         <img flex-gt-sm="33" ng-src="{{ctrl.bicycle.pictures[0].data}}" class="v-bicycle-img">
@@ -62,23 +71,7 @@
 
                 <md-divider></md-divider>
 
-                <md-list ng-cloak>
-                    <md-list-item flex>
-                        <md-icon>person</md-icon>
-                        <div layout="column" flex>
-                            <!--     <div layout="row" layout-align="start center">
-                                     <p class="v-text-overflow"> Lars L. </p>
-                                     <li class="v-rating-stars" ng-repeat="x in [1,2,3,4,5]">
-                                         <md-icon ng-style="{color:'orange'}">star
-                                         </md-icon>
-                                     </li>
-                                 </div>-->
-                            <p class="v-text-overflow"> Lars L. </p>
-                            <p class="v-text-overflow" style="font-style: italic"> Nice bike! Nice contact! Thanks.... </p>
-                        </div>
-                        <md-divider></md-divider>
-                    </md-list-item>
-                </md-list>
+
             </div>
         </div>
 

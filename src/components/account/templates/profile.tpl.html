@@ -1,20 +1,17 @@
-<md-toolbar class="v-top-toolbar" background-color:>
-    <div layout="row" layout-align="start center" class="md-toolbar-tools">
-        <div flex-gt-sm="90" flex-offset-gt-sm="5" flex-xl="80" flex-offset-xl="10" layout="row">
-            <div flex>
-                Profile
+<md-content layout-padding>
+    <div layout="row">
+        <div flex layout="row" layout-align="start center" class="v-font-color v-subheader v-profile-margin-rightleft">
+            <div>
+                Personal details
             </div>
         </div>
     </div>
-</md-toolbar>
-
-<md-content layout-padding="" class="v-top-content">
     <form name="userForm" ng-submit="ctrl.updateUserDetails()">
         <div layout="row" layout-xs="column">
             <div flex="20" class="v-profile-margin">
                 <div layout="column" flex-gt-lg="80" flex-offset-gt-lg="10" flex="90" flex-offset="5">
                     <div layout="row" layout-align="center center">
-                        <img ng-src="{{ctrl.user.avatar}}" class="swf-avatar" alt="avatar" width="100"
+                        <img ng-src="{{mainCtrl.user.avatar}}" class="v-avatar" alt="avatar" width="100"
                              height="100"/>
                     </div>
                     <div layout="column" layout-align="end center">

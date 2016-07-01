@@ -126,6 +126,11 @@
                     method: "GET",
                     url: velooUtil.getFullUrl(velooUtil.paths.bicycle + "/search"),
                     isArray: true
+                },
+                getBicycles: {
+                    method: "GET",
+                    url: velooUtil.getFullUrl(velooUtil.paths.bicycle),
+                    isArray: true
                 }
             });
 
@@ -148,10 +153,41 @@
                 }
             });
 
+        var Booking = $resource(velooUtil.getFullUrl(velooUtil.paths.booking + "/:id"),
+            {
+                id: "@id"
+            },
+            {
+                getBookings: {
+                    method: "GET",
+                    url: velooUtil.getFullUrl(velooUtil.paths.booking)
+                },
+                getBooking: {
+                    method: "GET",
+                    url: velooUtil.getFullUrl(velooUtil.paths.booking + "/:id")
+                },
+                updateBooking: {
+                    method: "PUT",
+                    url: velooUtil.getFullUrl(velooUtil.paths.booking + "/:id")
+                },
+                cancelBooking: {
+                    method: "POST",
+                    url: velooUtil.getFullUrl(velooUtil.paths.booking + "/:id/cancel")
+                },
+                rateBooking: {
+                    method: "POST",
+                    url: velooUtil.getFullUrl(velooUtil.paths.booking + "/:id/rate")
+                }
+            });
+        
+        var Message = $resource(velooUtil.getFullUrl(velooUtil.paths.message));
+
         return {
             Bicycle: Bicycle,
             Picture: Picture,
-            User: User
+            User: User,
+            Booking: Booking,
+            Message: Message
         };
     }
 })();
@@ -192,7 +228,9 @@
             return {
                 bicycle: 'bicycle',
                 picture: 'picture',
-                user: 'user'
+                user: 'user',
+                booking: 'booking',
+                message: 'message'
             };
         }
 

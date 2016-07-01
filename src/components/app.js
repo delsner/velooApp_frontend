@@ -25,7 +25,7 @@
                 })
 
         })
-        .config(function(uiGmapGoogleMapApiProvider) {
+        .config(function (uiGmapGoogleMapApiProvider) {
             uiGmapGoogleMapApiProvider.configure({
                 //    key: 'your api key',
                 v: '3.20', //defaults to latest 3.X anyhow
@@ -47,7 +47,7 @@
                 popupOptions: { width: 580, height: 400 }
             });
         })
-        .run(function ($location, $route, $rootScope, $mdSidenav, $mdMedia, $mdDialog, authService, $log) {
+        .run(function ($location, $route, $rootScope, $mdSidenav, $mdMedia, $mdDialog, authService, $log, velooData) {
             $rootScope.$on('$routeChangeStart', function (evt, next, current) {
                 var nextPath = $location.path(),
                     nextSearchParams = $location.search(),
@@ -59,57 +59,70 @@
                     $rootScope.showLogin();
                 }
                 /*if (authService.isAuthenticated()) {
-                    authService.Person.getMessages().$promise.then(function (success) {
-                        $rootScope.messagesSinceLastLogin = success;
-                    });
-                }*/
+                 authService.Person.getMessages().$promise.then(function (success) {
+                 $rootScope.messagesSinceLastLogin = success;
+                 });
+                 }*/
             });
-        $rootScope.setPathTo = function (path) {
-            //$mdSidenav('right').isOpen() && $rootScope.toggleSidenav('right'); //TODO: notwendig?
-            $location.search({}); //reset searchParams
-            if (angular.isString(path)) {
-                $location.path(path);
-            } else {
-                $log.error('path must be of type string. path =', path);
-            }
-        };
+            $rootScope.setPathTo = function (path) {
+                //$mdSidenav('right').isOpen() && $rootScope.toggleSidenav('right'); //TODO: notwendig?
+                $location.search({}); //reset searchParams
+                if (angular.isString(path)) {
+                    $location.path(path);
+                } else {
+                    $log.error('path must be of type string. path =', path);
+                }
+            };
 
-        $rootScope.toggleSidenav = function (menuId) {
-            $mdSidenav(menuId).toggle();
-        };
-        
-        $rootScope.showLogin = function () {
-            $mdSidenav('right').isOpen() && $rootScope.toggleSidenav('right'); //TODO: notwendig?
-            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs') || $mdMedia('md')); //TODO: notwendig?
+            $rootScope.getUserDetails = function () {
+                authService.getUserDetails().then(function(userDetails) {
+                    $rootScope.user = {
+                        avatar: userDetails.avatar ? userDetails.avatar.data : "images/dummyAvatar.png",
+                        id: userDetails._id,
+                        username: userDetails.username
+                    };
+                });
 
-            $mdDialog.show({
-                controller: 'authCtrl as ctrl',
-                templateUrl: 'components/auth/templates/login.tpl.html',
-                parent: angular.element(document.body),
-                clickOutsideToClose: true,
-                fullscreen: useFullScreen
-            });
-        };
+            };
 
-        $rootScope.showSignup = function () {
-            $mdSidenav('right').isOpen() && $rootScope.toggleSidenav('right'); //TODO: notwendig?
-            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs') || $mdMedia('md')); //TODO: notwendig?
+            $rootScope.getUserDetails();
 
-            $mdDialog.show({
-                controller: 'authCtrl as ctrl',
-                templateUrl: 'components/auth/templates/signup.tpl.html',
-                parent: angular.element(document.body),
-                clickOutsideToClose: true,
-                fullscreen: useFullScreen
-            });
-        };
+            $rootScope.toggleSidenav = function (menuId) {
+                $mdSidenav(menuId).toggle();
+            };
 
-        $rootScope.logout = function logout() {
-            authService.logout();
-            $location.path('/');
-            //$rootScope.routeVisited = null; //TODO: notwendig
-            //window.location.reload(true); //TODO: notwendig
-        };
+            $rootScope.showLogin = function () {
+                $mdSidenav('right').isOpen() && $rootScope.toggleSidenav('right'); //TODO: notwendig?
+                var useFullScreen = ($mdMedia('sm') || $mdMedia('xs') || $mdMedia('md')); //TODO: notwendig?
 
-    });
+                $mdDialog.show({
+                    controller: 'authCtrl as ctrl',
+                    templateUrl: 'components/auth/templates/login.tpl.html',
+                    parent: angular.element(document.body),
+                    clickOutsideToClose: true,
+                    fullscreen: useFullScreen
+                });
+            };
+
+            $rootScope.showSignup = function () {
+                $mdSidenav('right').isOpen() && $rootScope.toggleSidenav('right'); //TODO: notwendig?
+                var useFullScreen = ($mdMedia('sm') || $mdMedia('xs') || $mdMedia('md')); //TODO: notwendig?
+
+                $mdDialog.show({
+                    controller: 'authCtrl as ctrl',
+                    templateUrl: 'components/auth/templates/signup.tpl.html',
+                    parent: angular.element(document.body),
+                    clickOutsideToClose: true,
+                    fullscreen: useFullScreen
+                });
+            };
+
+            $rootScope.logout = function logout() {
+                authService.logout();
+                $location.path('/');
+                //$rootScope.routeVisited = null; //TODO: notwendig
+                //window.location.reload(true); //TODO: notwendig
+            };
+
+        });
 })();

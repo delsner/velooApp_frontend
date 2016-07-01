@@ -126,6 +126,21 @@ body {
   visibility: hidden;
 }
 
+.v-link:hover {
+  cursor: pointer;
+  color: $color_mainBlue;
+}
+
+.v-link {
+  color: grey;
+}
+
+.v-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
+
 /************** NAVBAR **************/
 md-toolbar.navbar-default {
   background-color: $color_mainBlue;
@@ -279,6 +294,66 @@ header .header-content .header-content-inner p {
   margin: auto;
 }
 
+.picture-container :hover {
+  cursor: pointer;
+}
+
+.picture-list-footer {
+  background: rgba(0, 0, 0, 0.78) !important;
+}
+
+.picture-list-item {
+  color: $colors_white;
+  background: $color_mainBlue;
+  text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1);
+
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -ms-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+}
+
+.picture-list-item:hover {
+  opacity: 0.8;
+}
+
+.slider-container {
+  background-color: lightgrey;
+  min-height: 100% !important;
+  min-width: 100% !important;
+
+  md-tabs-wrapper {
+    display: none !important;
+  }
+
+  .top-margin {
+    margin-top: 5px;
+  }
+
+}
+
+.slider-controls {
+  cursor: pointer;
+  md-icon {
+    color: white;
+    font-size: 46px;
+    position: relative;
+
+  }
+
+  .left {
+    right: 12px;
+    top: -10px;
+  }
+
+  .right {
+    right: 8px;
+    top: -12px;
+  }
+}
+
+
 /***************************** Bicycle View ********************/
 /******************************************* End Bicycle View ******************************************/
 
@@ -395,3 +470,24 @@ header .header-content .header-content-inner p {
 
 /**********************************  END BOOKING PROCESS *******************************/
 
+/******* LANDING PAGE LISTING *********/
+.v-bicycle-lp-img {
+  height: 200px;
+  width: 100%;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  object-fit: cover;
+}
+
+.card-image-container {
+  height: 250px;
+  background: no-repeat center center;
+  background-size: cover;
+
+  img {
+    object-fit: cover;
+  }
+}
