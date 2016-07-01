@@ -1,52 +1,26 @@
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('velooAngular')
         .controller('accountCtrl', accountCtrl);
 
-    function accountCtrl($scope, $mdDialog, velooData, $mdMedia) {
+    function accountCtrl($scope, $mdDialog, velooData, $mdMedia, authService, $rootScope) {
         var vm = this;
-
-        vm.updateUserDetails = updateUserDetails;
-        vm.bicycles = [];
-        
-
-
-        velooData.User.getUserDetails().$promise.then(function (data) {
-
-            vm.user = data;
-            vm.bicycles = velooData.Bicycle.getBicyclesOfUser({id: vm.user._id});
-            console.log(vm.user);
-
+        $rootScope.$watch('user', function(newValue, oldValue) {
+            vm.user = $rootScope.user;
+            if (vm.user) {
+                velooData.Bicycle.getBicyclesOfUser({
+                    id: vm.user.id
+                }).$promise.then(function(res) {
+                    vm.bicycles = res;
+                }, function(err) {
+                    console.log(err);
+                });
+            }
         });
 
-        ;
-
-        function updateUserDetails() {
-            velooData.User.updateUserDetails(vm.user).$promise.then(function (success) {
-                $mdDialog.show(
-                    $mdDialog.alert()
-                        .parent(angular.element(document.body))
-                        .clickOutsideToClose(true)
-                        .title('Läuft bei dir')
-                        .textContent('Passt.')
-                        .ok('Great'));
-
-                $rootScope.getUserDetails();
-
-            }, function (error) {
-                $mdDialog.show(
-                    $mdDialog.alert()
-                        .parent(angular.element(document.body))
-                        .clickOutsideToClose(true)
-                        .title('Bad Input')
-                        .textContent('Please check your inputs.')
-                        .ok('OK'));
-            });
-        }
-
-        $scope.$watch('ctrl.avatar', function (newValue, oldValue) {
+        $scope.$watch('ctrl.avatar', function(newValue, oldValue) {
             if (newValue) {
                 var useFullScreen = ($mdMedia('sm') || $mdMedia('xs') || $mdMedia('md'));
                 $mdDialog.show({
@@ -64,6 +38,29 @@
 
         });
 
+        vm.updateUserDetails = updateUserDetails;
+
+        function updateUserDetails() {
+            velooData.User.updateUserDetails(vm.user).$promise.then(function(success) {
+                $mdDialog.show(
+                    $mdDialog.alert()
+                    .parent(angular.element(document.body))
+                    .clickOutsideToClose(true)
+                    .title('Läuft bei dir')
+                    .textContent('Passt.')
+                    .ok('Great'));
+                $rootScope.getUserDetails();
+            }, function(error) {
+                $mdDialog.show(
+                    $mdDialog.alert()
+                    .parent(angular.element(document.body))
+                    .clickOutsideToClose(true)
+                    .title('Bad Input')
+                    .textContent('Please check your inputs.')
+                    .ok('OK'));
+            });
+        }
+
         function CropDialogController($scope, $rootScope, $http, $mdDialog, avatar, Upload, velooUtil) {
             var vm = this;
             vm.avatar = avatar;
@@ -77,24 +74,24 @@
 
                 $http.post(velooUtil.getFullUrl("user/avatar"), {
                     data: dataUrl
-                }).then(function (response) {
+                }).then(function(response) {
                     $mdDialog.show(
                         $mdDialog.alert()
-                            .parent(angular.element(document.body))
-                            .clickOutsideToClose(true)
-                            .title('Profil information updated')
-                            .textContent('Ihre Profildaten wurden erfolgreich geändert.')
-                            .ok('OK'));
+                        .parent(angular.element(document.body))
+                        .clickOutsideToClose(true)
+                        .title('Profil information updated')
+                        .textContent('Ihre Profildaten wurden erfolgreich geändert.')
+                        .ok('OK'));
                     $rootScope.getUserDetails();
-                }, function (response) {
+                }, function(response) {
                     $mdDialog.show(
                         $mdDialog.alert()
-                            .parent(angular.element(document.body))
-                            .clickOutsideToClose(true)
-                            .title('Fehler beim Upload')
-                            .textContent('Bitte verwenden Sie ein Bild mit Größe < 5 Mb mit einem der Formate png/jpg/jpeg/gif.')
-                            .ok('OK'));
-                }, function (evt) {
+                        .parent(angular.element(document.body))
+                        .clickOutsideToClose(true)
+                        .title('Fehler beim Upload')
+                        .textContent('Bitte verwenden Sie ein Bild mit Größe < 5 Mb mit einem der Formate png/jpg/jpeg/gif.')
+                        .ok('OK'));
+                }, function(evt) {
                     vm.determinateValue = parseInt(100.0 * evt.loaded / evt.total);
                 });
             }

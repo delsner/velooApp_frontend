@@ -5,7 +5,7 @@
         .module('velooAngular')
         .controller('showBicycleCtrl', showBicycleCtrl);
 
-    function showBicycleCtrl($scope, uiGmapGoogleMapApi, velooData, $routeParams, $rootScope, $mdDialog, $mdMedia, $mdSidenav, $location, $window) {
+    function showBicycleCtrl($scope, uiGmapGoogleMapApi, velooData, $routeParams, $rootScope, $mdDialog, $mdMedia, $mdSidenav, $location) {
         var vm = this;
 
         vm.showBookingRequest = showBookingRequest;

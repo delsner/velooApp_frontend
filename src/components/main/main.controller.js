@@ -8,11 +8,11 @@
     function mainCtrl($scope, $q, $log, $rootScope, $location, searchService, authService) {
         //variables
         var vm = this;
-        
+
         $rootScope.$watch('user', function(newValue, oldValue) {
             vm.user = $rootScope.user;
         });
-        
+
         //external functions
         vm.setPathTo = $rootScope.setPathTo;
         vm.showLogin = $rootScope.showLogin;
@@ -31,7 +31,6 @@
         vm.getOwnId = getOwnId;
 
         //functions
-        
         function getSearchHints(searchText) {
             var deferred = $q.defer();
 
@@ -67,11 +66,11 @@
         function selectedItemChange(item) {
             $log.info('Item changed to ' + JSON.stringify(item));
         }
-        
+
         function currentLocation() {
             return $location.path();
         }
-        
+
         function getOwnUsername() {
             return authService.getUserdata().username;
         }
