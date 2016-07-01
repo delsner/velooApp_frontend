@@ -124,14 +124,12 @@
             });
         }
 
-        function CropDialogController($scope, $rootScope, $http, $mdDialog, avatar, Upload, velooUtil, bookingService) {
+        function CropDialogController($scope, $rootScope, $http, $mdDialog, avatar, Upload, velooUtil) {
             var vm = this;
             vm.avatar = avatar;
 
             vm.upload = upload;
             vm.cancel = cancel;
-            vm.statusText = bookingService.getStatusText;
-            vm.getStatusIcon = bookingService.getStatusIcon;
 
             function upload(dataUrl) {
 
