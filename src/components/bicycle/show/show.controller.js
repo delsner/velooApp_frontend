@@ -11,7 +11,6 @@
         vm.showBookingRequest = showBookingRequest;
         vm.sendBooking = sendBooking;
         vm.cancel = cancel;
-        vm.goToEdit = goToEdit;
 
         velooData.Bicycle.get({id: $routeParams.id}).$promise.then(function (data) {
 
@@ -112,12 +111,6 @@
                 });
             });
 
-        }
-
-        function goToEdit() {
-            console.log('/bicycle/edit/' + vm.bicycle._id);
-            $location.path('/bicycle/edit/' + vm.bicycle._id);
-            vm.$apply();
         }
 
         function cancel() {
