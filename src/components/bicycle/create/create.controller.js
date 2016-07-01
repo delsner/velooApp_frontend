@@ -1,4 +1,4 @@
-(function (angular) {
+(function(angular) {
     'use strict';
 
     angular
@@ -11,26 +11,22 @@
         vm.bicycleTypes = ["Mountainbike", "Racing Bicycle", "Road Bicycle", "Touring Bicycle"];
         vm.bicycleCategories = ["Female", "Male", "Children"];
         vm.bicycleSizes = ["XS", "S", "M", "L", "XL"];
-        vm.bicycleFeatures = [
-            {
-                feature: "Lock",
-                isSelected: false,
-            },
-            {
-                feature: "Helmet",
-                isSelected: false,
-            },
-            {
-                feature: "Airpump",
-                isSelected: false,
-            },
-            {
-                feature: "Repairkit",
-                isSelected: false,
-            }
-        ];
+        vm.bicycleFeatures = [{
+            feature: "Lock",
+            isSelected: false,
+        }, {
+            feature: "Helmet",
+            isSelected: false,
+        }, {
+            feature: "Airpump",
+            isSelected: false,
+        }, {
+            feature: "Repairkit",
+            isSelected: false,
+        }];
         vm.newFeature = "";
         vm.newFeatures = [];
+        vm.files = [];
 
         vm.map = {
             center: {
@@ -46,7 +42,9 @@
                 latitude: 48.137,
                 longitude: 11.577
             },
-            options: {draggable: false}
+            options: {
+                draggable: false
+            }
         };
 
         vm.bicycle = {
@@ -76,34 +74,37 @@
 
         function saveBicycle() {
             var promise = base64encodeImages();
-            promise.then(function (images) {
+            promise.then(function(images) {
                 vm.bicycle.images = images;
                 vm.bicycle.featureArray = vm.bicycleFeatures.concat(vm.newFeatures);
                 vm.bicycle.location = [vm.bicycle.longitude, vm.bicycle.latitude];
-                velooData.Bicycle.save(vm.bicycle).$promise.then(function (success) {
+                velooData.Bicycle.save(vm.bicycle).$promise.then(function(success) {
                     console.log(vm.bicycle);
                     $rootScope.setPathTo("/bicycle/" + success._id);
-                }, function (error) {
+                }, function(error) {
                     $mdDialog.show(
                         $mdDialog.alert()
-                            .parent(angular.element(document.body))
-                            .clickOutsideToClose(true)
-                            .title('Bad Input')
-                            .textContent('Please check your inputs.')
-                            .ok('OK'));
+                        .parent(angular.element(document.body))
+                        .clickOutsideToClose(true)
+                        .title('Bad Input')
+                        .textContent('Please check your inputs.')
+                        .ok('OK'));
                 });
             });
         }
 
         function addFeature() {
-            vm.newFeatures.push({feature: vm.newFeature, isSelected: true});
+            vm.newFeatures.push({
+                feature: vm.newFeature,
+                isSelected: true
+            });
             vm.newFeature = "";
         }
 
         function getGeolocation() {
             if (vm.bicycle.street && vm.bicycle.zipcode && vm.bicycle.city) {
                 $http.get("http://nominatim.openstreetmap.org/search?format=json&addressdetails=0&q=" +
-                    vm.bicycle.street + " " + vm.bicycle.zipcode + " " + vm.bicycle.city).then(function (success) {
+                    vm.bicycle.street + " " + vm.bicycle.zipcode + " " + vm.bicycle.city).then(function(success) {
                     if (success.data[0]) {
                         vm.marker.coords.latitude = parseFloat(success.data[0].lat);
                         vm.marker.coords.longitude = parseFloat(success.data[0].lon);
@@ -115,7 +116,7 @@
                         vm.bicycle.latitude = parseFloat(success.data[0].lat);
                         vm.bicycle.longitude = parseFloat(success.data[0].lon);
                     }
-                }, function (error) {
+                }, function(error) {
 
                 });
             }
@@ -126,21 +127,29 @@
         }
 
         function base64encodeImages() {
-            return $q(function (resolve, reject) {
+            return $q(function(resolve, reject) {
                 var results = [];
-                vm.files.forEach(function (e) {
+                vm.files.forEach(function(e) {
                     var reader = new window.FileReader();
                     reader.readAsDataURL(e);
-                    reader.onloadend = function () {
+                    reader.onloadend = function() {
                         var base64data = reader.result;
-                        results.push({description: e.description ? e.description : e.name, data: reader.result});
+                        results.push({
+                            description: e.description ? e.description : e.name,
+                            data: reader.result
+                        });
                         if (results.length == vm.files.length) {
                             resolve(results);
                             console.log("done");
                         }
                     }
                 });
+
+                if (vm.files.length == 0) {
+                    resolve(results);
+                }
             });
+
         }
     }
 })(angular);
