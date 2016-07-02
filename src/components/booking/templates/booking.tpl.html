@@ -32,7 +32,7 @@
                     <span>Cancel Booking</span>
                 </md-button>
 
-                <md-button ng-if="ctrl.statusText == 'Rateable'" class="md-primary md-raised" ng-click="ctrl.showRatingDialog()">
+                <md-button ng-if="ctrl.statusText == 'Rateable' && !ctrl.booking.yetRated" class="md-primary md-raised" ng-click="ctrl.showRatingDialog()">
                     <md-icon>stars</md-icon>
                     <span>Rate</span>
                 </md-button>
@@ -103,7 +103,8 @@
         </div>
 
         <div layout="column" layout-align="center center" class="v-padding">
-            <img ng-src="{{ctrl.getAvatar()}}" class="md-avatar v-profile-img" alt="avatar"/>
+            <img ng-if="ctrl.booking" ng-src="{{ctrl.getAvatar()}}" class="md-avatar v-profile-img" alt="avatar"/>
+            <img ng-if="!ctrl.booking" src="images/avatar.png" class="md-avatar v-profile-img" alt="avatar"/>
             <div>{{mainCtrl.user.id==ctrl.booking.endUser._id ?
                 ctrl.booking.provider.username : ctrl.booking.endUser.username}}
             </div>
