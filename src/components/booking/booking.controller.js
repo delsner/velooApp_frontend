@@ -91,12 +91,9 @@
         }
 
         function rateBooking() {
-            velooData.Rating.save({
+            velooData.Booking.rateBooking({id:vm.booking._id},{
                 ratingText: vm.ratingText,
-                starRating: vm.rating,
-                rater: vm.user.id,
-                ratedUser: vm.user.id == vm.booking.endUser._id ? vm.booking.provider._id : vm.booking.endUser._id,
-                booking: vm.booking._id
+                starRating: vm.rating
             }).$promise.then(function (success) {
                 $mdDialog.show(
                     $mdDialog.alert()
@@ -213,4 +210,3 @@
         }
     }
 })(angular);
-
