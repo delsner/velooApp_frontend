@@ -132,17 +132,11 @@
             <div class="v-lr-padding" layout="column">
                 <div id="features">
                     <div layout-xs="column" layout-gt-sm="row">
-                        <md-input-container flex="20">
-                            <md-checkbox md-no-ink ng-model="ctrl.bicycle.carrier" class="md-primary">
-                                <span>Carrier</span>
-                            </md-checkbox>
-                        </md-input-container>
                         <md-input-container flex="20" ng-repeat="feature in ctrl.bicycleFeatures">
                             <md-checkbox md-no-ink ng-model="feature.isSelected" class="md-primary">
                                 <span>{{feature.feature}}
                                 </span>
                             </md-checkbox>
-
                         </md-input-container>
                     </div>
                     <div layout="column">

@@ -4,7 +4,7 @@
              ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.bicycles[x]._id)">
         <div class="card-image-container"
              ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[x]._id)">
-            <img ng-src="{{ctrl.bicycles[x].pictures[0].data}}">
+            <img ng-src="{{ctrl.bicycles[x].pictures[0].data ? ctrl.bicycles[x].pictures[0].data : '/images/dummyBike.png' }}">
         </div>
         <md-card-title>
             <md-card-title-text layout="row" layout-align="center center">
@@ -50,7 +50,7 @@
              ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.bicycles[x]._id)">
         <div class="card-image-container"
              ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[x]._id)">
-            <img ng-src="{{ctrl.bicycles[x].pictures[0].data}}">
+            <img ng-src="{{ctrl.bicycles[x].pictures[0].data ? ctrl.bicycles[x].pictures[0].data : '/images/dummyBike.png' }}">
         </div>
         <md-card-title>
             <md-card-title-text layout="row" layout-align="center center">

@@ -18,9 +18,15 @@
     </div>-->
 
     <div flex layout-gt-sm="row" layout-align="center center" class="v-card-style">
-        <img flex-gt-sm="33" ng-if="ctrl.bicycle.pictures[0]" ng-src="{{ctrl.bicycle.pictures[0].data}}" class="v-bicycle-img picture-list-item" ng-click="ctrl.showTabDialog(0)">
-        <img flex-gt-sm="33" ng-if="ctrl.bicycle.pictures[1]" ng-src="{{ctrl.bicycle.pictures[1].data}}" class="v-bicycle-img picture-list-item" ng-click="ctrl.showTabDialog(1)">
-        <div flex-gt-sm="33" layout="column" layout-align="center center" ng-if="ctrl.bicycle.pictures[2]" style="background-image:url({{ctrl.bicycle.pictures[2].data}}); background-size: cover;" class="v-bicycle-img picture-list-item" ng-click="ctrl.showTabDialog(2)">
+        <img flex-gt-sm="33" ng-src="{{ctrl.bicycle.pictures[0].data ? ctrl.bicycle.pictures[0].data : '/images/dummyBike.png' }}" class="v-bicycle-img picture-list-item" ng-click="ctrl.showTabDialog(0)">
+        <img flex-gt-sm="33" ng-src="{{ctrl.bicycle.pictures[1].data ? ctrl.bicycle.pictures[1].data : '/images/dummyBike.png' }}" class="v-bicycle-img picture-list-item" ng-click="ctrl.showTabDialog(1)">
+        <div
+            flex-gt-sm="33"
+            layout="column"
+            layout-align="center center"
+            style="background-image:url({{ctrl.bicycle.pictures[2].data ? ctrl.bicycle.pictures[2].data : '/images/dummyBike.png' }}); background-size: cover;"
+            class="v-bicycle-img picture-list-item"
+            ng-click="ctrl.showTabDialog(2)">
             <h1 ng-if="ctrl.bicycle.pictures.length > 3">+{{ctrl.bicycle.pictures.length-3}}
                 <span ng-show="ctrl.bicycle.pictures.length > 4">more pictures</span>
                 <span ng-show="ctrl.bicycle.pictures.length <= 4">more picture</span>

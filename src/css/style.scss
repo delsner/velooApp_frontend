@@ -193,9 +193,7 @@ md-icon svg {
 
 .picture-list-item {
   color: $colors_white_background;
-  background: $colors_black_background;
   text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1);
-
   -webkit-transition: all 0.5s linear;
   -moz-transition: all 0.5s linear;
   -ms-transition: all 0.5s linear;
@@ -369,22 +367,6 @@ header .header-content .header-content-inner p {
 
 .picture-list-footer {
   background: rgba(0, 0, 0, 0.78) !important;
-}
-
-.picture-list-item {
-  color: $colors_white;
-  background: $color_mainBlue;
-  text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1);
-
-  -webkit-transition: all 0.5s linear;
-  -moz-transition: all 0.5s linear;
-  -ms-transition: all 0.5s linear;
-  -o-transition: all 0.5s linear;
-  transition: all 0.5s linear;
-}
-
-.picture-list-item:hover {
-  opacity: 0.8;
 }
 
 .slider-container {
