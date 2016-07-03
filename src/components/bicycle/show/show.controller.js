@@ -19,7 +19,15 @@
         }).$promise.then(function(data) {
 
             vm.bicycle = data;
+            vm.bicycle.selectedFeatures = [];
+            
             console.log(vm.bicycle);
+            
+            vm.bicycle.features.forEach(function(feature) {
+                if(feature.isSelected) {
+                    vm.bicycle.selectedFeatures.push(feature);
+                }
+            });
 
             vm.map = {
                 center: {

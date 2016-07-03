@@ -595,11 +595,19 @@ header .header-content .header-content-inner p {
 
 /************ SEARCH ***********/
 .v-search-map .angular-google-map-container {
-  height: calc(100vh - 170px);
+  height: calc(100vh - 150px);
   width: inherit;
   margin: auto;
 }
 
 .v-search-results {
-  height: calc(100vh - 170px);
+  height: calc(100vh - 150px);
+}
+
+.v-hover-search-result:hover {
+  border: 1px solid $color_mainBlue;
+}
+
+.v-hover-search-result {
+  cursor:pointer;
 }

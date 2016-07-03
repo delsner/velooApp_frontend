@@ -33,6 +33,8 @@
         vm.getSearchResultsWithPaginationOffset = getSearchResultsWithPaginationOffset;
         vm.paginationActiveIndex = paginationActiveIndex;
         vm.showMarkerWindow = showMarkerWindow;
+        vm.showSelectedBicycleMarker = showSelectedBicycleMarker;
+        vm.hideSelectedBicycleMarker = hideSelectedBicycleMarker;
 
         function showMarkerWindow(marker, eventName, model) {
             model.show = !model.show;
@@ -83,15 +85,30 @@
                         });
 
                         if (vm.bicycles[0]) {
+
+                            var mapCenter = {
+                                latitude: null,
+                                longitude: null
+                                };
+
+                            var counter = 0;
+
+                            vm.bicycles.forEach(function(bicycle) {
+                                counter++;
+                                mapCenter.latitude += bicycle.location[1];
+                                mapCenter.longitude += bicycle.location[0];
+                            });
+
+                            vm.mapCenter = mapCenter;
+
                             vm.map = {
                                 center: {
-                                    latitude: vm.bicycles[0].location[1],
-                                    longitude: vm.bicycles[0].location[0]
+                                    latitude: (mapCenter.latitude/counter),
+                                    longitude: (mapCenter.longitude/counter)
                                 },
-                                zoom: 14
+                                zoom: 12
                             };
 
-                            vm.markers[0].show = true;
                         }
 
                         $rootScope.loading = false;
@@ -115,6 +132,17 @@
             }
         }
 
+        function showSelectedBicycleMarker(id) {
+            vm.markers[id].show = true;
+            /*vm.map.center.latitude = vm.bicycles[id].location[1];
+            vm.map.center.longitude = vm.bicycles[id].location[0];*/
+        }
 
+        function hideSelectedBicycleMarker(id) {
+            vm.markers[id].show = false;
+           /* vm.map.center.latitude = vm.mapCenter.latitude;
+            vm.map.center.longitude = vm.mapCenter.longitude;*/
+        }
+        
     }
 })();

@@ -139,14 +139,27 @@
                 </div>
             </div>
 
-            <div layout-gt-sm="row" ng-repeat="feature in ctrl.bicycle.features | filter:{ isSelected:true }">
-                <md-list ng-cloak>
+            <div layout-gt-sm="row" ng-repeat="feature in ctrl.bicycle.selectedFeatures track by $index" ng-show="$index % 3 == 0 || $index == 0">
+                <md-list ng-cloak flex-gt-sm="33" ng-if="ctrl.bicycle.selectedFeatures[$index] != null">
                     <md-list-item>
                         <md-icon class="md-primary">check_box</md-icon>
-                        <p>{{feature.feature}}</p>
+                        <p>{{ctrl.bicycle.selectedFeatures[$index].feature}}</p>
+                    </md-list-item>
+                </md-list>
+                <md-list ng-cloak flex-gt-sm="33" ng-if="ctrl.bicycle.selectedFeatures[$index+1] != null">
+                    <md-list-item>
+                        <md-icon class="md-primary">check_box</md-icon>
+                        <p>{{ctrl.bicycle.selectedFeatures[$index+1].feature}}</p>
+                    </md-list-item>
+                </md-list>
+                <md-list ng-cloak ng-if="ctrl.bicycle.selectedFeatures[$index+2] != null">
+                    <md-list-item flex-gt-sm="33">
+                        <md-icon class="md-primary">check_box</md-icon>
+                        <p>{{ctrl.bicycle.selectedFeatures[$index+2].feature}}</p>
                     </md-list-item>
                 </md-list>
             </div>
+
         </div>
     </div>
 </div>
