@@ -86,8 +86,8 @@
 
         function getAvatar() {
             if (vm.booking && $rootScope.user) {
-                var avatar = $rootScope.user.id == vm.booking.endUser._id ? vm.booking.provider.avatar.data : vm.booking.endUser.avatar.data;
-                return avatar ? avatar : 'images/avatar.png';
+                var avatar = $rootScope.user.id == vm.booking.endUser._id ? vm.booking.provider.avatar : vm.booking.endUser.avatar;
+                return avatar ? avatar.data : 'images/avatar.png';
             }
         }
 
