@@ -16,6 +16,7 @@
         velooData.Bicycle.get({id: $routeParams.id}).$promise.then(function (data) {
 
             vm.bicycle = data;
+            console.log(vm.bicycle);
 
             vm.map = {
                 center: {

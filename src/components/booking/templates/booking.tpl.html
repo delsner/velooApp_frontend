@@ -104,14 +104,21 @@
 
         <div layout="column" layout-align="center center" class="v-padding">
             <img ng-if="ctrl.booking" ng-src="{{ctrl.getAvatar()}}" class="md-avatar v-profile-img" alt="avatar"/>
-            <img ng-if="!ctrl.booking" src="images/avatar.png" class="md-avatar v-profile-img" alt="avatar"/>
             <div>{{mainCtrl.user.id==ctrl.booking.endUser._id ?
                 ctrl.booking.provider.username : ctrl.booking.endUser.username}}
             </div>
-            <div layout="row">
+            <div layout="row" ng-if="ctrl.user.id == ctrl.booking.endUser._id">
                 <li class="v-rating-stars" ng-repeat="x in [1,2,3,4,5]">
                     <md-icon ng-style="{color:'orange'}"
                              ng-show="ctrl.booking.provider.aggregatedRating >= x">
+                        star
+                    </md-icon>
+                </li>
+            </div>
+            <div layout="row" ng-if="ctrl.user.id == ctrl.booking.provider._id">
+                <li class="v-rating-stars" ng-repeat="x in [1,2,3,4,5]">
+                    <md-icon ng-style="{color:'orange'}"
+                             ng-show="ctrl.booking.endUser.aggregatedRating >= x">
                         star
                     </md-icon>
                 </li>
@@ -137,6 +144,13 @@
 
         <div class="v-font-color v-subheader" layout="row" layout-align="start center">
             <div>Ratings</div>
+        </div>
+
+        <div ng-if="ctrl.user.id==ctrl.booking.endUser._id && ctrl.booking.provider.ratings.length == 0" layout="row" layout-align="center center">
+            <div class="md-padding md-caption">No ratings yet.</div>
+        </div>
+        <div ng-if="ctrl.user.id!=ctrl.booking.endUser._id && ctrl.booking.endUser.ratings.length == 0" layout="row" layout-align="center center">
+            <div class="md-padding md-caption">No ratings yet.</div>
         </div>
 
         <md-list ng-cloak ng-if="ctrl.user.id==ctrl.booking.endUser._id">

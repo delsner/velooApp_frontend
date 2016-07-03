@@ -1,8 +1,11 @@
 <md-list>
-    <md-list-item ng-repeat="booking in ctrl.bookings" ng-click="mainCtrl.setPathTo('/booking/' + booking._id)" >
+    <md-list-item ng-repeat="booking in ctrl.bookings" ng-click="mainCtrl.setPathTo('/booking/' + booking._id)">
         <md-icon>description</md-icon>
-        <div flex>
-            Booking with {{ctrl.user.id==booking.endUser._id ? booking.provider.username : booking.endUser.username}}
+        <div flex layout="row">
+                <div>
+                    Booking with {{ctrl.user.id==booking.endUser._id ? booking.provider.username :
+                    booking.endUser.username}} <span class="md-caption">({{booking.createdAt | date: 'mediumDate' }})</span>
+                </div>
         </div>
         <div flex layout-gt-sm="row" layout-align="start center">
             <div layout="row">

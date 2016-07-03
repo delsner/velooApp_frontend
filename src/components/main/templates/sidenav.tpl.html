@@ -4,10 +4,20 @@
 
 <md-list class="sidenav-list">
 
-        <md-list-item class="md-1-line" ng-click="mainCtrl.setPathTo('/bicycle/create')">
+    <md-list-item class="md-1-line" ng-click="mainCtrl.setPathTo('/search')">
+        <md-item-content layout="row" layout-align="start center">
+            <div class="inset">
+                <md-icon class="md-icon">search</md-icon>
+            </div>
+            <div class="inset">Search</div>
+        </md-item-content>
+    </md-list-item>
+    <md-divider></md-divider>
+
+        <md-list-item ng-show="mainCtrl.isAuthenticated()" class="md-1-line" ng-click="mainCtrl.setPathTo('/bicycle/create')">
             <md-item-content layout="row" layout-align="start center">
                 <div class="inset">
-                    <md-icon class="md-icon">bike</md-icon>
+                    <md-icon class="md-icon">directions_bike</md-icon>
                 </div>
                 <div class="inset">Offer Bicycle</div>
             </md-item-content>
@@ -24,7 +34,17 @@
         </md-list-item>
         <md-divider></md-divider>
 
-        <md-list-item class="md-1-line" ng-click="mainCtrl.showLogin()">
+    <md-list-item class="md-1-line" ng-click="mainCtrl.setPathTo('/account')" ng-show="mainCtrl.isAuthenticated()">
+        <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+                <md-icon class="md-icon">person</md-icon>
+            </div>
+            <div class="inset">My Account</div>
+        </md-item-content>
+    </md-list-item>
+    <md-divider></md-divider>
+
+        <md-list-item class="md-1-line" ng-click="mainCtrl.showLogin()" ng-show="!mainCtrl.isAuthenticated()">
             <md-item-content md-ink-ripple layout="row" layout-align="start center">
                 <div class="inset">
                     <md-icon class="md-icon">input</md-icon>
@@ -33,5 +53,15 @@
             </md-item-content>
         </md-list-item>
         <md-divider></md-divider>
+
+    <md-list-item class="md-1-line" ng-click="mainCtrl.logout()" ng-show="mainCtrl.isAuthenticated()">
+        <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+                <md-icon class="md-icon">input</md-icon>
+            </div>
+            <div class="inset">Logout</div>
+        </md-item-content>
+    </md-list-item>
+    <md-divider></md-divider>
 
 </md-list>

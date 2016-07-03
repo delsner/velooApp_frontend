@@ -7,7 +7,6 @@ $colors_warn: rgba(221, 44, 0, 1.0);
 $colors_white: rgb(250, 250, 250);
 $colors_transparent_light_background: rgba(255, 255, 255, 0.7);
 $colors_transparent_dark_background: rgba(0, 0, 0, 0.5);
-
 /* Styles go here */
 * {
   margin: 0;
@@ -26,6 +25,8 @@ li {
 #nav {
   z-index: 2;
 }
+
+
 
 #content {
   -webkit-flex: 1 0 auto;
@@ -100,7 +101,7 @@ md-icon svg {
   background-color: rgb(250, 250, 250) !important;
   color: $color_font !important;
   border-bottom: $color_mainBlue 1px solid;
-  /*z-index: 999;*/
+  z-index: 2;
   position: fixed;
   @media(max-width: 768px) {
     margin-top: 48px;
@@ -523,6 +524,10 @@ header .header-content .header-content-inner p {
 }
 
 .status-confirmed {
+  color: $color_mainGreen !important;
+}
+
+.status-finished {
   color: $color_mainGreen !important;
 }
 
