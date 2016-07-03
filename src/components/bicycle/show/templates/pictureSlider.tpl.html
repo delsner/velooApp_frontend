@@ -1,7 +1,7 @@
 <md-dialog class="slider-container">
     <md-toolbar>
         <div class="md-toolbar-tools top-margin">
-            <h2>Bilder zu {{ctrl.transactionObject.name}}</h2>
+            <h2>Bilder zu {{ctrl.bicycle.type}}</h2>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="ctrl.cancel()">
                 <md-icon aria-label="Close dialog">close</md-icon>
@@ -19,7 +19,7 @@
                         <div class="slider-image" layout="row" layout-align="center center" ng-click="ctrl.nextTabIndex();$event.stopPropagation()">
                             <img ng-src="{{x.data}}">
                         </div>
-                        <div class="v-color-white">{{x.description}}</div>
+                        <div class="slider-description v-color-white">{{x.description}}</div>
                     </div>
                     <div class="slider-controls" ng-click="ctrl.nextTabIndex();$event.stopPropagation()">
                         <md-icon class="right">keyboard_arrow_right</md-icon>

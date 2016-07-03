@@ -11,6 +11,7 @@
         vm.showBookingRequest = showBookingRequest;
         vm.sendBooking = sendBooking;
         vm.cancel = cancel;
+        vm.showTabDialog = showTabDialog;
 
         velooData.Bicycle.get({id: $routeParams.id}).$promise.then(function (data) {
 
@@ -71,8 +72,65 @@
 
         });
 
-        function showBookingRequest() {
+        function showTabDialog(tabIndex) {
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs') || $mdMedia('md'));
+            $mdDialog.show({
+                controller: DialogSliderController,
+                controllerAs: 'ctrl',
+                templateUrl: 'components/bicycle/show/templates/pictureSlider.tpl.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: true,
+                fullscreen: useFullScreen,
+                locals: {
+                    tabIndex: tabIndex,
+                    bicycle: vm.bicycle
+                }
+            });
 
+            function DialogSliderController($scope, $window, $mdDialog, tabIndex, bicycle) {
+                var vm = this;
+                vm.tabIndex = tabIndex;
+                vm.bicycle = bicycle;
+                vm.cancel = cancel;
+                vm.nextTabIndex = nextTabIndex;
+                vm.lastTabIndex = lastTabIndex;
+
+                $window.onkeyup = function (e) {
+                    var key = e.keyCode ? e.keyCode : e.which;
+
+                    if (key == 37) {
+                        lastTabIndex();
+
+                    } else if (key == 39) {
+                        nextTabIndex();
+                    }
+                    $scope.$apply();
+                };
+
+                function cancel() {
+                    $mdDialog.cancel();
+                }
+
+                function nextTabIndex() {
+                    if (vm.tabIndex + 1 < vm.bicycle.pictures.length) {
+                        vm.tabIndex++;
+                    } else {
+                        vm.tabIndex = 0;
+                    }
+                }
+
+                function lastTabIndex() {
+                    console.log("last");
+                    if (vm.tabIndex - 1 >= 0) {
+                        vm.tabIndex--;
+                    } else {
+                        vm.tabIndex = vm.bicycle.pictures.length - 1;
+                    }
+                }
+            }
+        }
+
+        function showBookingRequest() {
             $mdSidenav('right').isOpen() && toggleSidenav('right'); //TODO: unnötig?
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs') || $mdMedia('md'));
             $mdDialog.show({
