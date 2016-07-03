@@ -1,4 +1,4 @@
-(function (angular) {
+(function(angular) {
     'use strict';
 
     angular
@@ -12,8 +12,11 @@
         vm.sendBooking = sendBooking;
         vm.cancel = cancel;
         vm.showTabDialog = showTabDialog;
+        vm.availableFilter = availableFilter;
 
-        velooData.Bicycle.get({id: $routeParams.id}).$promise.then(function (data) {
+        velooData.Bicycle.get({
+            id: $routeParams.id
+        }).$promise.then(function(data) {
 
             vm.bicycle = data;
             console.log(vm.bicycle);
@@ -32,44 +35,39 @@
                     latitude: vm.bicycle.location[1],
                     longitude: vm.bicycle.location[0]
                 },
-                options: {draggable: false}
+                options: {
+                    draggable: false
+                }
             };
 
-            vm.bicycleInformationLeftList = [
-                {
+            vm.bicycleInformationLeftList = [{
                     icon: "euro_symbol",
                     bind: vm.bicycle.price,
                     label: "Price per day: "
-                },
-                {
+                }, {
                     icon: "format_size",
                     bind: vm.bicycle.size,
                     label: "Size: "
-                },
-                {
+                }, {
                     icon: "polymer",
                     bind: vm.bicycle.brand,
                     label: "Brand: "
                 }
 
             ];
-            vm.bicycleInformationRightList = [
-                {
-                    icon: "directions_bike",
-                    bind: vm.bicycle.type,
-                    label: "Bicycle type: "
-                },
-                {
-                    icon: "settings",
-                    bind: vm.bicycle.gears,
-                    label: "Number of gears: "
-                },
-                {
-                    icon: "supervisor_account",
-                    bind: vm.bicycle.category,
-                    label: "Bicycle category: "
-                }
-            ];
+            vm.bicycleInformationRightList = [{
+                icon: "directions_bike",
+                bind: vm.bicycle.type,
+                label: "Bicycle type: "
+            }, {
+                icon: "settings",
+                bind: vm.bicycle.gears,
+                label: "Number of gears: "
+            }, {
+                icon: "supervisor_account",
+                bind: vm.bicycle.category,
+                label: "Bicycle category: "
+            }];
 
         });
 
@@ -96,7 +94,7 @@
                 vm.nextTabIndex = nextTabIndex;
                 vm.lastTabIndex = lastTabIndex;
 
-                $window.onkeyup = function (e) {
+                $window.onkeyup = function(e) {
                     var key = e.keyCode ? e.keyCode : e.which;
 
                     if (key == 37) {
@@ -144,26 +142,46 @@
 
         }
 
+        function availableFilter(date) {
+            var day = new Date(date);
+            var result = true;
+
+            if (vm.bicycle && vm.bicycle.restrictions) {
+                if (vm.bicycle.restrictions.length > 0) {
+                    vm.bicycle.restrictions.forEach(function(r) {
+                        var restriction = new Date(r);
+                        if (restriction.getTime() == day.getTime()) {
+                            result = false;
+                        }
+                    });
+                }
+            }
+            if (new Date(date) < new Date()) {
+                result = false;
+            }
+            return result;
+        }
+
         function sendBooking() {
 
             velooData.Booking.save({
                 startDate: vm.startDate.valueOf(),
                 endDate: vm.endDate.valueOf(),
                 bicycle: vm.bicycle._id
-            }).$promise.then(function (data) {
+            }).$promise.then(function(data) {
                 console.log("should send message now");
                 console.log(data);
                 velooData.Message.save({
                     text: vm.bookingText,
                     booking: data._id
-                }).$promise.then(function (message) {
+                }).$promise.then(function(message) {
                     $mdDialog.show(
                         $mdDialog.alert()
-                            .parent(angular.element(document.body))
-                            .clickOutsideToClose(true)
-                            .title('Booking successful')
-                            .ok('OK'));
-                    $location.path('/booking/'+ data._id);
+                        .parent(angular.element(document.body))
+                        .clickOutsideToClose(true)
+                        .title('Booking successful')
+                        .ok('OK'));
+                    $location.path('/booking/' + data._id);
                 });
             });
 

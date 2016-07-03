@@ -104,6 +104,7 @@
 
         <div layout="column" layout-align="center center" class="v-padding">
             <img ng-if="ctrl.booking" ng-src="{{ctrl.getAvatar()}}" class="md-avatar v-profile-img" alt="avatar"/>
+
             <div>{{mainCtrl.user.id==ctrl.booking.endUser._id ?
                 ctrl.booking.provider.username : ctrl.booking.endUser.username}}
             </div>
