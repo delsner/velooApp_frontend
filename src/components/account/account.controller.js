@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8,16 +8,16 @@
     function accountCtrl($scope, $mdDialog, velooData, $mdMedia, authService, $rootScope) {
         var vm = this;
 
-        $rootScope.$watch('user', function(newValue, oldValue) {
-            vm.user = $rootScope.user;
-           
-            if (vm.user) {
+        $rootScope.$watch('user', function (newValue, oldValue) {
+            vm.userDetails = $rootScope.user;
+
+            if (vm.userDetails) {
                 vm.getBicyclesOfUser();
                 vm.getBookingsOfUser();
             }
         });
 
-        $scope.$watch('ctrl.avatar', function(newValue, oldValue) {
+        $scope.$watch('ctrl.avatar', function (newValue, oldValue) {
             if (newValue) {
                 var useFullScreen = ($mdMedia('sm') || $mdMedia('xs') || $mdMedia('md'));
                 $mdDialog.show({
@@ -33,6 +33,10 @@
                 });
             }
 
+        });
+
+        velooData.User.get().$promise.then(function(res) {
+           vm.user = res;
         });
 
         vm.updateUserDetails = updateUserDetails;
@@ -84,43 +88,43 @@
             }
             return statusIcon;
         }
-        
+
 
         function getBicyclesOfUser() {
             velooData.Bicycle.getBicyclesOfUser({
-                id: vm.user.id
-            }).$promise.then(function(res) {
+                id: vm.userDetails.id
+            }).$promise.then(function (res) {
                 vm.bicycles = res;
-            }, function(err) {
+            }, function (err) {
                 console.log(err);
             });
         }
-        
+
         function getBookingsOfUser() {
-            velooData.Booking.getBookings().$promise.then(function(res) {
+            velooData.Booking.getBookings().$promise.then(function (res) {
                 vm.bookings = res;
                 console.log(res);
             })
         }
-        
+
         function updateUserDetails() {
-            velooData.User.updateUserDetails(vm.user).$promise.then(function(success) {
+            velooData.User.updateUserDetails(vm.user).$promise.then(function (success) {
                 $mdDialog.show(
                     $mdDialog.alert()
-                    .parent(angular.element(document.body))
-                    .clickOutsideToClose(true)
-                    .title('Update successful')
-                    .textContent('Profile information successfully updated!')
-                    .ok('Great'));
+                        .parent(angular.element(document.body))
+                        .clickOutsideToClose(true)
+                        .title('Update successful')
+                        .textContent('Profile information successfully updated!')
+                        .ok('Great'));
                 $rootScope.getUserDetails();
-            }, function(error) {
+            }, function (error) {
                 $mdDialog.show(
                     $mdDialog.alert()
-                    .parent(angular.element(document.body))
-                    .clickOutsideToClose(true)
-                    .title('Bad Input')
-                    .textContent('Please check your inputs.')
-                    .ok('OK'));
+                        .parent(angular.element(document.body))
+                        .clickOutsideToClose(true)
+                        .title('Bad Input')
+                        .textContent('Please check your inputs.')
+                        .ok('OK'));
             });
         }
 
@@ -137,24 +141,24 @@
 
                 $http.post(velooUtil.getFullUrl("user/avatar"), {
                     data: dataUrl
-                }).then(function(response) {
+                }).then(function (response) {
                     $mdDialog.show(
                         $mdDialog.alert()
-                        .parent(angular.element(document.body))
-                        .clickOutsideToClose(true)
-                        .title('Update successful')
-                        .textContent('Profile information successfully updated!')
-                        .ok('OK'));
+                            .parent(angular.element(document.body))
+                            .clickOutsideToClose(true)
+                            .title('Update successful')
+                            .textContent('Profile information successfully updated!')
+                            .ok('OK'));
                     $rootScope.getUserDetails();
-                }, function(response) {
+                }, function (response) {
                     $mdDialog.show(
                         $mdDialog.alert()
-                        .parent(angular.element(document.body))
-                        .clickOutsideToClose(true)
-                        .title('Fehler beim Upload')
-                        .textContent('Bitte verwenden Sie ein Bild mit Größe < 5 Mb mit einem der Formate png/jpg/jpeg/gif.')
-                        .ok('OK'));
-                }, function(evt) {
+                            .parent(angular.element(document.body))
+                            .clickOutsideToClose(true)
+                            .title('Fehler beim Upload')
+                            .textContent('Bitte verwenden Sie ein Bild mit Größe < 5 Mb mit einem der Formate png/jpg/jpeg/gif.')
+                            .ok('OK'));
+                }, function (evt) {
                     vm.determinateValue = parseInt(100.0 * evt.loaded / evt.total);
                 });
             }

@@ -12,7 +12,8 @@
         vm.sendBooking = sendBooking;
         vm.cancel = cancel;
         vm.showTabDialog = showTabDialog;
-        vm.availableFilter = availableFilter;
+        vm.availableFilterStartDate = availableFilterStartDate;
+        vm.availableFilterEndDate = availableFilterEndDate;
 
         velooData.Bicycle.get({
             id: $routeParams.id
@@ -150,23 +151,37 @@
 
         }
 
-        function availableFilter(date) {
+        function availableFilterStartDate(date) {
             var day = new Date(date);
+            day.setHours(0, 0, 0, 0, 0);
             var result = true;
 
-            if (vm.bicycle && vm.bicycle.restrictions) {
-                if (vm.bicycle.restrictions.length > 0) {
-                    vm.bicycle.restrictions.forEach(function(r) {
-                        var restriction = new Date(r);
-                        if (restriction.getTime() == day.getTime()) {
-                            result = false;
-                        }
-                    });
-                }
-            }
-            if (new Date(date) < new Date()) {
+            if (day < new Date().setHours(0, 0, 0, 0, 0)) {
                 result = false;
             }
+            return result;
+        }
+
+        function availableFilterEndDate(date) {
+            var day = new Date(date);
+
+            day.setHours(0, 0, 0, 0, 0);
+
+            var result = true;
+
+            if (vm.startDate) {
+                var startDate = new Date();
+                startDate.setDate(vm.startDate.getDate());
+                startDate.setHours(0, 0, 0, 0, 0);
+                if (day <= startDate) {
+                    result = false;
+                }
+            }
+
+            if (day < new Date().setHours(0, 0, 0, 0, 0)) {
+                result = false;
+            }
+
             return result;
         }
 

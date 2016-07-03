@@ -9,7 +9,7 @@
 </md-toolbar>
 
 <form name="createBicycle" ng-submit="ctrl.saveBicycle()">
-    <div layout-gt-sm="row" flex-gt-lg="80" flex-offset-gt-lg="10" flex="90" flex-offset="5" class="v-top-content" style="margin-bottom:20px;">
+    <div layout-gt-sm="row" flex-gt-sm="90" flex-offset-gt-sm="5" flex-xl="80" flex-offset-xl="10" class="v-top-content">
 
         <div flex-gt-sm="30" class="v-create-bicycle-address v-card-style">
             <div class="v-font-color v-subheader" layout="row" layout-align="start center">
@@ -58,7 +58,8 @@
 
             <div layout="column" class="v-lr-padding" flex>
                 <div layout-gt-sm="row">
-                    <md-input-container flex-gt-sm="45" class="md-icon-float">
+                    <md-input-container flex-gt-sm="45" flex
+                                        class="md-icon-float">
                         <label>Price per day</label>
                         <md-icon class="md-icon">euro_symbol</md-icon>
                         <input type="number" class="form-control" ng-model="ctrl.bicycle.price" required/>
@@ -75,7 +76,7 @@
                     </md-input-container>
                 </div>
 
-                <div layout-gt-sm="row">
+                <div layout="column" layout-gt-sm="row">
                     <md-input-container flex flex-gt-sm="45" class="md-icon-float">
                         <label>Size</label>
                         <md-icon class="md-icon">format_size</md-icon>
@@ -93,11 +94,13 @@
                     </md-input-container>
                 </div>
 
-                <div layout-gt-sm="row">
+
+                <div layout-gt-sm="row" layout="column">
                     <md-input-container flex-gt-sm="45" class="md-icon-float">
                         <label>Brand</label>
                         <md-icon class="md-icon">polymer</md-icon>
-                        <input type="text" class="form-control" ng-model="ctrl.bicycle.brand" required/>
+                        <input type="text" clas
+                               s="form-control" ng-model="ctrl.bicycle.brand" required/>
                     </md-input-container>
                     <div flex hide-sm hide-xs></div>
                     <md-input-container flex flex-gt-sm="45" class="md-icon-float">

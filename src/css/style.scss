@@ -51,6 +51,7 @@ md-icon svg {
   background-color: lightgrey;
 }
 
+
 .v-font-color {
   color: $color_font !important;
   font-size: 16px;
@@ -166,6 +167,10 @@ md-icon svg {
 .v-link:hover {
   cursor: pointer;
   color: $color_mainBlue;
+}
+
+.v-pointer:hover {
+  cursor:pointer;
 }
 
 .v-link {

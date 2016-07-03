@@ -9,7 +9,7 @@
         var vm = this;
 
         vm.bicycleTypes = ["Mountainbike", "Racing Bicycle", "Road Bicycle", "Touring Bicycle"];
-        vm.bicycleCategories = ["Female", "Male", "Children"];
+        vm.bicycleCategories = ["Unisex", "Female", "Male", "Children"];
         vm.bicycleSizes = ["XS", "S", "M", "L", "XL"];
         vm.bicycleFeatures = [];
         vm.newFeature = "";

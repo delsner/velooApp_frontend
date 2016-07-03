@@ -68,7 +68,7 @@
 
                     <md-input-container class="md-block">
                         <label>Street number</label>
-                        <input ng-model="ctrl.user.streetNumber">
+                        <input ng-model="ctrl.user.streetNumber" type="number">
                     </md-input-container>
                 </div>
 
@@ -85,9 +85,7 @@
 
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>Postal Code</label>
-                        <input ng-model="ctrl.user.zipcode" placeholder="12345" required
-                              type="number">
-
+                        <input ng-model="ctrl.user.zipcode" placeholder="12345" type="number">
                     </md-input-container>
                 </div>
                 <div layout=column layout-align="center end">

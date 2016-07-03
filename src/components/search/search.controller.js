@@ -46,8 +46,18 @@
 
         function getSearchResultsWithPaginationOffset(page) {
 
-            if(!(vm.searchFilter.startDate && vm.searchFilter.endDate) ||
+       /*     if(!(vm.searchFilter.startDate && vm.searchFilter.endDate) ||
                 vm.searchFilter.startDate < vm.searchFilter.endDate) {
+            } else {
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.body))
+                        .clickOutsideToClose(true)
+                        .title('Error!')
+                        .textContent('Please set end date to be after start date')
+                        .ok('OK'));
+            }*/
+
                 vm.searchFilter.page = page;
 
                 $location.search(vm.searchFilter);
@@ -125,15 +135,6 @@
                         $rootScope.loading = false;
                         console.log(err);
                     });
-            } else {
-                $mdDialog.show(
-                    $mdDialog.alert()
-                        .parent(angular.element(document.body))
-                        .clickOutsideToClose(true)
-                        .title('Error!')
-                        .textContent('Please set end date to be after start date')
-                        .ok('OK'));
-            }
 
         }
 
