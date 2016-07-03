@@ -1,45 +1,47 @@
-<div layout-gt-sm="row" layout-align="start center" class="v-top-content-search" flex>
-    <div flex="20" layout="row">
-        <md-input-container flex class="md-icon-float" layout="row" layout-align="end end">
-            <md-icon class="md-icon">location_on</md-icon>
-            <input type="text" class="form-control" placeholder="Address" required ng-model="ctrl.searchFilter.q"/>
-        </md-input-container>
-    </div>
-    <div flex layout="row">
-        <md-datepicker ng-model="ctrl.searchFilter.startDate" md-placeholder="Start date"></md-datepicker>
-    </div>
-    <div flex>
-        <md-datepicker ng-model="ctrl.searchFilter.endDate" md-placeholder="End date"></md-datepicker>
-    </div>
-    <div flex>
-        <md-input-container class="md-icon-float">
-            <label class="md-caption">Bicycle Type</label>
-            <md-icon class="md-icon">directions_bike</md-icon>
-            <md-select ng-model="ctrl.searchFilter.type">
-                <md-option ng-repeat="type in ctrl.bicycleTypes">
-                    {{type}}
-                </md-option>
-            </md-select>
-        </md-input-container>
-    </div>
-    <div flex>
-        <md-input-container class="md-icon-float ">
-            <label>Size</label>
-            <md-icon class="md-icon">format_size</md-icon>
-            <md-select ng-model="ctrl.searchFilter.size">
-                <md-option ng-repeat="size in ctrl.bicycleSizes">
-                    {{size}}
-                </md-option>
-            </md-select>
-        </md-input-container>
-    </div>
+<div layout="row" layout-align="center center" class="v-top-content-search" flex>
+    <div flex flex-gt-sm="90" layout-gt-sm="row" layout-align="start center">
+        <div flex flex-gt-sm="20" layout="row">
+            <md-input-container flex class="md-icon-float" layout="row" layout-align="end end">
+                <md-icon class="md-icon">location_on</md-icon>
+                <input type="text" class="form-control" placeholder="Address" required ng-model="ctrl.searchFilter.q"/>
+            </md-input-container>
+        </div>
+        <div flex layout="row">
+            <md-datepicker ng-model="ctrl.searchFilter.startDate" md-date-filter="ctrl.availableFilterStartDate" md-placeholder="Start date"></md-datepicker>
+        </div>
+        <div flex>
+            <md-datepicker ng-model="ctrl.searchFilter.endDate" md-date-filter="ctrl.availableFilterEndDate" md-placeholder="End date"></md-datepicker>
+        </div>
+        <div flex flex-gt-sm="15">
+            <md-input-container flex class="md-icon-float">
+                <label class="md-caption">Bicycle Type</label>
+                <md-icon class="md-icon">directions_bike</md-icon>
+                <md-select ng-model="ctrl.searchFilter.type">
+                    <md-option ng-repeat="type in ctrl.bicycleTypes">
+                        {{type}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div flex>
+            <md-input-container class="md-icon-float ">
+                <label>Size</label>
+                <md-icon class="md-icon">format_size</md-icon>
+                <md-select ng-model="ctrl.searchFilter.size">
+                    <md-option ng-repeat="size in ctrl.bicycleSizes">
+                        {{size}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
 
 
-    <div flex layout="row" layout-align="end center">
-        <md-button class="md-primary md-raised" ng-click="ctrl.getSearchResultsWithPaginationOffset(0)">
-            <md-icon>search</md-icon>
-            <span>Apply filters </span>
-        </md-button>
+        <div flex layout="row" layout-align="center center">
+            <md-button class="md-primary md-raised" ng-click="ctrl.getSearchResultsWithPaginationOffset(0)">
+                <md-icon>search</md-icon>
+                <span>Apply filters </span>
+            </md-button>
+        </div>
     </div>
 </div>
 
