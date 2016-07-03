@@ -109,8 +109,8 @@
                     $mdDialog.alert()
                     .parent(angular.element(document.body))
                     .clickOutsideToClose(true)
-                    .title('Läuft bei dir')
-                    .textContent('Passt.')
+                    .title('Update successful')
+                    .textContent('Profile information successfully updated!')
                     .ok('Great'));
                 $rootScope.getUserDetails();
             }, function(error) {
@@ -142,8 +142,8 @@
                         $mdDialog.alert()
                         .parent(angular.element(document.body))
                         .clickOutsideToClose(true)
-                        .title('Profil information updated')
-                        .textContent('Ihre Profildaten wurden erfolgreich geändert.')
+                        .title('Update successful')
+                        .textContent('Profile information successfully updated!')
                         .ok('OK'));
                     $rootScope.getUserDetails();
                 }, function(response) {
