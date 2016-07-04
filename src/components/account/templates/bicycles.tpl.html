@@ -1,24 +1,27 @@
 <md-list>
     <md-list-item ng-repeat="bicycle in ctrl.bicycles" ng-click="mainCtrl.setPathTo('/bicycle/' + bicycle._id)">
-        <md-icon>directions_bike</md-icon>
-        <div flex="30">
-            ID: {{bicycle._id}}
-        </div>
-        <div flex="20">
-            Type: {{bicycle.type}}
-        </div>
-        <div flex="20">
-            City: {{bicycle.city}}
-        </div>
-        <div flex layout="row" layout-align="end center">
-            <div layout="row">
-                <div class="v-lr-padding">
-                    {{bicycle.isActive ? 'Bicycle is active' : 'Bicycle not active'}}
+        <div layout-gt-sm="row">
+                <md-icon>directions_bike</md-icon>
+                <div flex-gt-sm="30">
+                    ID: {{bicycle._id}}
                 </div>
-                <md-icon
-                        ng-class="{'status-confirmed' : bicycle.isActive == true, 'status-cancelled' : bicycle.isActive == false}">
-                    {{bicycle.isActive ? 'check_circle' : 'remove_circle'}}
-                </md-icon>
+            <div flex-gt-sm="20">
+                Type: {{bicycle.type}}
+            </div>
+            <div flex-gt-sm="20">
+                City: {{bicycle.city}}
+            </div>
+
+            <div flex layout="row" layout-align-gt-sm="end center">
+                <div layout="row">
+                    <div class="v-lr-padding">
+                        {{bicycle.isActive ? 'Bicycle is active' : 'Bicycle not active'}}
+                    </div>
+                    <md-icon
+                            ng-class="{'status-confirmed' : bicycle.isActive == true, 'status-cancelled' : bicycle.isActive == false}">
+                        {{bicycle.isActive ? 'check_circle' : 'remove_circle'}}
+                    </md-icon>
+                </div>
             </div>
         </div>
         <md-divider></md-divider>
