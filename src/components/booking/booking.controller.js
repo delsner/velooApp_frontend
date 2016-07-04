@@ -1,7 +1,7 @@
 /**
  * Created by Consti on 25.06.16.
  */
-(function (angular) {
+(function(angular) {
     'use strict';
 
     angular
@@ -30,14 +30,16 @@
         vm.showRatingDialog = showRatingDialog;
         vm.cancelBooking = cancelBooking;
 
-        $rootScope.$watch('user', function (newValue, oldValue) {
+        $rootScope.$watch('user', function(newValue, oldValue) {
             vm.user = $rootScope.user;
         });
 
         vm.getBooking();
 
         function getBooking() {
-            velooData.Booking.get({id: $routeParams.id}).$promise.then(function (res) {
+            velooData.Booking.get({
+                id: $routeParams.id
+            }).$promise.then(function(res) {
                 console.log(res);
                 vm.booking = res;
                 vm.messageCount = vm.booking.messages.length;
@@ -49,7 +51,9 @@
                         latitude: vm.booking.bicycle.location[1],
                         longitude: vm.booking.bicycle.location[0]
                     },
-                    options: {draggable: false}
+                    options: {
+                        draggable: false
+                    }
                 };
                 vm.map = {
                     center: {
@@ -67,7 +71,7 @@
                 velooData.Message.save({
                     text: vm.newMessage,
                     booking: vm.booking._id
-                }).$promise.then(function (data) {
+                }).$promise.then(function(data) {
                     vm.getMessages();
                     vm.newMessage = "";
                 });
@@ -77,7 +81,7 @@
         function getMessages() {
             velooData.Message.get({
                 id: $routeParams.id
-            }).$promise.then(function (res) {
+            }).$promise.then(function(res) {
                 vm.booking.messages = res;
                 vm.messageCount = vm.booking.messages.length;
             });
@@ -88,30 +92,36 @@
             if (vm.booking && $rootScope.user) {
                 var avatar = $rootScope.user.id == vm.booking.endUser._id ? vm.booking.provider.avatar : vm.booking.endUser.avatar;
                 return avatar ? avatar.data : 'images/avatar.png';
+            } else {
+                return 'images/avatar.png';
             }
+
         }
 
         function rateBooking() {
-            velooData.Booking.rateBooking({id:vm.booking._id},{
+            velooData.Booking.rateBooking({
+                id: vm.booking._id
+            }, {
                 ratingText: vm.ratingText,
                 starRating: vm.rating
-            }).$promise.then(function (success) {
+            }).$promise.then(function(success) {
                 $mdDialog.show(
                     $mdDialog.alert()
-                        .parent(angular.element(document.body))
-                        .clickOutsideToClose(true)
-                        .title('Success')
-                        .textContent('Booking successfully rated.')
-                        .ok('OK'));
+                    .parent(angular.element(document.body))
+                    .clickOutsideToClose(true)
+                    .title('Success')
+                    .textContent('Booking successfully rated.')
+                    .ok('OK'));
                 vm.getBooking();
-            }, function (error) {
+                vm.booking.yetRated = false;
+            }, function(error) {
                 $mdDialog.show(
                     $mdDialog.alert()
-                        .parent(angular.element(document.body))
-                        .clickOutsideToClose(true)
-                        .title('Error')
-                        .textContent('Please try again later.')
-                        .ok('OK'));
+                    .parent(angular.element(document.body))
+                    .clickOutsideToClose(true)
+                    .title('Error')
+                    .textContent('Please try again later.')
+                    .ok('OK'));
             })
         }
 
@@ -123,27 +133,27 @@
                 .targetEvent(ev)
                 .ok('Yes')
                 .cancel('No');
-            $mdDialog.show(confirm).then(function () {
+            $mdDialog.show(confirm).then(function() {
                 velooData.Booking.cancelBooking({
                     id: $routeParams.id,
                     user: vm.user.id
-                }).$promise.then(function (success) {
+                }).$promise.then(function(success) {
                     $mdDialog.show(
                         $mdDialog.alert()
-                            .parent(angular.element(document.body))
-                            .clickOutsideToClose(true)
-                            .title('Success')
-                            .textContent('Booking successfully cancelled.')
-                            .ok('OK'));
+                        .parent(angular.element(document.body))
+                        .clickOutsideToClose(true)
+                        .title('Success')
+                        .textContent('Booking successfully cancelled.')
+                        .ok('OK'));
                     vm.getBooking();
-                }, function (error) {
+                }, function(error) {
                     $mdDialog.show(
                         $mdDialog.alert()
-                            .parent(angular.element(document.body))
-                            .clickOutsideToClose(true)
-                            .title('Error')
-                            .textContent('Please try again later.')
-                            .ok('OK'));
+                        .parent(angular.element(document.body))
+                        .clickOutsideToClose(true)
+                        .title('Error')
+                        .textContent('Please try again later.')
+                        .ok('OK'));
                 })
             });
         }

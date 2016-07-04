@@ -23,7 +23,6 @@
                 .title('Thank you!')
                 .textContent('A password reset Email was sent to you!')
                 .ok('OK'));
-                //TODO 
             vm.cancel();
         }
 

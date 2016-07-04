@@ -26,6 +26,13 @@
                         </md-button>
                     </div>
                 </div>
+                <div layout="row" layout-align="center center">
+                    <li class="v-rating-stars" ng-repeat="x in [1,2,3,4,5]">
+                        <md-icon ng-style="{color:'orange'}" ng-show="ctrl.user.aggregatedRating >= x">
+                            star
+                        </md-icon>
+                    </li>
+                </div>
             </div>
 
             <div flex="80" class="v-profile-margin-right">

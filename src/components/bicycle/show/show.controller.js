@@ -21,11 +21,11 @@
 
             vm.bicycle = data;
             vm.bicycle.selectedFeatures = [];
-            
+
             console.log(vm.bicycle);
-            
+
             vm.bicycle.features.forEach(function(feature) {
-                if(feature.isSelected) {
+                if (feature.isSelected) {
                     vm.bicycle.selectedFeatures.push(feature);
                 }
             });
@@ -159,6 +159,18 @@
             if (day < new Date().setHours(0, 0, 0, 0, 0)) {
                 result = false;
             }
+
+            if (vm.bicycle && vm.bicycle.restrictions) {
+                if (vm.bicycle.restrictions.length > 0) {
+                    vm.bicycle.restrictions.forEach(function(r) {
+                        var restriction = new Date(r);
+                        if (restriction.getTime() == day.getTime()) {
+                            result = false;
+                        }
+                    });
+                }
+            }
+
             return result;
         }
 
@@ -173,11 +185,22 @@
                 var startDate = new Date();
                 startDate.setDate(vm.startDate.getDate());
                 startDate.setHours(0, 0, 0, 0, 0);
-                if (day <= startDate) {
+                if (day < startDate) {
                     result = false;
                 }
             }
 
+            if (vm.bicycle && vm.bicycle.restrictions) {
+                if (vm.bicycle.restrictions.length > 0) {
+                    vm.bicycle.restrictions.forEach(function(r) {
+                        var restriction = new Date(r);
+                        if (restriction.getTime() == day.getTime()) {
+                            result = false;
+                        }
+                    });
+                }
+            }
+            
             if (day < new Date().setHours(0, 0, 0, 0, 0)) {
                 result = false;
             }
