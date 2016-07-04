@@ -43,6 +43,9 @@
 
                 if (res.config.url.indexOf(velooConnection.baseUri) === 0 && res.data.token) {
                     velooToken.saveToken(res.data.token);
+                    if(localStorage['satellizer_token']){
+                      localStorage.removeItem('satellizer_token');
+                    }
                 }
                 return res;
             }
@@ -196,7 +199,7 @@
             });
 
         var Rating = $resource(velooUtil.getFullUrl(velooUtil.paths.rating));
-            
+
 
         return {
             Bicycle: Bicycle,
