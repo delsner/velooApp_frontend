@@ -13,8 +13,8 @@
 <div layout-gt-sm="row" flex class="v-top-content">
     <div flex-gt-sm="45" class="v-card-style">
         <div class="v-font-color v-subheader" layout="row" layout-align="start center">
-            <div>Bookingdetails</div>
-            <div flex class="v-lr-padding" layout="row" layout-align="center center">
+            <div hide-xs hide-sm>Bookingdetails</div>
+            <div flex class="v-lr-padding" layout="row" layout-align-gt-sm="center center">
                 <div layout="row" layout-align="center center">
                     <md-icon class="md-icon md-block" ng-class="{'status-confirmed': ctrl.statusText == 'Confirmed', 'status-rateable': ctrl.statusText == 'Rateable',
                     'status-cancelled': ctrl.statusIcon == 'cancel', 'status-finished': ctrl.statusText == 'Finished'}">
@@ -27,12 +27,15 @@
                 </div>
             </div>
             <div layout="row" layout-align="end center">
-                <md-button ng-if="ctrl.statusText == 'Confirmed'" class="md-primary md-raised" ng-click="ctrl.cancelBooking($event)">
+                <md-button ng-if="ctrl.statusText == 'Confirmed'" class="md-primary md-raised"
+                           ng-click="ctrl.cancelBooking($event)">
                     <md-icon>cancel</md-icon>
                     <span>Cancel Booking</span>
                 </md-button>
 
-                <md-button ng-if="ctrl.statusText == 'Rateable' && !ctrl.booking.yetRated" class="md-primary md-raised" ng-click="ctrl.showRatingDialog()">
+                <md-button ng-if="ctrl.statusText == 'Rateable' && !ctrl.booking.yetRated"
+                           class="md-primary md-raised"
+                           ng-click="ctrl.showRatingDialog()">
                     <md-icon>stars</md-icon>
                     <span>Rate</span>
                 </md-button>
@@ -135,22 +138,24 @@
                 </div>
             </md-list-item>
             <md-divider></md-divider>
-           <!-- <md-list-item flex>
-                <md-icon>phone</md-icon>
-                <div layout="column" flex>
-                    <p class="v-text-overflow"> phone necessary?</p>
-                </div>
-            </md-list-item>-->
+            <!-- <md-list-item flex>
+                 <md-icon>phone</md-icon>
+                 <div layout="column" flex>
+                     <p class="v-text-overflow"> phone necessary?</p>
+                 </div>
+             </md-list-item>-->
         </md-list>
 
         <div class="v-font-color v-subheader" layout="row" layout-align="start center">
             <div>Ratings</div>
         </div>
 
-        <div ng-if="ctrl.user.id==ctrl.booking.endUser._id && ctrl.booking.provider.ratings.length == 0" layout="row" layout-align="center center">
+        <div ng-if="ctrl.user.id==ctrl.booking.endUser._id && ctrl.booking.provider.ratings.length == 0" layout="row"
+             layout-align="center center">
             <div class="md-padding md-caption">No ratings yet.</div>
         </div>
-        <div ng-if="ctrl.user.id!=ctrl.booking.endUser._id && ctrl.booking.endUser.ratings.length == 0" layout="row" layout-align="center center">
+        <div ng-if="ctrl.user.id!=ctrl.booking.endUser._id && ctrl.booking.endUser.ratings.length == 0" layout="row"
+             layout-align="center center">
             <div class="md-padding md-caption">No ratings yet.</div>
         </div>
 
@@ -187,13 +192,12 @@
                 <md-list-item ng-repeat="x in ctrl.booking.messages">
                     <div layout="row" ng-class="{'layout-align-end-start': ctrl.user.id != x.receiver,
                 'last-message':$index+1===ctrl.booking.messages.length}" flex>
-                        <div>
+                        <div flex-gt-sm="80">
                             <div class="md-list-item-text message" layout="column"
                                  ng-class="{'message-alt': ctrl.user.id != x.receiver}">
                                 <p>{{x.text}}</p>
                             </div>
                         </div>
-
                     </div>
                 </md-list-item>
             </md-list>
