@@ -191,7 +191,7 @@
             <md-list>
                 <md-list-item ng-repeat="x in ctrl.booking.messages">
                     <div layout="row" ng-class="{'layout-align-end-start': ctrl.user.id != x.receiver,
-                'last-message':$index+1===ctrl.booking.messages.length}" flex>
+                'last-message':$index+1===ctrl.booking.messages.length}" flex="100">
                         <div flex-gt-sm="80">
                             <div class="md-list-item-text message" layout="column"
                                  ng-class="{'message-alt': ctrl.user.id != x.receiver}">
