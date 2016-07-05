@@ -162,8 +162,7 @@
         <md-list ng-cloak ng-if="ctrl.user.id==ctrl.booking.endUser._id">
             <md-list-item flex ng-repeat="rating in ctrl.booking.provider.ratings">
                 <md-icon>person</md-icon>
-                <div layout="column" flex>
-                    <p class="v-text-overflow"> {{rating.rater.username}} </p>
+                <div layout="column" flex="100">
                     <p class="v-text-overflow" style="font-style: italic"> {{rating.ratingText}}</p>
                 </div>
                 <md-divider></md-divider>
