@@ -4,7 +4,7 @@
              ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.bicycles[x]._id)">
         <div class="card-image-container"
              ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[x]._id)">
-            <img ng-src="{{ctrl.bicycles[x].pictures[0].data ? ctrl.bicycles[x].pictures[0].data : '/images/dummyBike.png' }}">
+            <img ng-src="{{ctrl.bicycles[x].pictures[0].data ? ctrl.bicycles[x].pictures[0].data : 'images/dummyBike.png' }}">
         </div>
         <md-card-title>
             <md-card-title-text layout="row" layout-align="center center">
@@ -12,16 +12,6 @@
             </md-card-title-text>
         </md-card-title>
         <md-card-content layout="row">
-            <!--<div layout="row" ng-show="ctrl.transactionObjects[x].transactionObjectRatings.length > 0"
-                 layout-align="center center">
-                <li class="stars" ng-repeat="i in [1,2,3,4,5]">
-                    <md-icon ng-style="{color:'orange'}"
-                             ng-show="ctrl.transactionObjects[x].aggregatedRating >= i">
-                        star
-                    </md-icon>
-                </li>
-                ({{ctrl.transactionObjects[x].transactionObjectRatings.length}})
-            </div>-->
             <div layout="row" layout-align="start center" flex>
                 <div flex layout="row" layout-align="start center">
                     <md-icon>euro_symbol</md-icon>
@@ -50,7 +40,7 @@
              ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.bicycles[x]._id)">
         <div class="card-image-container"
              ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[x]._id)">
-            <img ng-src="{{ctrl.bicycles[x].pictures[0].data ? ctrl.bicycles[x].pictures[0].data : '/images/dummyBike.png' }}">
+            <img ng-src="{{ctrl.bicycles[x].pictures[0].data ? ctrl.bicycles[x].pictures[0].data : 'images/dummyBike.png' }}">
         </div>
         <md-card-title>
             <md-card-title-text layout="row" layout-align="center center">
@@ -58,16 +48,6 @@
             </md-card-title-text>
         </md-card-title>
         <md-card-content layout="row">
-            <!--<div layout="row" ng-show="ctrl.transactionObjects[x].transactionObjectRatings.length > 0"
-                 layout-align="center center">
-                <li class="stars" ng-repeat="i in [1,2,3,4,5]">
-                    <md-icon ng-style="{color:'orange'}"
-                             ng-show="ctrl.transactionObjects[x].aggregatedRating >= i">
-                        star
-                    </md-icon>
-                </li>
-                ({{ctrl.transactionObjects[x].transactionObjectRatings.length}})
-            </div>-->
             <div layout="row" layout-align="start center" flex>
                 <div flex layout="row" layout-align="start center">
                     <md-icon>euro_symbol</md-icon>

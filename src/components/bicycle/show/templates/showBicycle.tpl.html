@@ -18,16 +18,16 @@
 
     <div flex layout-gt-sm="row" layout-align="center center" class="v-card-style" layout-margin="2">
         <div flex-gt-sm="33"
-             style="background-image:url({{ctrl.bicycle.pictures[0].data ? ctrl.bicycle.pictures[0].data : '/images/dummyBike.png' }}); background-size: cover;"
+             style="background-image:url({{ctrl.bicycle.pictures[0].data ? ctrl.bicycle.pictures[0].data : 'images/dummyBike.png' }}); background-size: cover;"
              class="v-bicycle-img v-pointer picture-list-item v-lr-padding" ng-click="ctrl.showTabDialog(0)"></div>
         <div flex-gt-sm="33"
-             style="background-image:url({{ctrl.bicycle.pictures[1].data ? ctrl.bicycle.pictures[1].data : '/images/dummyBike.png' }}); background-size: cover;"
+             style="background-image:url({{ctrl.bicycle.pictures[1].data ? ctrl.bicycle.pictures[1].data : 'images/dummyBike.png' }}); background-size: cover;"
              class="v-bicycle-img v-pointer picture-list-item v-lr-padding" ng-click="ctrl.showTabDialog(1)"></div>
         <div
                 flex-gt-sm="33"
                 layout="column"
                 layout-align="center center"
-                style="background-image:url({{ctrl.bicycle.pictures[2].data ? ctrl.bicycle.pictures[2].data : '/images/dummyBike.png' }}); background-size: cover;"
+                style="background-image:url({{ctrl.bicycle.pictures[2].data ? ctrl.bicycle.pictures[2].data : 'images/dummyBike.png' }}); background-size: cover;"
                 class="v-bicycle-img picture-list-item v-pointer v-lr-padding"
                 ng-click="ctrl.showTabDialog(2)">
             <h1 ng-if="ctrl.bicycle.pictures.length > 3">+{{ctrl.bicycle.pictures.length-3}}

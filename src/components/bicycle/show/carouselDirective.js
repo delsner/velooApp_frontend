@@ -9,7 +9,7 @@
             templateUrl: 'components/bicycle/show/templates/carousel.tpl.html',
             replace: true,
             link: function (scope, element, attrs) {
-  
+
                         //scope.amountPictures = scope.ctrl.bicycle.pictures.length;
                         scope.selected = [1, 2, 3];
 
@@ -21,7 +21,7 @@
                                 });
                             } else {
                                 angular.element(document.querySelector('.picture-container').children[i]).css({
-                                    'background': 'url(../images/tent_icon.png) no-repeat center center', //fixed ?
+                                    'background': 'url(./images/tent_icon.png) no-repeat center center', //fixed ?
                                     'background-size': 'cover'
                                 });
                             }

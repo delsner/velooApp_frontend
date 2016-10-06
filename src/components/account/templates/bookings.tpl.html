@@ -1,10 +1,10 @@
 <md-list>
-    <md-list-item ng-repeat="booking in ctrl.bookings | orderBy: '-createdAt'" ng-click="mainCtrl.setPathTo('/booking/' + booking._id)">
+    <md-list-item ng-repeat="booking in ctrl.bookings | orderBy: '-endDate'" ng-click="mainCtrl.setPathTo('/booking/' + booking._id)">
         <md-icon>description</md-icon>
         <div flex layout="row">
             <div>
                 Booking with {{ctrl.user.id==booking.endUser._id ? booking.provider.username :
-                booking.endUser.username}} <span class="md-caption">({{booking.createdAt | date: 'mediumDate' }})</span>
+                booking.endUser.username}}
             </div>
         </div>
         <div flex layout-gt-sm="row" layout-align="start center">

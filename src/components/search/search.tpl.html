@@ -69,7 +69,7 @@
                      ng-click="mainCtrl.setPathTo('/bicycle/'+ctrl.bicycles[$index]._id)">
                 <div class="card-image-container"
                      ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[$index]._id)">
-                    <img ng-src="{{ctrl.bicycles[$index].pictures[0].data ? ctrl.bicycles[$index].pictures[0].data : '/images/dummyBike.png' }}">
+                    <img ng-src="{{ctrl.bicycles[$index].pictures[0].data ? ctrl.bicycles[$index].pictures[0].data : 'images/dummyBike.png' }}">
                 </div>
                 <md-card-title>
                     <md-card-title-text layout="row" layout-align="center center">
@@ -112,7 +112,7 @@
                      ng-mouseleave="ctrl.hideSelectedBicycleMarker($index+1)">
                 <div class="card-image-container"
                      ng-click="mainCtrl.setPathTo('bicycle/'+ctrl.bicycles[$index+1]._id)">
-                    <img ng-src="{{ctrl.bicycles[$index+1].pictures[0].data ? ctrl.bicycles[$index+1].pictures[0].data : '/images/dummyBike.png' }}">
+                    <img ng-src="{{ctrl.bicycles[$index+1].pictures[0].data ? ctrl.bicycles[$index+1].pictures[0].data : 'images/dummyBike.png' }}">
                 </div>
                 <md-card-title>
                     <md-card-title-text layout="row" layout-align="center center">

@@ -23,7 +23,7 @@
                 'auth': true
             })
             .when('/bicycle/:id', {
-                'templateUrl': 'components/bicycle/show//templates/showBicycle.tpl.html',
+                'templateUrl': 'components/bicycle/show/templates/showBicycle.tpl.html',
                 'controller': 'showBicycleCtrl as ctrl',
                 'auth': false
             })
